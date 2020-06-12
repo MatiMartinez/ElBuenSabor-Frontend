@@ -21,7 +21,6 @@ class Content extends Component {
             <Col key={i} md={5} className="mb-4 text-center">
               <h6 className="mb-3">{col.title}</h6>
               <p>{col.description}</p>
-              <h5></h5>
             </Col>
           ))}
         </Row>

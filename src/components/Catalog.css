@@ -1,0 +1,17 @@
+.search-content {
+  height: 50px;
+}
+
+.btn-search,
+.btn-search:hover {
+  color: #b68207;
+  background-color: #ffffff;
+  border: 1px solid #b68207;
+}
+
+.input-search,
+.input-search:focus {
+  box-shadow: none;
+  background-color: #ffffff;
+  border: 1px solid #451400;
+}
