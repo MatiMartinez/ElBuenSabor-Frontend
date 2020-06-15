@@ -7,7 +7,7 @@ import contentData from '../utils/contentData';
 class Content extends Component {
   render() {
     return (
-      <div className="container d-flex flex-column mt-5 align-items-center">
+      <div className="container d-flex flex-column mt-5 align-items-center mb-5">
         <div className="text-center w-50 mb-5">
           <h2 className="mt-5 mb-3">Porque somos los mejores</h2>
           <p className="color-golden">
@@ -18,7 +18,7 @@ class Content extends Component {
         </div>
         <Row className="d-flex justify-content-between">
           {contentData.map((col, i) => (
-            <Col key={i} md={5} className="mb-4 text-center">
+            <Col key={i} md={3} className="text-center p-5">
               <h6 className="mb-3">{col.title}</h6>
               <p>{col.description}</p>
             </Col>

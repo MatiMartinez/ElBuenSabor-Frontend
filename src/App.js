@@ -3,11 +3,15 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import PrivateRoute from './components/PrivateRoute';
+
+// Components
 import Loading from './components/Loading';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './views/Home';
 import Profile from './views/Profile';
+import PedidosCocina from './views/PedidosCocina';
+
 import { useAuth0 } from './react-auth0-spa';
 import history from './utils/history';
 
@@ -34,6 +38,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/catalog" component={Profile} />
+            <Route path="/cocina" exact component={PedidosCocina} />
           </Switch>
         </div>
         <Footer />
