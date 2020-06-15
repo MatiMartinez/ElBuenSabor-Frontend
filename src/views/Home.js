@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import Catalog from '../components/Catalog';
+import Catalog from '../components/Clientes/Catalog';
 import Hero from '../components/Hero';
 import Content from '../components/Content';
 import { useAuth0 } from '../react-auth0-spa';

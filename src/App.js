@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './views/Home';
 import Profile from './views/Profile';
-import PedidosCocina from './views/PedidosCocina';
+import Cocina from './views/Cocina';
 
 import { useAuth0 } from './react-auth0-spa';
 import history from './utils/history';
@@ -38,7 +38,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/catalog" component={Profile} />
-            <Route path="/cocina" exact component={PedidosCocina} />
+            <Route path="/cocina" exact component={Cocina} />
           </Switch>
         </div>
         <Footer />
