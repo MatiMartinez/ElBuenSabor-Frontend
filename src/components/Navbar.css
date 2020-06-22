@@ -6,6 +6,7 @@
   -moz-transition: all 0.5s ease; /* Firefox */
   -o-transition: all 0.5s ease; /* IE 9 */
   -ms-transition: all 0.5s ease; /* Opera */
+  box-shadow: 5px 5px 10px 3px #ccc;
 }
 
 .landing-btn-login:hover {
@@ -22,4 +23,9 @@
 .logo-ebs::before {
   content: 'El Buen Sabor';
   font-size: 32px;
+}
+
+.nav {
+  background: #fcfcfc;
+  box-shadow: none;
 }

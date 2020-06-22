@@ -1,36 +1,63 @@
-import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, { useState } from 'react';
 
-import Highlight from '../components/Highlight';
 import Loading from '../components/Loading';
 import { useAuth0 } from '../react-auth0-spa';
 
+// Things
+import UserIcon from '../assets/user-icon.svg';
+import DataProfile from '../components/Profile/DataProfile';
+import EditProfile from '../components/Profile/EditProfile';
+
 const Profile = () => {
+  const [enable, setEnable] = useState(0);
+
+  const toggle = (number) => {
+    setEnable(number);
+  };
+
   const { loading, user } = useAuth0();
+  console.log(user);
 
   if (loading || !user) {
     return <Loading />;
   }
 
   return (
-    <Container className="mb-5">
-      <Row className="align-items-center profile-header mb-5 text-center text-md-left">
-        <Col md={2}>
-          <img
-            src={user.picture}
-            alt="Profile"
-            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+    <div className="container mt-5">
+      <div className="d-flex align-items-center">
+        <img src={UserIcon} alt="user-icon" width="30px" />
+        <h5 className="p-0 m-0 ml-3">Mi Perfil</h5>
+      </div>
+      <div className="d-flex flex-column profile-container mt-5">
+        {/** Botones Nav Perfil */}
+        <div className="d-flex border-bottom pb-3 pt-3">
+          <div className="d-flex w-100 ml-4">
+            <button className="btn btn-nav-profile" onClick={() => toggle(0)}>
+              Perfil
+            </button>
+            <button className="btn btn-nav-profile" onClick={() => toggle(1)}>
+              Editar Perfil
+            </button>
+          </div>
+        </div>
+        {/** Contenido del perfil, datos o editar */}
+        {enable === 0 && (
+          <DataProfile
+            picture={user.picture}
+            name={user.name}
+            email={user.email}
+            given_name={user.given_name}
+            family_name={user.family_name}
           />
-        </Col>
-        <Col md>
-          <h2>{user.name}</h2>
-          <p className="lead text-muted">{user.email}</p>
-        </Col>
-      </Row>
-      <Row>
-        <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
-      </Row>
-    </Container>
+        )}
+        {enable === 1 && (
+          <EditProfile
+            given_name={user.given_name}
+            family_name={user.family_name}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

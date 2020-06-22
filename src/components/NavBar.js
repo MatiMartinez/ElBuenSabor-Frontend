@@ -34,7 +34,7 @@ const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <Navbar color="white" light expand="md">
+      <Navbar color="" light expand="md" className="nav pt-4 pb-4">
         <Container>
           <NavbarBrand className="logo-ebs" href="/" />
           <NavbarToggler onClick={toggle} />
@@ -50,7 +50,7 @@ const NavBar = () => {
                     className="landing-btn-login rounded-pill pr-4 pl-4 p-2 border-0"
                     onClick={() => loginWithRedirect({})}
                   >
-                    Iniciar Sesión
+                    INICIAR SESIÓN
                   </Button>
                 </NavItem>
               )}
@@ -72,14 +72,14 @@ const NavBar = () => {
                       className="dropdown-profile"
                       activeClassName="router-link-exact-active"
                     >
-                      <FontAwesomeIcon icon="user" className="mr-3" /> Profile
+                      <FontAwesomeIcon icon="user" className="mr-3" /> Perfil
                     </DropdownItem>
                     <DropdownItem
                       id="qsLogoutBtn"
                       onClick={() => logoutWithRedirect()}
                     >
-                      <FontAwesomeIcon icon="power-off" className="mr-3" /> Log
-                      out
+                      <FontAwesomeIcon icon="power-off" className="mr-3" />{' '}
+                      Salir
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -94,7 +94,7 @@ const NavBar = () => {
                     block
                     onClick={() => loginWithRedirect({})}
                   >
-                    Log in
+                    INICIAR SESIÓN
                   </Button>
                 </NavItem>
               </Nav>
@@ -122,7 +122,7 @@ const NavBar = () => {
                     to="/profile"
                     activeClassName="router-link-exact-active"
                   >
-                    Profile
+                    Perfil
                   </RouterNavLink>
                 </NavItem>
                 <NavItem>
@@ -132,7 +132,7 @@ const NavBar = () => {
                     id="qsLogoutBtn"
                     onClick={() => logoutWithRedirect()}
                   >
-                    Log out
+                    Salir
                   </RouterNavLink>
                 </NavItem>
               </Nav>

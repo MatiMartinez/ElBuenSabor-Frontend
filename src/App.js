@@ -20,6 +20,8 @@ import './App.css';
 
 // fontawesome
 import initFontAwesome from './utils/initFontAwesome';
+import Caja from './views/Caja';
+import Admin from './views/Admin';
 initFontAwesome();
 
 const App = () => {
@@ -37,8 +39,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute path="/catalog" component={Profile} />
-            <Route path="/cocina" exact component={Cocina} />
+            <Route path="/cocina" component={Cocina} />
+            <Route path="/caja" component={Caja} />
+            <Route path="/admin" component={Admin} />
           </Switch>
         </div>
         <Footer />

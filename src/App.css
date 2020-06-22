@@ -8,16 +8,17 @@
 }
 
 /** Colors y backgroud */
-.color-yellow {
-  color: #fdbf50;
-}
 
-.color-orange {
-  color: #ff724c;
+.bg-red {
+  background: #ad2118;
 }
 
 .color-golden {
   color: #b68207;
+}
+
+.bg-golden {
+  background: #b68207;
 }
 
 .next-steps .fa-link {
@@ -37,4 +38,72 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/** Botones de la nav de cocinero cajero y administrador */
+.btn-nav {
+  color: #fff;
+  border-radius: 0%;
+  width: 100%;
+  margin: 5px;
+  max-width: 203px;
+}
+
+.btn-nav:hover {
+  border-bottom: 1px solid #ad2118;
+  color: #ad2118;
+}
+
+.btn-nav:disabled:hover {
+  border-bottom: 1px solid gray;
+  color: gray;
+}
+
+.btn-add {
+  background-color: #b68207;
+  color: #fff;
+}
+
+.btn-add:hover {
+  background-color: #d49808;
+  color: #fff;
+}
+
+.btn-modal {
+  background-color: #ad2118;
+  color: #fff;
+}
+
+.btn-modal:hover {
+  background-color: #c8261b;
+  color: #fff;
+}
+
+.btn-modal-outline {
+  background-color: #fff;
+  color: #ad2118;
+  border: 2px solid #ad2118;
+}
+
+.btn-modal-outline:hover {
+  background-color: #ad2118;
+  color: #fff;
+}
+
+/** Profile */
+.profile-container {
+  box-shadow: 0px 0px 5px 5px #ccc;
+  border-radius: 20px;
+}
+
+.btn-nav-profile {
+  color: #451400;
+  border-radius: 0%;
+  width: 100%;
+  max-width: 10%;
+}
+
+.btn-nav-profile:hover {
+  border-bottom: 1px solid #ad2118;
+  color: #ad2118;
 }

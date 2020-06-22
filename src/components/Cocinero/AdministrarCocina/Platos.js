@@ -12,7 +12,7 @@ import { customStyle } from '../../../utils/modalStyle';
 //Components
 import InputField from '../../GlobalReusable/InputField';
 
-const Insumos = () => {
+const Platos = () => {
   // state
 
   // Modal
@@ -25,8 +25,8 @@ const Insumos = () => {
   // Forms
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = ({ denominacion, stockMinimo, stockMaximo }) => {
-    console.log(denominacion, stockMinimo, stockMaximo);
+  const onSubmit = ({ denominacion, tiempoCocina, categoria }) => {
+    console.log(denominacion, tiempoCocina, categoria);
   };
 
   // Metodos de insumos
@@ -37,7 +37,7 @@ const Insumos = () => {
       {/** Modal */}
       <Modal isOpen={isOpen} ariaHideApp={false} style={customStyle}>
         <div className="p-4 bg-red mb-5">
-          <h2 className="text-white">Crear insumo</h2>
+          <h2 className="text-white">Crear plato</h2>
         </div>
         <div className="form-group m-4">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,20 +49,12 @@ const Insumos = () => {
               register={register}
             />
             <InputField
-              id="stockMinimo"
-              label="Stock mínimo"
+              id="tiempoCocina"
+              label="Tiempo de cocina (minutos)"
               type="number"
-              name="stockMinimo"
+              name="tiempoCocina"
               register={register}
             />
-            <InputField
-              id="stockMaximo"
-              label="Stock máximo"
-              type="number"
-              name="stockMaximo"
-              register={register}
-            />
-
             {/** Botones del modal */}
             <div className="d-flex justify-content-center border-top mt-5">
               <div className="d-flex justify-content-around pt-3 w-50">
@@ -82,7 +74,7 @@ const Insumos = () => {
       </Modal>
       <div className="d-flex flex-column justify-content-center w-100">
         <div className="text-center mb-4">
-          <h1>Lista de insumos</h1>
+          <h1>Lista de categorías</h1>
         </div>
         {/** Filtro y busqueda de insumos */}
         <div className="container d-flex justify-content-between mb-4">
@@ -94,7 +86,7 @@ const Insumos = () => {
             </select>
           </div>
           <button className="btn btn-add" onClick={() => toogleModal()}>
-            Agregar insumo
+            Agregar categoría
           </button>
         </div>
         {/** Tabla de insumos */}
@@ -102,11 +94,8 @@ const Insumos = () => {
           <table className="table table-striped table-light">
             <thead>
               <tr className="bg-dark text-light">
-                <th>Insumo</th>
-                <th>Stock actual</th>
-                <th>Stock mínimo</th>
-                <th>Stock máximo</th>
-                <th>Medida</th>
+                <th>Denominación</th>
+                <th>Tiempo de cocina (minutos)</th>
                 <th>Categoría</th>
                 <th>Opciones</th>
               </tr>
@@ -114,47 +103,8 @@ const Insumos = () => {
             <tbody>
               <tr>
                 <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
+                <td>20</td>
+                <td>Pizzas</td>
                 <td>
                   <div className="d-flex align-items-center justify-content-center">
                     <button className="btn">
@@ -174,4 +124,4 @@ const Insumos = () => {
   );
 };
 
-export default Insumos;
+export default Platos;

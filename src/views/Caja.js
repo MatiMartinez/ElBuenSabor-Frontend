@@ -1,41 +1,41 @@
 import React, { useState } from 'react';
 
-import PedidosCocina from '../components/Cocinero/PedidosCocina';
-import AdministrarCocina from '../components/Cocinero/AdministrarCocina';
+import PedidosCaja from '../components/Cajero/PedidosCaja';
 
-const Cocina = () => {
+const Caja = () => {
   const [toogle, setToogle] = useState(false);
+  const [enable, setEnable] = useState(true);
 
   const changeToogle = () => {
     setToogle(!toogle);
+    setEnable(!enable);
   };
-
   return (
     <div>
-      {/** Nav Cocinero */}
-      <div className="d-flex justify-content-center pt-2 pb-2 bg-dark">
+      {/** Nav Cajero */}
+      <div className="d-flex justify-content-center mt-3">
         <div className="d-flex justify-content-center w-50">
           <button
             className="btn btn-nav btn-lg"
             onClick={changeToogle}
-            disabled={toogle}
+            disabled={!enable}
           >
             Pedidos
           </button>
           <button
             className="btn btn-nav btn-lg"
             onClick={changeToogle}
-            disabled={!toogle}
+            disabled={enable}
           >
-            Administrar Cocina
+            Administrar Caja
           </button>
         </div>
       </div>
       {/** Content Cocina */}
-      {toogle && <PedidosCocina />}
-      {!toogle && <AdministrarCocina />}
+      {toogle && <PedidosCaja />}
+      {}
     </div>
   );
 };
 
-export default Cocina;
+export default Caja;

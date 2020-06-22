@@ -10,3 +10,7 @@
 .border-marron {
   border: 2px solid #1b0800;
 }
+
+.table tbody tr {
+  line-height: 40px;
+}

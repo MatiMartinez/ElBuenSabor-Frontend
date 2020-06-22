@@ -8,15 +8,30 @@ import './Catalog.css';
 import Slider from 'react-slick';
 import ProductCart from './Catalog/ProductCart';
 import ProductCard from './Catalog/ProductCard';
+import Buscador from './Catalog/Buscador';
 
 const Catalog = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
+  // Busqueda, form y estado de la busqueda
+  const [busqueda, setBusqueda] = useState(null);
+
+  const onSubmitBusqueda = (e) => {
+    e.preventDefault();
+    console.log(busqueda);
+  };
+
+  const onChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setBusqueda(e.target.value);
+  };
+
   useEffect(() => {
     /* Consumir api de categorias y productos de una categoria por defecto y
     guardar el categories con setCategories(data) */
-  });
+  }, []);
 
   let settings = {
     dots: true,
@@ -28,30 +43,22 @@ const Catalog = () => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-5">
       {/** Buscador */}
-      <div className="container">
-        <form class="d-flex flex-row w-100 rounded-0 form-search">
-          <div className="col-10 search-content">
-            <input
-              class="form-control input-search rounded-0 w-100 h-100"
-              type="text"
-              placeholder="Buscar productos..."
-            />
-          </div>
-          <div className="w-100 search-content">
-            <button class="btn btn-search rounded-0 w-100 h-100" type="submit">
-              Buscar
-            </button>
-          </div>
+      <div className="container d-flex justify-content-center">
+        <form onSubmit={onSubmitBusqueda} className="d-flex w-50">
+          <Buscador type="text" name="buscador" onChange={onChange} />
+          <button className="btn btn-search" type="submit">
+            Buscar
+          </button>
         </form>
       </div>
       {/** Separador */}
-      <div className="container w-50 text-center mt-4">
+      <div className="container w-50 text-center mt-4 mb-4">
         <hr />
       </div>
       {/** Categorías */}
-      <div className="container mt-4 text-center">
+      <div className="container text-center">
         <h5>Categorias</h5>
         <div className="mt-4">
           {categories.length === 0 ? (
@@ -75,9 +82,7 @@ const Catalog = () => {
           ))}
         </div>
         {/** Carrito */}
-        <div className="">
-          <ProductCart />
-        </div>
+        <div className=""></div>
       </div>
     </div>
   );

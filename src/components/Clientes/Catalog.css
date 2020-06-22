@@ -2,16 +2,16 @@
   height: 50px;
 }
 
-.btn-search,
-.btn-search:hover {
-  color: #b68207;
-  background-color: #ffffff;
-  border: 1px solid #b68207;
+.btn-search {
+  color: #fff;
+  background-color: #b68207;
+  border: none;
+  border-radius: 0%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-.input-search,
-.input-search:focus {
-  box-shadow: none;
-  background-color: #ffffff;
-  border: 1px solid #451400;
+.btn-search:hover {
+  background-color: #d49808;
+  color: #fff;
 }

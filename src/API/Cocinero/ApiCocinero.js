@@ -2,13 +2,14 @@ import API from '../api';
 
 export const getPedidos = async () => {
   return await API.get('/posts').then((res) => {
-    const responseData = res.data;
-    return responseData;
+    const resData = res.data;
+    return resData;
   });
 };
 
+//! Insumos
 export const getInsumos = async () => {
-  return await API.get('/posts').then((res) => {
+  return await API.get('/').then((res) => {
     const responseData = res.data;
     return responseData;
   });

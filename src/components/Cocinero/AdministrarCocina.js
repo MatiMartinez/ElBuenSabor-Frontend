@@ -3,9 +3,11 @@ import Insumos from './AdministrarCocina/Insumos';
 import Categorias from './AdministrarCocina/Categorias';
 
 import './AdministrarCocina.css';
+import Platos from './AdministrarCocina/Platos';
+import Manufacturados from './AdministrarCocina/Manufacturados';
 
 const AdministrarCocina = () => {
-  const [enable, setEnable] = useState(4);
+  const [enable, setEnable] = useState(2);
 
   const toogle = (number) => {
     setEnable(number);
@@ -14,21 +16,18 @@ const AdministrarCocina = () => {
   return (
     <div>
       {/** Nav Administrar Cocina */}
-      <div className="d-flex justify-content-center p-3">
-        <div className="d-flex justify-content-around w-25">
-          <button className="btn" onClick={() => toogle(0)}>
+      <div className="d-flex justify-content-center pb-2 pt-2 border-top bg-secondary">
+        <div className="d-flex justify-content-around w-50">
+          <button className="btn btn-nav" onClick={() => toogle(0)}>
             Insumos
           </button>
-          <button className="btn" onClick={() => toogle(1)}>
-            Art. de reventa
-          </button>
-          <button className="btn" onClick={() => toogle(2)}>
+          <button className="btn btn-nav" onClick={() => toogle(1)}>
             Manufacturados
           </button>
-          <button className="btn" onClick={() => toogle(3)}>
+          <button className="btn btn-nav" onClick={() => toogle(2)}>
             Platos
           </button>
-          <button className="btn" onClick={() => toogle(4)}>
+          <button className="btn btn-nav" onClick={() => toogle(3)}>
             Categorías
           </button>
         </div>
@@ -40,10 +39,17 @@ const AdministrarCocina = () => {
             <Insumos />
           </div>
         )}
-        {enable === 1 && <div>Art. de reventa</div>}
-        {enable === 2 && <div>Manufacturados</div>}
-        {enable === 3 && <div>Platos</div>}
-        {enable === 4 && (
+        {enable === 1 && (
+          <div>
+            <Manufacturados />
+          </div>
+        )}
+        {enable === 2 && (
+          <div>
+            <Platos />
+          </div>
+        )}
+        {enable === 3 && (
           <div>
             <Categorias />
           </div>
