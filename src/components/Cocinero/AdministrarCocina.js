@@ -7,7 +7,7 @@ import Platos from './AdministrarCocina/Platos';
 import Manufacturados from './AdministrarCocina/Manufacturados';
 
 const AdministrarCocina = () => {
-  const [enable, setEnable] = useState(2);
+  const [enable, setEnable] = useState(0);
 
   const toogle = (number) => {
     setEnable(number);

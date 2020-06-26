@@ -9,16 +9,15 @@ import DataProfile from '../components/Profile/DataProfile';
 import EditProfile from '../components/Profile/EditProfile';
 
 const Profile = () => {
-  const [enable, setEnable] = useState(0);
+  const [enable, setEnable] = useState(true);
 
-  const toggle = (number) => {
-    setEnable(number);
+  const toggle = () => {
+    setEnable(!enable);
   };
 
-  const { loading, user } = useAuth0();
-  console.log(user);
+  const { loading, user, userdb } = useAuth0();
 
-  if (loading || !user) {
+  if (loading || !userdb) {
     return <Loading />;
   }
 
@@ -32,30 +31,34 @@ const Profile = () => {
         {/** Botones Nav Perfil */}
         <div className="d-flex border-bottom pb-3 pt-3">
           <div className="d-flex w-100 ml-4">
-            <button className="btn btn-nav-profile" onClick={() => toggle(0)}>
+            <button
+              className="btn btn-nav-profile"
+              onClick={() => toggle()}
+              disabled={enable}
+            >
               Perfil
             </button>
-            <button className="btn btn-nav-profile" onClick={() => toggle(1)}>
+            <button
+              className="btn btn-nav-profile"
+              onClick={() => toggle()}
+              disabled={!enable}
+            >
               Editar Perfil
             </button>
           </div>
         </div>
         {/** Contenido del perfil, datos o editar */}
-        {enable === 0 && (
+        {enable && (
           <DataProfile
             picture={user.picture}
-            name={user.name}
-            email={user.email}
-            given_name={user.given_name}
-            family_name={user.family_name}
+            email={userdb.email}
+            nombre={userdb.nombre}
+            apellido={userdb.apellido}
+            fechaNacimiento={userdb.fechaNacimiento}
+            telefono={userdb.telefono}
           />
         )}
-        {enable === 1 && (
-          <EditProfile
-            given_name={user.given_name}
-            family_name={user.family_name}
-          />
-        )}
+        {!enable && <EditProfile userdb={userdb} />}
       </div>
     </div>
   );

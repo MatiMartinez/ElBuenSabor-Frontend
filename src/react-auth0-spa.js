@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
+import { getUsuarioByEmail } from './API/Usuario/ApiUsuario';
+
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
 
@@ -13,6 +15,7 @@ export const Auth0Provider = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
+  const [userdb, setUserdb] = useState();
   const [auth0Client, setAuth0] = useState();
   const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -37,6 +40,10 @@ export const Auth0Provider = ({
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
         setUser(user);
+        // Conexion usuario con base de datos
+        const userdb = await getUsuarioByEmail(user.email);
+        setUserdb(userdb);
+        console.log('Usuario obtenido por email: ', userdb);
       }
 
       setLoading(false);
@@ -72,6 +79,7 @@ export const Auth0Provider = ({
       value={{
         isAuthenticated,
         user,
+        userdb,
         loading,
         popupOpen,
         loginWithPopup,

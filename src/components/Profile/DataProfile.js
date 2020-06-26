@@ -1,6 +1,13 @@
 import React from 'react';
 
-const DataProfile = ({ picture, name, email, given_name, family_name }) => {
+const DataProfile = ({
+  picture,
+  email,
+  nombre,
+  apellido,
+  fechaNacimiento,
+  telefono,
+}) => {
   return (
     <div className="m-5 row d-flex">
       <div className="col-5 d-flex flex-column align-items-center p-3">
@@ -10,7 +17,7 @@ const DataProfile = ({ picture, name, email, given_name, family_name }) => {
           className="img-fluid rounded-circle mb-3"
           width="150px"
         />
-        <h6>{name}</h6>
+        <h6>{nombre + ' ' + apellido}</h6>
         <p>{email}</p>
       </div>
       <div className="col-7">
@@ -18,19 +25,19 @@ const DataProfile = ({ picture, name, email, given_name, family_name }) => {
           <tbody>
             <tr>
               <td>Nombre</td>
-              <th>{given_name}</th>
+              <th>{nombre}</th>
             </tr>
             <tr>
               <td>Apellido</td>
-              <th>{family_name}</th>
+              <th>{apellido}</th>
             </tr>
             <tr>
               <td>Fecha de Nacimiento</td>
-              <th></th>
+              <th>{fechaNacimiento}</th>
             </tr>
             <tr>
               <td>Teléfono</td>
-              <th></th>
+              <th>{telefono}</th>
             </tr>
           </tbody>
         </table>

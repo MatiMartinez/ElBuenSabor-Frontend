@@ -2,20 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import PedidoCard from './PedidoCard';
 
-import { getPedidos } from '../../API/Cocinero/ApiCocinero';
-
 const PedidosCocina = () => {
-  const [pedidos, setPedidos] = useState([]);
-
-  useEffect(() => {
-    cargarPedidos();
-  }, []);
-
-  const cargarPedidos = async () => {
-    const newPedidos = await getPedidos();
-    setPedidos(newPedidos);
-  };
-
   return (
     <div>
       <div className="d-flex flex-column mt-5">
@@ -28,12 +15,7 @@ const PedidosCocina = () => {
             <div className="m-4">
               <h1>Pedidos</h1>
             </div>
-            <div className="w-100">
-              {pedidos &&
-                pedidos.map((pedido) => (
-                  <PedidoCard key={pedido.id} pedido={pedido} />
-                ))}
-            </div>
+            <div className="w-100"></div>
           </div>
           {/** Pedidos tomados */}
           <div className="border col-5 text-center">

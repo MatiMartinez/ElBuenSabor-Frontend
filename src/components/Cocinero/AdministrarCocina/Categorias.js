@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // API
+import {
+  getRubros,
+  createRubro,
+  setBorradoRubro,
+  updateRubro,
+} from '../../../API/CategoriasApi';
 
 // Things
 import TrashIcon from '../../../assets/trash-icon.svg';
@@ -13,23 +19,43 @@ import { customStyle } from '../../../utils/modalStyle';
 import InputField from '../../GlobalReusable/InputField';
 
 const Categorias = () => {
-  // state
+  // State
+  const [rubros, setRubros] = useState([]);
+
+  useEffect(() => {
+    const cargarRubros = async () => {
+      const data = await getRubros();
+      setRubros(data);
+    };
+    cargarRubros();
+  }, []);
 
   // Modal
   const [isOpen, setIsOpen] = useState(false);
+  const [idEdit, setIdEdit] = useState(undefined);
 
-  const toogleModal = () => {
+  const toogleModal = (data) => {
     setIsOpen(!isOpen);
+    setIdEdit(data);
   };
 
   // Forms
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = ({ denominacion }) => {
-    console.log(denominacion);
+  const onSubmit = async (data) => {
+    if (idEdit === undefined) {
+      await createRubro(data);
+    } else {
+      await updateRubro(idEdit._id, data);
+    }
+    window.location.reload(true);
   };
 
-  // Metodos de insumos
+  // Metodos de Categorias
+  const borrarRubro = async (id) => {
+    await setBorradoRubro(id, true);
+    window.location.reload(true);
+  };
 
   /** JSX -------------------------------------------------------------------------------- */
   return (
@@ -47,6 +73,7 @@ const Categorias = () => {
               type="text"
               name="denominacion"
               register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.denominacion}
             />
             {/** Botones del modal */}
             <div className="d-flex justify-content-center border-top mt-5">
@@ -56,7 +83,7 @@ const Categorias = () => {
                 </button>
                 <button
                   className="btn btn-modal-outline w-100 m-2"
-                  onClick={() => toogleModal()}
+                  onClick={() => setIsOpen(false)}
                 >
                   Volver
                 </button>
@@ -78,7 +105,10 @@ const Categorias = () => {
               <option value="cajero">Caja</option>
             </select>
           </div>
-          <button className="btn btn-add" onClick={() => toogleModal()}>
+          <button
+            className="btn btn-add"
+            onClick={() => toogleModal(undefined)}
+          >
             Agregar categoría
           </button>
         </div>
@@ -91,22 +121,35 @@ const Categorias = () => {
                 <th>Opciones</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th>Harina</th>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            {rubros.length !== 0 && (
+              <tbody>
+                {rubros.map((rubro) => (
+                  <tr key={rubro._id}>
+                    <th>{rubro.denominacion}</th>
+                    <td>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <button
+                          className="btn"
+                          onClick={() => toogleModal(rubro)}
+                        >
+                          <img src={EditIcon} alt="edit-icon" width="25px" />
+                        </button>
+                        <button
+                          className="btn"
+                          onClick={() => borrarRubro(rubro._id)}
+                        >
+                          <img src={TrashIcon} alt="trash-icon" width="25px" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
+          {rubros.length === 0 && (
+            <h3 className="mt-3">No hay categorías cargadas</h3>
+          )}
         </div>
       </div>
     </div>

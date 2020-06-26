@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // API
+import {
+  getInsumos,
+  createInsumo,
+  updateInsumo,
+} from '../../../API/InsumosApi';
 
 // Things
 import TrashIcon from '../../../assets/trash-icon.svg';
@@ -14,19 +19,35 @@ import InputField from '../../GlobalReusable/InputField';
 
 const Insumos = () => {
   // state
+  const [insumos, setInsumos] = useState([]);
+
+  useEffect(() => {
+    const cargarInsumos = async () => {
+      const data = await getInsumos();
+      setInsumos(data);
+    };
+    cargarInsumos();
+  }, []);
 
   // Modal
   const [isOpen, setIsOpen] = useState(false);
+  const [idEdit, setIdEdit] = useState(undefined);
 
-  const toogleModal = () => {
+  const toogleModal = (id) => {
     setIsOpen(!isOpen);
+    setIdEdit(id);
   };
 
   // Forms
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = ({ denominacion, stockMinimo, stockMaximo }) => {
-    console.log(denominacion, stockMinimo, stockMaximo);
+  const onSubmit = async (data) => {
+    if (idEdit === undefined) {
+      await createInsumo(data);
+    } else {
+      await updateInsumo(idEdit._id, data);
+    }
+    window.location.reload(true);
   };
 
   // Metodos de insumos
@@ -47,6 +68,7 @@ const Insumos = () => {
               type="text"
               name="denominacion"
               register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.denominacion}
             />
             <InputField
               id="stockMinimo"
@@ -54,6 +76,7 @@ const Insumos = () => {
               type="number"
               name="stockMinimo"
               register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.stockMinimo}
             />
             <InputField
               id="stockMaximo"
@@ -61,7 +84,17 @@ const Insumos = () => {
               type="number"
               name="stockMaximo"
               register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.stockMaximo}
             />
+            <InputField
+              id="unidadMedida"
+              label="Medida"
+              type="text"
+              name="unidadMedida"
+              register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.unidadMedida}
+            />
+            {/** Aqui va el SELECT de categorias */}
 
             {/** Botones del modal */}
             <div className="d-flex justify-content-center border-top mt-5">
@@ -71,7 +104,7 @@ const Insumos = () => {
                 </button>
                 <button
                   className="btn btn-modal-outline w-100 m-2"
-                  onClick={() => toogleModal()}
+                  onClick={() => setIsOpen(false)}
                 >
                   Volver
                 </button>
@@ -93,7 +126,10 @@ const Insumos = () => {
               <option value="cajero">Caja</option>
             </select>
           </div>
-          <button className="btn btn-add" onClick={() => toogleModal()}>
+          <button
+            className="btn btn-add"
+            onClick={() => toogleModal(undefined)}
+          >
             Agregar insumo
           </button>
         </div>
@@ -111,63 +147,37 @@ const Insumos = () => {
                 <th>Opciones</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th>Harina</th>
-                <td>20000</td>
-                <td>10000</td>
-                <td>30000</td>
-                <td>Gramos</td>
-                <td>Masas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            {insumos.length !== 0 && (
+              <tbody>
+                {insumos.map((insumo, i) => (
+                  <tr key={insumo._id}>
+                    <th>{insumo.denominacion}</th>
+                    <td>{insumo.stockActual}</td>
+                    <td>{insumo.stockMinimo}</td>
+                    <td>{insumo.stockMaximo}</td>
+                    <td>{insumo.unidadMedida}s</td>
+                    <td>{insumo.rubro}</td>
+                    <td>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <button
+                          className="btn"
+                          onClick={() => toogleModal(insumo)}
+                        >
+                          <img src={EditIcon} alt="edit-icon" width="25px" />
+                        </button>
+                        <button className="btn">
+                          <img src={TrashIcon} alt="trash-icon" width="25px" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
+          {insumos.length === 0 && (
+            <h3 className="mt-3">No hay insumos cargados</h3>
+          )}
         </div>
       </div>
     </div>

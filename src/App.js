@@ -1,8 +1,10 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { Container } from 'reactstrap';
 
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './routes/PrivateRoute';
+import PrivateRouteCocinero from './routes/PrivateRouteCocinero';
+import PrivateRouteCajero from './routes/PrivateRouteCajero';
+import PrivateRouteAdmin from './routes/PrivateRouteAdmin';
 
 // Components
 import Loading from './components/Loading';
@@ -39,9 +41,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
-            <Route path="/cocina" component={Cocina} />
-            <Route path="/caja" component={Caja} />
-            <Route path="/admin" component={Admin} />
+            <PrivateRouteCocinero path="/cocina" component={Cocina} />
+            <PrivateRouteCajero path="/caja" component={Caja} />
+            <PrivateRouteAdmin path="/admin" component={Admin} />
           </Switch>
         </div>
         <Footer />

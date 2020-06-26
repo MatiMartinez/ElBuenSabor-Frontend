@@ -6,5 +6,6 @@ export const customStyle = {
     marginRight: '25%',
     padding: '0%',
     height: 'max-content',
+    maxHeight: '90vh',
   },
 };

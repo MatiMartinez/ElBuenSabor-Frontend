@@ -10,7 +10,6 @@ const InputField = ({ id, label, type, name, register, defaultValue }) => {
         className="form-control"
         id={id}
         type={type}
-        required
         name={name}
         ref={register}
         defaultValue={defaultValue}
