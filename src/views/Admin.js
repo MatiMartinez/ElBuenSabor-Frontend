@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import Cocina from '../components/Admin/Cocina';
-import Empleados from '../components/Admin/Empleados';
-import Estadisticas from '../components/Admin/Estadisticas';
+import Cocina from '../components/Admin/Cocina/Cocina';
+import Empleados from '../components/Admin/Empleados/Empleados';
+import Estadisticas from '../components/Admin/Estadisticas/Estadisticas';
 
 const Admin = () => {
-  const [toogle, setToogle] = useState(1);
+  const [toogle, setToogle] = useState(0);
 
   const changeToogle = (number) => {
     setToogle(number);
@@ -14,8 +14,8 @@ const Admin = () => {
   return (
     <div>
       {/** Nav Admin */}
-      <div className="d-flex justify-content-center mt-3">
-        <div className="d-flex justify-content-center w-50 border">
+      <div className="d-flex justify-content-center pt-2 pb-2 bg-dark">
+        <div className="d-flex justify-content-center w-50">
           <button
             className="btn btn-nav btn-lg"
             onClick={() => changeToogle(0)}

@@ -36,7 +36,7 @@ const Platos = () => {
     <div className="mt-4">
       {/** Modal */}
       <Modal isOpen={isOpen} ariaHideApp={false} style={customStyle}>
-        <div className="p-4 bg-red mb-5">
+        <div className="p-4 bg-red">
           <h2 className="text-white">Crear plato</h2>
         </div>
         <div className="form-group m-4">

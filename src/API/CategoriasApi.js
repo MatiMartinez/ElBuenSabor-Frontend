@@ -4,9 +4,9 @@ export const getRubros = async () => {
   return await api
     .get('/rubros/')
     .then((res) => {
-      const responseData = res.data;
+      const resData = res.data;
       console.log('Rubros obtenidos');
-      return responseData;
+      return resData;
     })
     .catch((err) => {
       console.log(err);

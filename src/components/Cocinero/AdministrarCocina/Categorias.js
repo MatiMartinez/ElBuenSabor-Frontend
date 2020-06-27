@@ -34,7 +34,7 @@ const Categorias = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [idEdit, setIdEdit] = useState(undefined);
 
-  const toogleModal = (data) => {
+  const toggle = (data) => {
     setIsOpen(!isOpen);
     setIdEdit(data);
   };
@@ -62,7 +62,7 @@ const Categorias = () => {
     <div className="mt-4">
       {/** Modal */}
       <Modal isOpen={isOpen} ariaHideApp={false} style={customStyle}>
-        <div className="p-4 bg-red mb-5">
+        <div className="p-4 bg-red">
           <h2 className="text-white">Crear categoría</h2>
         </div>
         <div className="form-group m-4">
@@ -96,7 +96,7 @@ const Categorias = () => {
         <div className="text-center mb-4">
           <h1>Lista de categorías</h1>
         </div>
-        {/** Filtro y busqueda de insumos */}
+        {/** Filtro y busqueda de categorias */}
         <div className="container d-flex justify-content-between mb-4">
           <div className="d-flex mr-5">
             <h3>Búsqueda:</h3>
@@ -105,14 +105,11 @@ const Categorias = () => {
               <option value="cajero">Caja</option>
             </select>
           </div>
-          <button
-            className="btn btn-add"
-            onClick={() => toogleModal(undefined)}
-          >
+          <button className="btn btn-add" onClick={() => toggle(undefined)}>
             Agregar categoría
           </button>
         </div>
-        {/** Tabla de insumos */}
+        {/** Tabla de categorias */}
         <div className="container text-center">
           <table className="table table-striped table-light">
             <thead>
@@ -128,10 +125,7 @@ const Categorias = () => {
                     <th>{rubro.denominacion}</th>
                     <td>
                       <div className="d-flex align-items-center justify-content-center">
-                        <button
-                          className="btn"
-                          onClick={() => toogleModal(rubro)}
-                        >
+                        <button className="btn" onClick={() => toggle(rubro)}>
                           <img src={EditIcon} alt="edit-icon" width="25px" />
                         </button>
                         <button

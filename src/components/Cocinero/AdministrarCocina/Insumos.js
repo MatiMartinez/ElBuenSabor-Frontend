@@ -16,6 +16,8 @@ import { customStyle } from '../../../utils/modalStyle';
 
 //Components
 import InputField from '../../GlobalReusable/InputField';
+import SelectCategorias from '../../GlobalReusable/SelectCategorias';
+import SelectMedida from '../../GlobalReusable/SelectMedida';
 
 const Insumos = () => {
   // state
@@ -57,7 +59,7 @@ const Insumos = () => {
     <div className="mt-4">
       {/** Modal */}
       <Modal isOpen={isOpen} ariaHideApp={false} style={customStyle}>
-        <div className="p-4 bg-red mb-5">
+        <div className="p-4 bg-red">
           <h2 className="text-white">Crear insumo</h2>
         </div>
         <div className="form-group m-4">
@@ -70,6 +72,7 @@ const Insumos = () => {
               register={register}
               defaultValue={idEdit === undefined ? '' : idEdit.denominacion}
             />
+            <SelectMedida register={register} />
             <InputField
               id="stockMinimo"
               label="Stock mínimo"
@@ -86,16 +89,10 @@ const Insumos = () => {
               register={register}
               defaultValue={idEdit === undefined ? '' : idEdit.stockMaximo}
             />
-            <InputField
-              id="unidadMedida"
-              label="Medida"
-              type="text"
-              name="unidadMedida"
+            <SelectCategorias
               register={register}
-              defaultValue={idEdit === undefined ? '' : idEdit.unidadMedida}
+              //defaultValue={idEdit === undefined ? '' : idEdit.rubro}
             />
-            {/** Aqui va el SELECT de categorias */}
-
             {/** Botones del modal */}
             <div className="d-flex justify-content-center border-top mt-5">
               <div className="d-flex justify-content-around pt-3 w-50">
