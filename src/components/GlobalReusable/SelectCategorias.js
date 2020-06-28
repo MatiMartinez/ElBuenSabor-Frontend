@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 //API
-import { getRubros } from '../../API/CategoriasApi';
+import { getRubros, getRubrosRaiz } from '../../API/CategoriasApi';
 
-const SelectCategorias = ({ register, label, todos }) => {
+const SelectCategorias = ({ register, label, todos, raiz }) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     const cargarRubros = async () => {
-      const data = await getRubros();
+      let data;
+      if (raiz === true) {
+        data = await getRubrosRaiz();
+      } else {
+        data = await getRubros();
+      }
       setCategorias(data);
     };
     cargarRubros();
-  }, []);
+  }, [raiz]); // Verificar raiz
 
   return (
     <div className="form-group">
@@ -32,7 +37,7 @@ const SelectCategorias = ({ register, label, todos }) => {
           Seleccione una categoría
         </option>
         {todos === true && (
-          <option key="0" value="">
+          <option key="0" value="todos">
             Todos
           </option>
         )}

@@ -6,6 +6,7 @@ import {
   getInsumos,
   createInsumo,
   updateInsumo,
+  setBorradoInsumo,
 } from '../../../API/InsumosApi';
 
 // Things
@@ -36,6 +37,7 @@ const Insumos = () => {
   const [idEdit, setIdEdit] = useState(undefined);
 
   const toogleModal = (id) => {
+    console.log(id);
     setIsOpen(!isOpen);
     setIdEdit(id);
   };
@@ -44,6 +46,7 @@ const Insumos = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
     if (idEdit === undefined) {
       await createInsumo(data);
     } else {
@@ -53,6 +56,10 @@ const Insumos = () => {
   };
 
   // Metodos de insumos
+  const borrarInsumo = async (id) => {
+    await setBorradoInsumo(id);
+    window.location.reload(true);
+  };
 
   /** JSX -------------------------------------------------------------------------------- */
   return (
@@ -72,7 +79,10 @@ const Insumos = () => {
               register={register}
               defaultValue={idEdit === undefined ? '' : idEdit.denominacion}
             />
-            <SelectMedida register={register} />
+            <SelectMedida
+              register={register}
+              defaultValue={idEdit === undefined ? '' : idEdit.unidadMedida}
+            />
             <InputField
               id="stockMinimo"
               label="Stock mínimo"
@@ -152,7 +162,7 @@ const Insumos = () => {
                     <td>{insumo.stockActual}</td>
                     <td>{insumo.stockMinimo}</td>
                     <td>{insumo.stockMaximo}</td>
-                    <td>{insumo.unidadMedida}s</td>
+                    <td>{insumo.unidadMedida}</td>
                     <td>{insumo.rubro}</td>
                     <td>
                       <div className="d-flex align-items-center justify-content-center">
@@ -162,7 +172,10 @@ const Insumos = () => {
                         >
                           <img src={EditIcon} alt="edit-icon" width="25px" />
                         </button>
-                        <button className="btn">
+                        <button
+                          className="btn"
+                          onClick={() => borrarInsumo(insumo._id)}
+                        >
                           <img src={TrashIcon} alt="trash-icon" width="25px" />
                         </button>
                       </div>

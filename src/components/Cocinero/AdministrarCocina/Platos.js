@@ -74,7 +74,7 @@ const Platos = () => {
       </Modal>
       <div className="d-flex flex-column justify-content-center w-100">
         <div className="text-center mb-4">
-          <h1>Lista de categorías</h1>
+          <h1>Lista de platos</h1>
         </div>
         {/** Filtro y busqueda de insumos */}
         <div className="container d-flex justify-content-between mb-4">

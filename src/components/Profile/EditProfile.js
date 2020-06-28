@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import InputField from '../GlobalReusable/InputField';
 
 // api
-import { updateUsuario } from '../../API/Usuario/ApiUsuario';
+import { updateUsuario } from '../../API/ApiUsuario';
 
 const EditProfile = ({ userdb }) => {
   // Formulario

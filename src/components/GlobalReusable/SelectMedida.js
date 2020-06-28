@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectMedida = ({ register }) => {
+const SelectMedida = ({ register, defaultValue }) => {
   return (
     <div className="form-group">
       <label className="control-label" forhtml="selectMedida">
@@ -10,7 +10,7 @@ const SelectMedida = ({ register }) => {
         name="unidadMedida"
         id="selectMedida"
         className="form-control"
-        defaultValue={''}
+        defaultValue={defaultValue}
         ref={register}
       >
         <option hidden disabled value="">

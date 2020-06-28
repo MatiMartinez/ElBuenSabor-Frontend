@@ -17,6 +17,7 @@ import { customStyle } from '../../../utils/modalStyle';
 
 //Components
 import InputField from '../../GlobalReusable/InputField';
+import SelectCategorias from '../../GlobalReusable/SelectCategorias';
 
 const Categorias = () => {
   // State
@@ -43,6 +44,7 @@ const Categorias = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
     if (idEdit === undefined) {
       await createRubro(data);
     } else {
@@ -75,6 +77,29 @@ const Categorias = () => {
               register={register}
               defaultValue={idEdit === undefined ? '' : idEdit.denominacion}
             />
+            <SelectCategorias
+              register={register}
+              label={true}
+              todos={false}
+              raiz={true}
+            />
+            <div className="form-group">
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  name="esRubroInsumo"
+                  className="custom-control-input"
+                  id="checkboxRubroInsumo"
+                  ref={register}
+                />
+                <label
+                  className="custom-control-label"
+                  htmlFor="checkboxRubroInsumo"
+                >
+                  Categoría de insumo
+                </label>
+              </div>
+            </div>
             {/** Botones del modal */}
             <div className="d-flex justify-content-center border-top mt-5">
               <div className="d-flex justify-content-around pt-3 w-50">

@@ -7,6 +7,7 @@ import {
   getReventas,
   createReventa,
   updateReventa,
+  setBorradoReventa,
 } from '../../../API/ArtReventaApi';
 
 // things
@@ -51,14 +52,18 @@ const ArtReventa = () => {
   };
 
   // Metodos de articulos de reventa
-  const borrarReventa = () => {};
+  const borrarReventa = async (id) => {
+    await setBorradoReventa(id);
+    window.location.reload(true);
+  };
 
   // Select categorias
   const [selectCategoria, setSelectCategoria] = useState('');
   const { register: register2, handleSubmit: handleSubmit2 } = useForm();
 
   const onSubmitCategoria = (data) => {
-    setSelectCategoria(data);
+    console.log(data.categorias);
+    setSelectCategoria(data.categorias);
   };
 
   return (
@@ -178,7 +183,7 @@ const ArtReventa = () => {
             </thead>
             {reventas.length !== 0 && (
               <tbody>
-                {selectCategoria === ''
+                {selectCategoria === '' || selectCategoria === 'todos'
                   ? reventas.map((reventa) => (
                       <tr key={reventa._id}>
                         <th>{reventa.denominacion}</th>
@@ -226,7 +231,7 @@ const ArtReventa = () => {
                           <td>{reventa.stockActual}</td>
                           <td>{reventa.stockMinimo}</td>
                           <td>{reventa.stockMaximo}</td>
-                          <td>{reventa.rubro.denominacion}</td>
+                          <td>{reventa.rubro}</td>
                           <td>
                             <div className="d-flex align-items-center justify-content-center">
                               <button
@@ -256,7 +261,7 @@ const ArtReventa = () => {
               </tbody>
             )}
           </table>
-          {ArtReventa.length === 0 && (
+          {reventas.length === 0 && (
             <h3 className="mt-3">No hay artículos de reventa cargados</h3>
           )}
         </div>

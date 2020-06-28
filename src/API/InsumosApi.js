@@ -24,6 +24,18 @@ export const createInsumo = async (insumo) => {
     });
 };
 
+export const setBorradoInsumo = async (id) => {
+  return await api
+    .put(`/insumos/softdelete/${id}`)
+    .then((res) => {
+      console.log('Insumo borrado');
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const updateInsumo = async (id, insumo) => {
   return await api
     .put(`/insumos/${id}`, insumo)

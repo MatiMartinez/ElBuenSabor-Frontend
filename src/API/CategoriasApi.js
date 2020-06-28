@@ -13,6 +13,19 @@ export const getRubros = async () => {
     });
 };
 
+export const getRubrosRaiz = async () => {
+  return await api
+    .get('/rubros/raices')
+    .then((res) => {
+      const resData = res.data;
+      console.log('Rubros raices obtenidos');
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const createRubro = async (rubro) => {
   return await api
     .post('/rubros/', rubro)
@@ -26,7 +39,7 @@ export const createRubro = async (rubro) => {
 
 export const setBorradoRubro = async (id, borrado) => {
   return await api
-    .put(`/rubros/softdelete/${id}`, borrado)
+    .put(`/rubros/softdelete/${id}`)
     .then((res) => {
       console.log('Rubro borrado');
       console.log(res);

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ArtReventa from './ArtReventa';
+import Categorias from '../../Cocinero/AdministrarCocina/Categorias';
+import Platos from '../../Cocinero/AdministrarCocina/Platos';
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(4);
+  const [enable, setEnable] = useState(3);
 
   const toggle = (number) => {
     setEnable(number);
@@ -40,12 +42,17 @@ const Cocina = () => {
           <div>
             <Manufacturados />
           </div>
-        )}
+        )*/}
         {enable === 2 && (
           <div>
             <Platos />
           </div>
-        )*/}
+        )}
+        {enable === 3 && (
+          <div>
+            <Categorias />
+          </div>
+        )}
         {enable === 4 && (
           <div>
             <ArtReventa />

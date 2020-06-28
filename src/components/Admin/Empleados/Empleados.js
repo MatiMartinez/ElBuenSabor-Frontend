@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import TrashIcon from '../../../assets/trash-icon.svg';
-import EditIcon from '../../../assets/edit-icon.svg';
-import { Modal } from 'reactstrap';
+import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 
 // Things
@@ -11,16 +9,21 @@ import SelectRoles from '../../GlobalReusable/SelectRoles';
 // Style
 import '../Admin.css';
 import { customStyle } from '../../../utils/modalStyle';
-import SelectData from '../../GlobalReusable/SelectData';
+import { getUsuarios, deleteUsuario } from '../../../API/ApiUsuario';
+import EmpleadoCard from './EmpleadoCard';
 
 const Empleados = () => {
   // State
   const [empleados, setEmpleados] = useState([]);
-  const [rolSelect, setRolSelect] = useState(0);
+  //const [rolSelect, setRolSelect] = useState(0);
 
   useEffect(() => {
-    const cargarEmpleados = async () => {};
-  });
+    const cargarEmpleados = async () => {
+      const data = await getUsuarios();
+      setEmpleados(data);
+    };
+    cargarEmpleados();
+  }, []);
 
   // Modal
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +32,7 @@ const Empleados = () => {
   const toggle = (data) => {
     setIsOpen(!isOpen);
     setIdEdit(data);
+    console.log(data);
   };
 
   // Formulario
@@ -36,6 +40,11 @@ const Empleados = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  // Metodos empleados del administrador
+  const borrarEmpleado = async (id) => {
+    await deleteUsuario(id);
   };
 
   return (
@@ -46,7 +55,7 @@ const Empleados = () => {
         </div>
         <div className="form-group m-4">
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/*<SelectData
+            {/*<SelectData  Usuarios sin roles
               //datos={}
               label="Usuarios"
               id="usuarios"
@@ -85,39 +94,18 @@ const Empleados = () => {
           </button>
         </div>
         {/** Card Empleados */}
-        <div className="card-empleado container d-flex rounded w-75 mb-4">
-          <div className="col-2 d-flex align-items-center m-2">
-            <img
-              src="https://via.placeholder.com/600/92c952"
-              alt="img-empleado"
-              className="img-fluid rounded-circle"
+        {empleados.length !== 0 &&
+          empleados.map((empleado, i) => (
+            <EmpleadoCard
+              key={i}
+              empleado={empleado}
+              borrar={borrarEmpleado}
+              actualizar={() => toggle(empleado)}
             />
-          </div>
-          <div className="col-8 d-flex align-items-center">
-            <div className="d-flex align-items-center w-100 ml-4">
-              <div className="w-100">
-                <h2>Martinez Matias</h2>
-                <h6>38910773</h6>
-                <h6>2634622209</h6>
-              </div>
-              <div className="w-100">
-                <h6>Cocina</h6>
-                <h6>Fecha de alta</h6>
-                <h6>Fecha de baja</h6>
-              </div>
-            </div>
-          </div>
-          <div className="col-2 d-flex align-items-center justify-content-center">
-            <div className="d-flex">
-              <button className="btn">
-                <img src={EditIcon} alt="edit-icon" width="35px" />
-              </button>
-              <button className="btn">
-                <img src={TrashIcon} alt="trashicon" width="35px" />
-              </button>
-            </div>
-          </div>
-        </div>
+          ))}
+        {empleados.length === 0 && (
+          <h3 className="mt-3">No hay empleados cargados</h3>
+        )}
       </div>
     </div>
   );
