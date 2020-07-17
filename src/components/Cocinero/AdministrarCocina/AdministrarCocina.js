@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import Insumos from './AdministrarCocina/Insumos';
-import Categorias from './AdministrarCocina/Categorias';
+import React, { useState } from "react";
 
-import './AdministrarCocina.css';
-import Platos from './AdministrarCocina/Platos';
-import Manufacturados from './AdministrarCocina/Manufacturados';
+import "./AdministrarCocina.css";
+
+import Insumos from "./Insumos/Insumos";
+import Categorias from "./Categorias/Categorias";
+import Ingredientes from "./Ingredientes/Ingredientes";
+import Platos from "./Platos/Platos";
 
 const AdministrarCocina = () => {
-  const [enable, setEnable] = useState(0);
+  const [enable, setEnable] = useState(2);
 
   const toogle = (number) => {
     setEnable(number);
@@ -41,7 +42,7 @@ const AdministrarCocina = () => {
         )}
         {enable === 1 && (
           <div>
-            <Manufacturados />
+            <Ingredientes />
           </div>
         )}
         {enable === 2 && (

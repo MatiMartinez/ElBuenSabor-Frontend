@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 //API
-import { getRubros, getRubrosRaiz } from '../../API/CategoriasApi';
+import { getRubros, getRubrosRaiz } from "../../API/CategoriasApi";
 
-const SelectCategorias = ({ register, label, todos, raiz }) => {
+const SelectCategorias = ({ register, label, allValue, raiz }) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -22,21 +22,21 @@ const SelectCategorias = ({ register, label, todos, raiz }) => {
   return (
     <div className="form-group">
       {label === true && (
-        <label htmlFor="selectCategorias" className="control-label">
+        <label htmlFor="selectCategoria" className="control-label">
           Categoría
         </label>
       )}
       <select
-        name="categorias"
-        id="selectCategorias"
+        name="rubro"
+        id="selectCategoria"
         className="form-control"
-        defaultValue={''}
+        defaultValue={""}
         ref={register}
       >
         <option hidden disabled value="">
           Seleccione una categoría
         </option>
-        {todos === true && (
+        {allValue === true && (
           <option key="0" value="todos">
             Todos
           </option>

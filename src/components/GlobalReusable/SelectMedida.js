@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const SelectMedida = ({ register, defaultValue }) => {
   return (
@@ -18,6 +18,7 @@ const SelectMedida = ({ register, defaultValue }) => {
         </option>
         <option value="Gramos">Gramos</option>
         <option value="Mililitros">Mililitros</option>
+        <option value="Unidades">Unidades</option>
       </select>
     </div>
   );

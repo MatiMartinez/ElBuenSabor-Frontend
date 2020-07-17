@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import PedidosCocina from '../components/Cocinero/PedidosCocina';
-import AdministrarCocina from '../components/Cocinero/AdministrarCocina';
+import PedidosCocina from "../components/Cocinero/PedidosCocina";
+import AdministrarCocina from "../components/Cocinero/AdministrarCocina/AdministrarCocina";
 
 const Cocina = () => {
   const [toogle, setToogle] = useState(false);

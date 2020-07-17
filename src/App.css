@@ -107,3 +107,19 @@
   border-bottom: 1px solid #ad2118;
   color: #ad2118;
 }
+
+/** Tables */
+.table {
+  box-shadow: 0px 0px 5px 5px #ccc;
+}
+
+/** Encabezados */
+.btn-apply {
+  border: 1px solid #451400;
+  border-radius: 25px;
+}
+
+.btn-apply:hover {
+  background: #451400;
+  color: white;
+}

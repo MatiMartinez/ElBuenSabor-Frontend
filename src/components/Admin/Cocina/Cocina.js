@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import ArtReventa from './ArtReventa';
-import Categorias from '../../Cocinero/AdministrarCocina/Categorias';
-import Platos from '../../Cocinero/AdministrarCocina/Platos';
+import React, { useState } from "react";
+import Insumos from "../../Cocinero/AdministrarCocina/Insumos/Insumos";
+import Ingredientes from "../../Cocinero/AdministrarCocina/Ingredientes/Ingredientes";
+import ArtReventa from "./ArtReventa/ArtReventa";
+import Categorias from "../../Cocinero/AdministrarCocina/Categorias/Categorias";
+import Platos from "../../Cocinero/AdministrarCocina/Platos/Platos";
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(3);
+  const [enable, setEnable] = useState(1);
 
   const toggle = (number) => {
     setEnable(number);
@@ -18,7 +20,7 @@ const Cocina = () => {
             Insumos
           </button>
           <button className="btn btn-nav" onClick={() => toggle(1)}>
-            Manufacturados
+            Ingredientes
           </button>
           <button className="btn btn-nav" onClick={() => toggle(2)}>
             Platos
@@ -32,17 +34,17 @@ const Cocina = () => {
         </div>
       </div>
       {/** Content de administracion cocina */}
-      <div className="container">
-        {/*enable === 0 && (
+      <div className="m-4">
+        {enable === 0 && (
           <div>
             <Insumos />
           </div>
         )}
         {enable === 1 && (
           <div>
-            <Manufacturados />
+            <Ingredientes />
           </div>
-        )*/}
+        )}
         {enable === 2 && (
           <div>
             <Platos />
