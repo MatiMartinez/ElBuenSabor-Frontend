@@ -108,9 +108,9 @@
   color: #ad2118;
 }
 
-/** Tables */
-.table {
-  box-shadow: 0px 0px 5px 5px #ccc;
+/** Sombra de divs */
+.div-shadow {
+  box-shadow: 0px 0px 4px 4px #ccc;
 }
 
 /** Encabezados */

@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 //API
 import { getRubros, getRubrosRaiz } from "../../API/CategoriasApi";
 
-const SelectCategorias = ({ register, label, allValue, raiz }) => {
+const SelectCategorias = (props) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     const cargarRubros = async () => {
       let data;
-      if (raiz === true) {
+      if (props.raiz === true) {
         data = await getRubrosRaiz();
       } else {
         data = await getRubros();
@@ -17,26 +17,33 @@ const SelectCategorias = ({ register, label, allValue, raiz }) => {
       setCategorias(data);
     };
     cargarRubros();
-  }, [raiz]); // Verificar raiz
+  }, [props.raiz]); // Verificar raiz
 
   return (
     <div className="form-group">
-      {label === true && (
+      {props.label === true && (
         <label htmlFor="selectCategoria" className="control-label">
           Categoría
         </label>
       )}
       <select
-        name="rubro"
+        name={props.name}
         id="selectCategoria"
         className="form-control"
         defaultValue={""}
-        ref={register}
+        ref={props.register}
       >
         <option hidden disabled value="">
           Seleccione una categoría
         </option>
-        {allValue === true && (
+        {/** True para mostrar la opcion de sin categoria */}
+        {props.sinRubro === true && (
+          <option key="0" value="">
+            Sin Categoría
+          </option>
+        )}
+        {/** True para mostrar la opcion de todas las categorias */}
+        {props.allValue === true && (
           <option key="0" value="todos">
             Todos
           </option>

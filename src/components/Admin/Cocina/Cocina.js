@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Insumos from "../../Cocinero/AdministrarCocina/Insumos/Insumos";
+import Insumos from "./Insumos/Insumos";
 import Ingredientes from "../../Cocinero/AdministrarCocina/Ingredientes/Ingredientes";
 import ArtReventa from "./ArtReventa/ArtReventa";
-import Categorias from "../../Cocinero/AdministrarCocina/Categorias/Categorias";
+import Categorias from "./Categorias/Categorias";
 import Platos from "../../Cocinero/AdministrarCocina/Platos/Platos";
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(1);
+  const [enable, setEnable] = useState(0);
 
   const toggle = (number) => {
     setEnable(number);

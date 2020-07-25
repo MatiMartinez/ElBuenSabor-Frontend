@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // Carousel
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import './Catalog.css';
-import Slider from 'react-slick';
-import ProductCart from './Catalog/ProductCart';
-import ProductCard from './Catalog/ProductCard';
-import Buscador from './Catalog/Buscador';
+import "./Catalog.css";
+import Slider from "react-slick";
+import ProductCart from "./Catalog/ProductCart";
+import ProductCard from "./Catalog/ProductCard";
+import Buscador from "./Catalog/Buscador";
 
 const Catalog = () => {
   const [categories, setCategories] = useState([]);

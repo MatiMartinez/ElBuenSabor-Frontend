@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 // API
-
-// Things
-import TrashIcon from "../../../../assets/trash-icon.svg";
-import EditIcon from "../../../../assets/edit-icon.svg";
 
 //Components
 import ModalForm from "../../../GlobalReusable/ModalForm";
 import Form from "./ModalForm/Form";
 import Encabezado from "../../../GlobalReusable/Encabezado";
-import { useForm } from "react-hook-form";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
+import TablaPlatos from "./TablaPlatos";
+import { getPlatos, setBorradoPlato } from "../../../../API/ApiPlatos";
 
 const Platos = () => {
   // state
+  const [platos, setPlatos] = useState([]);
+
+  useEffect(() => {
+    async function cargarPlatos() {
+      const data = await getPlatos();
+      setPlatos(data);
+    }
+    cargarPlatos();
+  }, []);
 
   // Modal
   const [isOpen, setIsOpen] = useState(false);
+  const [idEdit, setIdEdit] = useState(undefined);
 
-  const toggle = () => {
+  const toggle = (data) => {
     setIsOpen(!isOpen);
+    setIdEdit(data);
   };
 
-  // Metodos de insumos
+  // Metodos de platos
+  async function borrarPlato(id) {
+    await setBorradoPlato(id);
+    window.location.reload(true);
+  }
 
-  // Select categorias
   // Select categorias
   const [selectCategoria, setSelectCategoria] = useState("");
   const { register, handleSubmit } = useForm();
@@ -39,8 +51,8 @@ const Platos = () => {
   return (
     <div className="mt-4">
       {/** Modal */}
-      <ModalForm toggle={toggle}>
-        <Form />
+      <ModalForm isOpen={isOpen} idEdit={idEdit}>
+        <Form idEdit={idEdit} setIsOpen={setIsOpen} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -57,38 +69,7 @@ const Platos = () => {
         />
       </Encabezado>
       {/** Tabla */}
-      <div className="d-flex flex-column justify-content-center w-100">
-        {/** Tabla de insumos */}
-        <div className="container text-center">
-          <table className="table table-striped table-light">
-            <thead>
-              <tr className="bg-dark text-light">
-                <th>Denominación</th>
-                <th>Tiempo de cocina (minutos)</th>
-                <th>Categoría</th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Harina</th>
-                <td>20</td>
-                <td>Pizzas</td>
-                <td>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <button className="btn">
-                      <img src={EditIcon} alt="edit-icon" width="25px" />
-                    </button>
-                    <button className="btn">
-                      <img src={TrashIcon} alt="trash-icon" width="25px" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <TablaPlatos platos={platos} toggle={toggle} borrarPlato={borrarPlato} />
     </div>
   );
 };

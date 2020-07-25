@@ -4,23 +4,16 @@ import Catalog from "../components/Clientes/Catalog";
 import Hero from "../components/Hero";
 import Content from "../components/Content";
 import { useAuth0 } from "../react-auth0-spa";
-import Admin from "./Admin";
-import Cocina from "./Cocina";
-import Caja from "./Caja";
+import SelectHome from "./SelectHome/SelectHome";
 
 const Home = () => {
   const { isAuthenticated, userdb } = useAuth0();
 
   if (isAuthenticated === true) {
     if (userdb.roles.length === 0) {
-      return <Cocina />;
-      /*} else if (userdb.rol === 'Cocinero') {
-      return <Cocina />;
-    } else if (userdb.rol === 'Cajero') {
-      return <Caja />;
-    } else {
       return <Catalog />;
-    }*/
+    } else {
+      return <SelectHome roles={userdb.roles} />;
     }
   } else {
     return (

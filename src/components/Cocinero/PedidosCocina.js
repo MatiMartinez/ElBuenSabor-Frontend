@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-import PedidoCard from './PedidoCard';
+import React from "react";
 
 const PedidosCocina = () => {
   return (

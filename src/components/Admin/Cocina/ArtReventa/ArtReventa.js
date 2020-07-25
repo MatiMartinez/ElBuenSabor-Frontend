@@ -9,7 +9,7 @@ import ModalForm from "../../../GlobalReusable/ModalForm";
 import Form from "./ModalForm/Form";
 import Encabezado from "../../../GlobalReusable/Encabezado";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
-import Tabla from "./Tabla";
+import TablaReventas from "./TablaReventas";
 
 const ArtReventa = () => {
   // Tabla
@@ -69,7 +69,7 @@ const ArtReventa = () => {
         />
       </Encabezado>
       {/** Tabla */}
-      <Tabla
+      <TablaReventas
         reventas={reventas}
         selectCategoria={selectCategoria}
         toggle={toggle}

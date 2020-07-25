@@ -1,11 +1,11 @@
-import api from './api';
+import api from "./api";
 
 export const getRubros = async () => {
   return await api
-    .get('/rubros/')
+    .get("/rubros/")
     .then((res) => {
       const resData = res.data;
-      console.log('Rubros obtenidos');
+      console.log("Rubros obtenidos");
       return resData;
     })
     .catch((err) => {
@@ -15,10 +15,10 @@ export const getRubros = async () => {
 
 export const getRubrosRaiz = async () => {
   return await api
-    .get('/rubros/raices')
+    .get("/rubros/raices")
     .then((res) => {
       const resData = res.data;
-      console.log('Rubros raices obtenidos');
+      console.log("Rubros raices obtenidos");
       return resData;
     })
     .catch((err) => {
@@ -28,9 +28,9 @@ export const getRubrosRaiz = async () => {
 
 export const createRubro = async (rubro) => {
   return await api
-    .post('/rubros/', rubro)
+    .post("/rubros/", rubro)
     .then((res) => {
-      console.log('Rubro creado: ' + res);
+      console.log("Rubro creado: " + res);
     })
     .catch((err) => {
       console.log(err);
@@ -41,7 +41,7 @@ export const setBorradoRubro = async (id, borrado) => {
   return await api
     .put(`/rubros/softdelete/${id}`)
     .then((res) => {
-      console.log('Rubro borrado');
+      console.log("Rubro borrado");
       console.log(res);
     })
     .catch((err) => {
@@ -53,7 +53,7 @@ export const updateRubro = async (id, rubro) => {
   return await api
     .put(`/rubros/${id}`, rubro)
     .then((res) => {
-      console.log('Rubro actualizado');
+      console.log("Rubro actualizado");
       console.log(res);
     })
     .catch((err) => {

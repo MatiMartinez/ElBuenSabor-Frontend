@@ -1,23 +1,26 @@
-import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { Router, Route, Switch } from "react-router-dom";
 
-import PrivateRoute from './routes/PrivateRoute';
+import PrivateRoute from "./routes/PrivateRoute";
 
 // Components
-import Loading from './components/Loading';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import Home from './views/Home';
-import Profile from './views/Profile';
+import Loading from "./components/Loading";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import Home from "./views/Home";
+import Profile from "./views/Profile";
+import Cocina from "./views/Cocina";
+import Caja from "./views/Caja";
+import Admin from "./views/Admin/Admin";
 
-import { useAuth0 } from './react-auth0-spa';
-import history from './utils/history';
+import { useAuth0 } from "./react-auth0-spa";
+import history from "./utils/history";
 
 // styles
-import './App.css';
+import "./App.css";
 
 // fontawesome
-import initFontAwesome from './utils/initFontAwesome';
+import initFontAwesome from "./utils/initFontAwesome";
 initFontAwesome();
 
 const App = () => {
@@ -35,6 +38,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/cocina" component={Cocina} />
+            <PrivateRoute path="/caja" component={Caja} />
+            <PrivateRoute path="/admin" component={Admin} />
           </Switch>
         </div>
         <Footer />

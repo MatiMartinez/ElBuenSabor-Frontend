@@ -1,15 +1,17 @@
 import React from "react";
 import InputField from "../../../../GlobalReusable/InputField";
 import { useForm } from "react-hook-form";
+import { createPlato, updatePlato } from "../../../../../API/ApiPlatos";
+import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
 
 export default function Form(props) {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async () => {
+  const onSubmit = async (data) => {
     if (props.idEdit === undefined) {
-      //await createPlato(data);
+      await createPlato(data);
     } else {
-      //await updatePlato(props.idEdit._id, data);
+      await updatePlato(props.idEdit._id, data);
     }
     window.location.reload(true);
   };
@@ -29,6 +31,12 @@ export default function Form(props) {
         type="number"
         name="tiempoCocina"
         register={register}
+      />
+      <SelectCategorias
+        register={register}
+        label={true}
+        allValue={false}
+        raiz={false}
       />
       {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-5">
