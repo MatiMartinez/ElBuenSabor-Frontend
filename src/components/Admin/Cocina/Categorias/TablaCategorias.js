@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getRubros, setBorradoRubro } from "../../../../API/CategoriasApi";
+import { getRubros, setBorradoRubro } from "../../../../API/ApiCategorias";
 
 export default function TablaCategorias({ toggle }) {
   // State

@@ -1,17 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createRubro, updateRubro } from "../../../../../API/CategoriasApi";
+import { createRubro, updateRubro } from "../../../../../API/ApiCategorias";
 import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
 import InputField from "../../../../GlobalReusable/InputField";
 
-export default function Form(props) {
+export default function FormCategorias(props) {
   const { register, handleSubmit, watch } = useForm();
   const rubroPadre = watch("rubroPadre");
   const esRubroInsumo = watch("esRubroInsumo");
 
   const onSubmit = async (data) => {
-    console.log(props.idEdit);
-    /*if (data.rubroPadre === "") {
+    if (data.rubroPadre === "") {
       data.rubroPadre = null;
     }
     if (props.idEdit === undefined) {
@@ -19,7 +18,7 @@ export default function Form(props) {
     } else {
       await updateRubro(props.idEdit._id, data);
     }
-    window.location.reload(true);*/
+    window.location.reload(true);
   };
 
   return (

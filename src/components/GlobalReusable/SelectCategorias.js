@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //API
-import { getRubros, getRubrosRaiz } from "../../API/CategoriasApi";
+import { getRubros, getRubrosRaiz } from "../../API/ApiCategorias";
 
 const SelectCategorias = (props) => {
   const [categorias, setCategorias] = useState([]);

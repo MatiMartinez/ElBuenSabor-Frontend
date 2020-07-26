@@ -35,7 +35,15 @@ export default function FormInsumos(props) {
         type="number"
         name="precioCompra"
         register={register}
-        defaultValue={props.idEdit === undefined ? 0 : props.id.precioCompra}
+        defaultValue={
+          props.idEdit === undefined ? 0 : props.idEdit.precioCompra
+        }
+      />
+      <SelectMedida
+        register={register}
+        defaultValue={
+          props.idEdit === undefined ? "" : props.idEdit.unidadMedida
+        }
       />
       <InputField
         id="stockMinimo"
@@ -67,18 +75,7 @@ export default function FormInsumos(props) {
           props.idEdit === undefined ? "" : props.idEdit.stockMaximo
         }
       />
-      <SelectMedida
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.unidadMedida
-        }
-      />
-      <SelectCategorias
-        register={register}
-        label={true}
-        allValue={false}
-        raiz={false}
-      />
+      <SelectCategorias register={register} label={true} name="rubro" />
       {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-5">
         <div className="d-flex justify-content-around pt-3 w-50">

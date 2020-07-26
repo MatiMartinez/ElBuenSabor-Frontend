@@ -1,0 +1,21 @@
+.search-content {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-left: 25px;
+  height: 40px;
+}
+
+.btn-search {
+  color: #fff;
+  background-color: #ad2118;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.btn-search:hover {
+  background-color: #c8261b;
+  color: #fff;
+}

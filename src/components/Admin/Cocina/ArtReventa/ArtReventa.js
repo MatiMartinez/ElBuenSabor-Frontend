@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
-// api
-import { getReventas, setBorradoReventa } from "../../../../API/ArtReventaApi";
 
 // things
 import ModalForm from "../../../GlobalReusable/ModalForm";
-import Form from "./ModalForm/Form";
+import Form from "./ModalForm/FormArtReventas";
 import Encabezado from "../../../GlobalReusable/Encabezado";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
 import TablaReventas from "./TablaReventas";
 
 const ArtReventa = () => {
-  // Tabla
-  const [reventas, setReventas] = useState([]);
-
-  useEffect(() => {
-    const cargarReventas = async () => {
-      const data = await getReventas();
-      setReventas(data);
-    };
-    cargarReventas();
-  }, []);
-
   // Modal
   const [isOpen, setIsOpen] = useState(false);
   const [idEdit, setIdEdit] = useState(undefined);
@@ -30,12 +16,6 @@ const ArtReventa = () => {
   const toggle = (data) => {
     setIsOpen(!isOpen);
     setIdEdit(data);
-  };
-
-  // Metodos de articulos de reventa
-  const borrarReventa = async (id) => {
-    await setBorradoReventa(id);
-    window.location.reload(true);
   };
 
   // Select categorias
@@ -69,12 +49,7 @@ const ArtReventa = () => {
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaReventas
-        reventas={reventas}
-        selectCategoria={selectCategoria}
-        toggle={toggle}
-        borrarReventa={borrarReventa}
-      />
+      <TablaReventas selectCategoria={selectCategoria} toggle={toggle} />
     </div>
   );
 };

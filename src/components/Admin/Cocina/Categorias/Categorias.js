@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //Components
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
 import ModalForm from "../../../GlobalReusable/ModalForm";
-import Form from "./ModalForm/Form";
+import FormCategorias from "./ModalForm/FormCategorias";
 import Encabezado from "../../../GlobalReusable/Encabezado";
 import { useForm } from "react-hook-form";
 import TablaCategorias from "./TablaCategorias";
@@ -32,7 +32,7 @@ const Categorias = () => {
     <div className="mt-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <Form idEdit={idEdit} setIsOpen={setIsOpen} />
+        <FormCategorias idEdit={idEdit} setIsOpen={setIsOpen} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado

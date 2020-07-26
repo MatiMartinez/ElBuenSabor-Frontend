@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getReventas, setBorradoReventa } from "../../../../API/ArtReventaApi";
 
-export default function TablaReventas({
-  reventas,
-  selectCategoria,
-  toggle,
-  borrarReventa,
-}) {
+export default function TablaReventas({ selectCategoria, toggle }) {
+  // Tabla
+  const [reventas, setReventas] = useState([]);
+
+  useEffect(() => {
+    const cargarReventas = async () => {
+      const data = await getReventas();
+      setReventas(data);
+      console.log(data);
+    };
+    cargarReventas();
+  }, []);
+
+  // Metodos de articulos de reventa
+  const borrarReventa = async (id) => {
+    await setBorradoReventa(id);
+    window.location.reload(true);
+  };
+
   return (
     <table className="table div-shadow bg-white mt-3">
       <thead className="font-bold-700">
@@ -33,7 +47,7 @@ export default function TablaReventas({
                   <td>{reventa.stockActual}</td>
                   <td>{reventa.stockMinimo}</td>
                   <td>{reventa.stockMaximo}</td>
-                  <td>{reventa.rubro}</td>
+                  <td>{reventa.rubro.denominacion}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
                       <button className="btn" onClick={() => toggle(reventa)}>
@@ -60,7 +74,7 @@ export default function TablaReventas({
                     <td>{reventa.stockActual}</td>
                     <td>{reventa.stockMinimo}</td>
                     <td>{reventa.stockMaximo}</td>
-                    <td>{reventa.rubro}</td>
+                    <td>{reventa.rubro.denominacion}</td>
                     <td>
                       <div className="d-flex align-items-center justify-content-center">
                         <button className="btn" onClick={() => toggle(reventa)}>

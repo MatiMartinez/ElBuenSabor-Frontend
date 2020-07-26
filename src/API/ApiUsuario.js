@@ -14,10 +14,15 @@ export const getUsuarioByEmail = async (email) => {
 };
 
 export const updateUsuario = async (id, usuario) => {
-  return await api.put(`/usuarios/${id}`, usuario).then((res) => {
-    console.log("Usuario actualizado: ");
-    console.log(res);
-  });
+  return await api
+    .put(`/usuarios/${id}`, usuario)
+    .then((res) => {
+      console.log("Usuario actualizado: ");
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const deleteUsuario = async (id) => {

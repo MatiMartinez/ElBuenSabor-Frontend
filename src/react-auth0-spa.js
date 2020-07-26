@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import createAuth0Client from '@auth0/auth0-spa-js';
+import React, { useState, useEffect, useContext } from "react";
+import createAuth0Client from "@auth0/auth0-spa-js";
 
-import { getUsuarioByEmail } from './API/ApiUsuario';
+import { getUsuarioByEmail } from "./API/ApiUsuario";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
@@ -26,8 +26,8 @@ export const Auth0Provider = ({
       setAuth0(auth0FromHook);
 
       if (
-        window.location.search.includes('code=') &&
-        window.location.search.includes('state=')
+        window.location.search.includes("code=") &&
+        window.location.search.includes("state=")
       ) {
         const { appState } = await auth0FromHook.handleRedirectCallback();
         onRedirectCallback(appState);
@@ -43,7 +43,7 @@ export const Auth0Provider = ({
         // Conexion usuario con base de datos
         const userdb = await getUsuarioByEmail(user.email);
         setUserdb(userdb);
-        console.log('Usuario obtenido por email: ', userdb);
+        console.log("Usuario obtenido por email: ", userdb);
       }
 
       setLoading(false);

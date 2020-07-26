@@ -6,7 +6,7 @@ import Categorias from "./Categorias/Categorias";
 import Platos from "../../Cocinero/AdministrarCocina/Platos/Platos";
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(0);
+  const [enable, setEnable] = useState(4);
 
   const toggle = (number) => {
     setEnable(number);

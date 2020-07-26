@@ -51,16 +51,6 @@ export default function Form(props) {
       />
       <SelectMedida register={register} />
       <InputField
-        id="stockActual"
-        label="Stock Actual"
-        type="number"
-        name="stockActual"
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.stockActual
-        }
-      />
-      <InputField
         id="stockMinimo"
         label="Stock Mínimo"
         type="number"
@@ -80,12 +70,17 @@ export default function Form(props) {
           props.idEdit === undefined ? "" : props.idEdit.stockMaximo
         }
       />
-      <SelectCategorias
+      <InputField
+        id="stockActual"
+        label="Stock Actual"
+        type="number"
+        name="stockActual"
         register={register}
-        label={true}
-        allValue={false}
-        raiz={false}
+        defaultValue={
+          props.idEdit === undefined ? "" : props.idEdit.stockActual
+        }
       />
+      <SelectCategorias register={register} label={true} name="rubro" />
       {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-5">
         <div className="d-flex justify-content-around pt-3 w-50">
