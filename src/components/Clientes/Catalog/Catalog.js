@@ -8,12 +8,12 @@ import "./Catalog.css";
 import Buscador from "./HeroCatalog/Buscador";
 import SliderCategorias from "./SliderCategorias/SliderCategorias";
 import Hero from "./HeroCatalog/HeroCatalog";
+import CatalogoProductos from "./CatalogoProductos/CatalogoProductos";
 
 const Catalog = () => {
-  const [products, setProducts] = useState([]);
-
   // Busqueda, form y estado de la busqueda
   const [busqueda, setBusqueda] = useState(null);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 
   const onSubmitBusqueda = (e) => {
     e.preventDefault();
@@ -22,7 +22,6 @@ const Catalog = () => {
 
   const onChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setBusqueda(e.target.value);
   };
 
@@ -35,17 +34,11 @@ const Catalog = () => {
         </form>
       </Hero>
       {/** Categorías */}
-      <SliderCategorias />
-      {/** Catalogo de productos por categorías y carrito */}
-      <div className="container mt-4">
-        <div className="d-flex justify-content-between">
-          {products.map((product, i) => (
-            <div>Aqui retorno los productos</div>
-          ))}
-        </div>
-        {/** Carrito */}
-        <div className=""></div>
-      </div>
+      <SliderCategorias setCategoriaSeleccionada={setCategoriaSeleccionada} />
+      {/** Separador */}
+      <hr className="container mb-5" />
+      {/** Catalogo de productos */}
+      <CatalogoProductos />
     </div>
   );
 };

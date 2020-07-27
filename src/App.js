@@ -6,7 +6,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 // Components
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Footer from "./components/Landing/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
 import Cocina from "./views/Cocina";

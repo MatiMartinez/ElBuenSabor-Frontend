@@ -1,0 +1,122 @@
+/*! Footer */
+.footer {
+  background-color: #1b0800;
+  color: white;
+  width: 100%;
+}
+
+.fab {
+  color: white;
+}
+
+.footer-items ul li {
+  list-style: none;
+}
+
+.footer-items ul li a {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.footer-items ul li a span {
+  position: absolute;
+  transition: transform 0.5s;
+}
+
+/*? Top - Bottom */
+.footer-items ul li a span:nth-child(1),
+.footer-items ul li a span:nth-child(3) {
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+.footer-items ul li a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  transform-origin: right;
+}
+
+.footer-items ul li a:hover span:nth-child(1) {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.footer-items ul li a span:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  transform-origin: left;
+}
+
+.footer-items ul li a:hover span:nth-child(3) {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+/*? Left - Right */
+.footer-items ul li a span:nth-child(2),
+.footer-items ul li a span:nth-child(4) {
+  width: 2px;
+  height: 100%;
+  background: white;
+}
+
+.footer-items ul li a span:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  transform-origin: bottom;
+}
+
+.footer-items ul li a:hover span:nth-child(2) {
+  transform: scale(1);
+  transform-origin: top;
+  transition: transform 0.5s;
+}
+
+.footer-items ul li a span:nth-child(4) {
+  top: 0;
+  right: 0;
+  transform: scale(0);
+  transform-origin: top;
+}
+
+.footer-items ul li a:hover span:nth-child(4) {
+  transform: scale(1);
+  transform-origin: bottom;
+  transition: transform 0.5s;
+}
+
+/*? Links */
+.links a {
+  font-weight: 200;
+  text-decoration: none;
+  color: white;
+}
+
+.links a:hover {
+  color: #ccc;
+}
+
+/** Responsive Footer */
+@media (max-width: 768px) {
+  .social-data-content {
+    flex-direction: column;
+  }
+  .footer-items {
+    margin-bottom: 30px;
+  }
+  .location-attention,
+  .footer-items {
+    justify-content: center;
+  }
+}

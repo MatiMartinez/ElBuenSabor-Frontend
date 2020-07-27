@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 
 import Catalog from "../components/Clientes/Catalog/Catalog";
-import Hero from "../components/Hero";
-import Content from "../components/Content";
+import Hero from "../components/Landing/Hero";
+import Content from "../components/Landing/Content";
 import { useAuth0 } from "../react-auth0-spa";
 import SelectHome from "./SelectHome/SelectHome";
 

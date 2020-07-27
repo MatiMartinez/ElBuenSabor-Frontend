@@ -1,6 +1,6 @@
 .hero-catalog {
-  height: 50vh;
-  background: url("../../../../assets/catalog-hero.jpg") no-repeat fixed center;
+  height: 60vh;
+  background: url("../../../../assets/catalog-hero.jpg") no-repeat center;
   background-size: cover;
 }
 
@@ -9,5 +9,4 @@
   font-size: 64px;
   text-align: center;
   color: #ffffff;
-  text-shadow: 5px 5px 5px #000;
 }
