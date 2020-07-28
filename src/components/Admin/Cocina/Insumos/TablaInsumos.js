@@ -28,7 +28,7 @@ export default function TablaInsumos({ toggle }) {
           <th>Stock mínimo</th>
           <th>Stock máximo</th>
           <th>Medida</th>
-          <th>Precio</th>
+          <th>Precio Compra</th>
           <th>Categoría</th>
           <th>Opciones</th>
         </tr>
@@ -42,7 +42,7 @@ export default function TablaInsumos({ toggle }) {
               <td>{insumo.stockMinimo}</td>
               <td>{insumo.stockMaximo}</td>
               <td>{insumo.unidadMedida}</td>
-              <td>{insumo.precio}</td>
+              <td>$ {insumo.precioCompra}</td>
               <td>{insumo.rubro.denominacion}</td>
               <td>
                 <div className="d-flex align-items-center">

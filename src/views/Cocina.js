@@ -11,7 +11,7 @@ const Cocina = () => {
   };
 
   return (
-    <div>
+    <div className="cocina-view">
       {/** Nav Cocinero */}
       <div className="d-flex justify-content-center pt-2 pb-2 bg-dark">
         <div className="d-flex justify-content-center w-50">

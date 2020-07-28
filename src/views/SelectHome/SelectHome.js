@@ -2,8 +2,11 @@ import React from "react";
 
 import "./SelectHome.css";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "../../react-auth0-spa";
 
-export default function SelectHome({ roles }) {
+export default function SelectHome() {
+  const { userdb } = useAuth0();
+
   function HomeCocinero() {
     return (
       <Link className="icon-container p-4 m-4" to="/cocina">
@@ -30,18 +33,30 @@ export default function SelectHome({ roles }) {
 
   function HomeCatalog() {
     return (
-      <Link className="icon-container p-4 m-4" to="/">
+      <Link className="icon-container p-4 m-4" to="/catalog">
         <i className="fas fa-store fa-8x"></i>
       </Link>
     );
   }
 
   return (
-    <div className="mt-5 d-flex justify-content-center">
+    <div className="mt-5 d-flex justify-content-center select-home mb-5">
       <div className="d-flex justify-content-center home-container p-4">
-        <HomeCajero />
-        <HomeCocinero />
-        <HomeAdmin />
+        {userdb.roles.map((rol) => {
+          if (rol.nombreRol === "Administrador") {
+            return <HomeAdmin />;
+          }
+        })}
+        {userdb.roles.map((rol) => {
+          if (rol.nombreRol === "Cocinero") {
+            return <HomeCocinero />;
+          }
+        })}
+        {userdb.roles.map((rol) => {
+          if (rol.nombreRol === "Cajero") {
+            return <HomeCocinero />;
+          }
+        })}
         <HomeCatalog />
       </div>
     </div>

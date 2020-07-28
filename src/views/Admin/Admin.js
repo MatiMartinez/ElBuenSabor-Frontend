@@ -13,7 +13,7 @@ const Admin = () => {
   };
 
   return (
-    <div>
+    <div className="admin-view">
       {/** Nav Admin */}
       <NavAdmin changeToggle={changeToggle} />
       {/** Content Admin */}

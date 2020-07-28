@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getPlatos, setBorradoPlato } from "../../../../API/ApiPlatos";
 
-export default function TablaPlatos({ platos, toggle, borrarPlato }) {
+export default function TablaPlatos({ toggle }) {
+  // state
+  const [platos, setPlatos] = useState([]);
+
+  useEffect(() => {
+    async function cargarPlatos() {
+      const data = await getPlatos();
+      setPlatos(data);
+    }
+    cargarPlatos();
+  }, []);
+
+  // Metodos de platos
+  async function borrarPlato(id) {
+    await setBorradoPlato(id);
+    window.location.reload(true);
+  }
+
   return (
     <table className="table div-shadow bg-white mt-3">
       <thead className="font-bold-700">

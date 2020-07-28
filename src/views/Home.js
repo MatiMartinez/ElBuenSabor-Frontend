@@ -13,10 +13,10 @@ const Home = () => {
   if (isAuthenticated === true) {
     console.log(userdb);
 
-    if (userdb.roles.length !== 0) {
-      return <Catalog />;
+    if (userdb.roles.length === 0) {
+      window.location.replace("/catalog");
     } else {
-      return <SelectHome roles={userdb.roles} />;
+      window.location.replace("/select-home");
     }
   } else {
     return (

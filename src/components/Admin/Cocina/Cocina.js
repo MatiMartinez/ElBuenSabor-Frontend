@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Insumos from "./Insumos/Insumos";
-import Ingredientes from "../../Cocinero/AdministrarCocina/Ingredientes/Ingredientes";
 import ArtReventa from "./ArtReventa/ArtReventa";
 import Categorias from "./Categorias/Categorias";
 import Platos from "../../Cocinero/AdministrarCocina/Platos/Platos";
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(4);
+  const [enable, setEnable] = useState(1);
 
   const toggle = (number) => {
     setEnable(number);
@@ -20,15 +19,12 @@ const Cocina = () => {
             Insumos
           </button>
           <button className="btn btn-nav" onClick={() => toggle(1)}>
-            Ingredientes
-          </button>
-          <button className="btn btn-nav" onClick={() => toggle(2)}>
             Platos
           </button>
-          <button className="btn btn-nav" onClick={() => toggle(3)}>
+          <button className="btn btn-nav" onClick={() => toggle(2)}>
             Categorías
           </button>
-          <button className="btn btn-nav" onClick={() => toggle(4)}>
+          <button className="btn btn-nav" onClick={() => toggle(3)}>
             Art. Reventa
           </button>
         </div>
@@ -42,20 +38,15 @@ const Cocina = () => {
         )}
         {enable === 1 && (
           <div>
-            <Ingredientes />
+            <Platos />
           </div>
         )}
         {enable === 2 && (
           <div>
-            <Platos />
-          </div>
-        )}
-        {enable === 3 && (
-          <div>
             <Categorias />
           </div>
         )}
-        {enable === 4 && (
+        {enable === 3 && (
           <div>
             <ArtReventa />
           </div>

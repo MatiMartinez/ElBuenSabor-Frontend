@@ -6,7 +6,7 @@ import { customStyle } from "../../utils/modalStyle";
 export default function ModalForm(props) {
   return (
     <Modal isOpen={props.isOpen} ariaHideApp={false} style={customStyle}>
-      <div className="p-4 bg-red">
+      <div className="p-4" style={{ background: "#ad2118" }}>
         {props.idEdit === undefined ? (
           <h2 className="text-white">Crear</h2>
         ) : (

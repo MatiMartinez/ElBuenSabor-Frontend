@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 // API
 
 //Components
 import ModalForm from "../../../GlobalReusable/ModalForm";
-import Form from "./ModalForm/Form";
 import Encabezado from "../../../GlobalReusable/Encabezado";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
 import TablaPlatos from "./TablaPlatos";
-import { getPlatos, setBorradoPlato } from "../../../../API/ApiPlatos";
+import FormPlatos from "./ModalForm/FormPlatos";
 
 const Platos = () => {
-  // state
-  const [platos, setPlatos] = useState([]);
-
-  useEffect(() => {
-    async function cargarPlatos() {
-      const data = await getPlatos();
-      setPlatos(data);
-    }
-    cargarPlatos();
-  }, []);
-
   // Modal
   const [isOpen, setIsOpen] = useState(false);
   const [idEdit, setIdEdit] = useState(undefined);
@@ -31,12 +19,6 @@ const Platos = () => {
     setIsOpen(!isOpen);
     setIdEdit(data);
   };
-
-  // Metodos de platos
-  async function borrarPlato(id) {
-    await setBorradoPlato(id);
-    window.location.reload(true);
-  }
 
   // Select categorias
   const [selectCategoria, setSelectCategoria] = useState("");
@@ -52,7 +34,7 @@ const Platos = () => {
     <div className="mt-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <Form idEdit={idEdit} setIsOpen={setIsOpen} />
+        <FormPlatos idEdit={idEdit} setIsOpen={setIsOpen} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -63,13 +45,12 @@ const Platos = () => {
       >
         <SelectCategorias
           register={register}
-          label={false}
           allValue={true}
-          raiz={false}
+          name="rubro" //Verificar aqui
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaPlatos platos={platos} toggle={toggle} borrarPlato={borrarPlato} />
+      <TablaPlatos toggle={toggle} />
     </div>
   );
 };
