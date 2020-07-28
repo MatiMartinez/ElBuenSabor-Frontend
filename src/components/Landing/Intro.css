@@ -1,3 +1,45 @@
 .landing-intro {
-  height: 100vh;
+  height: 80vh;
+  background-color: #e0edfd;
+}
+
+/** Contenedor de imagen */
+.intro-content-img {
+  position: absolute;
+  left: 55%;
+  z-index: 1;
+}
+
+.img-intro {
+  width: 60vh;
+}
+
+/** Contenedor de texto y button */
+.intro-content-text {
+  background: #fff;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: absolute;
+  left: 15%;
+  z-index: 2;
+}
+
+.btn-comenzar {
+  border-radius: 0%;
+  width: 30%;
+  background: #ad2118;
+  color: #ffffff;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+}
+
+.btn-comenzar:hover {
+  color: #ffffff;
+  background: #c8261b;
+}
+
+.intro-content-text h1 {
+  margin-bottom: 0.2em;
 }

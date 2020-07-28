@@ -1,0 +1,32 @@
+.landing-content {
+  height: 100vh;
+  background-color: #333;
+}
+
+/** Contenedor de imagen */
+.content-content-img {
+  position: absolute;
+  left: 10%;
+  z-index: 1;
+}
+
+.img-content {
+  width: 80vh;
+}
+
+/** Contenedor de texto y button */
+.content-content-text {
+  background: #fff;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: absolute;
+  left: 40%;
+  right: 10%;
+  z-index: 2;
+}
+
+.content-content-text h1 {
+  margin-bottom: 0.2em;
+}

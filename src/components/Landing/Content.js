@@ -1,32 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 
-import { Row, Col } from "reactstrap";
+import "./Content.css";
 
-import contentData from "../../utils/contentData";
-
-class Content extends Component {
-  render() {
-    return (
-      <div className="container d-flex flex-column mt-5 align-items-center mb-5">
-        <div className="text-center w-50 mb-5">
-          <h2 className="mt-5 mb-3">Porque somos los mejores</h2>
-          <p className="color-golden">
-            Auth0 supports social providers as Facebook, Twitter, Instagram and
-            100+, Enterprise providers as Microsoft Office 365, Google Apps,
-            Azure, and more. You can also use any OAuth2 Authorization Server.
-          </p>
-        </div>
-        <Row className="d-flex justify-content-between">
-          {contentData.map((col, i) => (
-            <Col key={i} md={3} className="text-center p-5">
-              <h6 className="mb-3">{col.title}</h6>
-              <p>{col.description}</p>
-            </Col>
-          ))}
-        </Row>
+export default function Content() {
+  return (
+    <div className="landing-content d-flex align-items-center">
+      <div className="content-content-img">
+        <img
+          src="https://images.pexels.com/photos/4669246/pexels-photo-4669246.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="img-intro"
+          className="img-content"
+        />
       </div>
-    );
-  }
+      <div className="content-content-text d-flex flex-column justify-content-around">
+        <h6>Nuestra Web</h6>
+        <h1>Delivery & Take Out</h1>
+        <p>
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a more-or-less normal distribution of
+          letters, as opposed to using 'Content here, content here', making it
+          look like readable English.
+        </p>
+      </div>
+    </div>
+  );
 }
-
-export default Content;
