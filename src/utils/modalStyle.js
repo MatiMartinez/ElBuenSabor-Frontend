@@ -9,3 +9,13 @@ export const customStyle = {
     maxHeight: "90vh",
   },
 };
+
+export const customStyleProduct = {
+  content: {
+    borderRadius: "0px",
+    marginLeft: "25%",
+    marginRight: "25%",
+    height: "max-content",
+    maxHeight: "90vh",
+  },
+};
