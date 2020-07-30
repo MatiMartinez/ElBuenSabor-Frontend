@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import ModalForm from "../../../GlobalReusable/ModalForm";
 import Encabezado from "../../../GlobalReusable/Encabezado";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
-import TablaPlatos from "./TablaPlatos";
+import TablaPlatos from "./TablaPlatos/TablaPlatos";
 import FormPlatos from "./ModalForm/FormPlatos";
 
 const Platos = () => {
@@ -26,6 +26,7 @@ const Platos = () => {
 
   const onSubmit = (data) => {
     setSelectCategoria(data.categoria);
+    console.log(selectCategoria);
     // Consultar por metodo para filtrar la tabla
   };
 

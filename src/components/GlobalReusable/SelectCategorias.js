@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 //API
-import { getRubros, getRubrosRaiz } from "../../API/ApiCategorias";
+import {
+  getRubros,
+  getRubrosRaiz,
+  getRubrosInsumo,
+} from "../../API/ApiCategorias";
 
 const SelectCategorias = (props) => {
   const [categorias, setCategorias] = useState([]);
@@ -9,15 +13,18 @@ const SelectCategorias = (props) => {
   useEffect(() => {
     const cargarRubros = async () => {
       let data;
-      if (props.raiz === true) {
-        data = await getRubrosRaiz();
+      if (props.tipo === "insumos") {
+        data = await getRubrosInsumo();
       } else {
         data = await getRubros();
       }
       setCategorias(data);
     };
     cargarRubros();
-  }, [props.raiz]); // Verificar raiz
+  }, [props.tipo]); // Verificar raiz
+
+  // OnChange
+  const [value, setValue] = useState(props.defaultValue);
 
   return (
     <div className="form-group">
@@ -30,7 +37,8 @@ const SelectCategorias = (props) => {
         name={props.name}
         id="selectCategoria"
         className="form-control"
-        defaultValue={""}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         ref={props.register}
       >
         <option hidden disabled value="">

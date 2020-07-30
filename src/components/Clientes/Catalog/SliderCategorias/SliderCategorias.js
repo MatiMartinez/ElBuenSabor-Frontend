@@ -19,7 +19,6 @@ export default function SliderCategorias({ setCategoriaSeleccionada }) {
 
   function seleccionarCategoria(data) {
     setCategoriaSeleccionada(data);
-    console.log(data);
   }
 
   let settings = {

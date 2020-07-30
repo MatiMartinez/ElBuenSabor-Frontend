@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import ProductoCard from "./ProductoCard";
+import { getPlatos } from "../../../../API/ApiPlatos";
 
 export default function CatalogoProductos() {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     async function cargarProductos() {
-      const data = [];
+      const data = await getPlatos();
       setProductos(data);
     }
     cargarProductos();
@@ -14,7 +16,12 @@ export default function CatalogoProductos() {
   return (
     <div className="container">
       <div className="row">
-        {productos.length !== 0 && productos.map((producto) => <div></div>)}
+        {productos.length !== 0 &&
+          productos.map((producto) => (
+            <div>
+              <ProductoCard producto={producto} />
+            </div>
+          ))}
       </div>
     </div>
   );

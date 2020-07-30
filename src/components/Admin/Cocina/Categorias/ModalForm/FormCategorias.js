@@ -5,6 +5,7 @@ import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
 import InputField from "../../../../GlobalReusable/InputField";
 
 export default function FormCategorias(props) {
+  console.log(props.idEdit);
   const { register, handleSubmit, watch } = useForm();
   const rubroPadre = watch("rubroPadre");
   const esRubroInsumo = watch("esRubroInsumo");

@@ -49,3 +49,15 @@ export async function updatePlato(id, plato) {
       console.log(err);
     });
 }
+
+export async function addIngredientes(id, ingredientes) {
+  await api
+    .put(`/platos/${id}/agregar-ingredientes`, ingredientes)
+    .then((res) => {
+      console.log(res);
+      console.log("Ingredientes agregados");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

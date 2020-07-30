@@ -39,6 +39,19 @@ export async function getRubrosCatalogo() {
     });
 }
 
+export async function getRubrosInsumo() {
+  return await api
+    .get("/rubros/deInsumo")
+    .then((res) => {
+      const resData = res.data;
+      console.log("Rubros de insumos obtenidos");
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export async function createRubro(rubro) {
   return await api
     .post("/rubros/", rubro)
