@@ -2,16 +2,17 @@ import React from "react";
 
 import "./ProductoCard.css";
 
-export default function ProductoCard({ producto }) {
+export default function ProductoCard({ producto, seleccionarProducto }) {
   return (
-    <div className="card mb-4" style={{ maxHeight: "110px" }}>
+    <div className="card mb-4" onClick={() => seleccionarProducto(producto)}>
       <div className="row h-100">
         <div className="col-md-8 my-auto">
           <div className="card-body p-2 pl-4">
             <h6 className="m-0">{producto.denominacion}</h6>
             <p className="text-producto text-muted m-0">
-              Descripcion de los ingredientes del plato, y quizas tambien una
-              breve.
+              {producto.ingredientes.map((ingrediente) => {
+                return ingrediente.insumo.denominacion + " ";
+              })}
             </p>
             <h6 className="m-0">$ {producto.precioVenta}</h6>
           </div>

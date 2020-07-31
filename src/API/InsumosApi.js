@@ -1,49 +1,63 @@
-import api from './api';
+import api from "./api";
 
-export const getInsumos = async () => {
+export async function getInsumos() {
   return await api
-    .get('/insumos/')
+    .get("/insumos/")
     .then((res) => {
-      const responseData = res.data;
-      return responseData;
+      console.log("Insumos obtenidos");
+      const resData = res.data;
+      return resData;
     })
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const createInsumo = async (insumo) => {
+export async function getInsumosPorRubro(rubroId) {
   return await api
-    .post('/insumos/', insumo)
+    .get(`/insumos/rubro/${rubroId}`)
     .then((res) => {
-      console.log('Insumo creado');
+      console.log("Insumos de rubro obtenidos");
+      const resData = res.data;
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function createInsumo(insumo) {
+  return await api
+    .post("/insumos/", insumo)
+    .then((res) => {
+      console.log("Insumo creado");
       console.log(res);
     })
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const setBorradoInsumo = async (id) => {
+export async function setBorradoInsumo(id) {
   return await api
     .put(`/insumos/softdelete/${id}`)
     .then((res) => {
-      console.log('Insumo borrado');
+      console.log("Insumo borrado");
       console.log(res);
     })
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const updateInsumo = async (id, insumo) => {
+export async function updateInsumo(id, insumo) {
   return await api
     .put(`/insumos/${id}`, insumo)
     .then((res) => {
-      console.log('Insumo actualizado');
+      console.log("Insumo actualizado");
       console.log(res);
     })
     .catch((err) => {
       console.log(err);
     });
-};
+}

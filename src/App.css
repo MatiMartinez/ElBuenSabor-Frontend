@@ -132,3 +132,11 @@
 .cocina-view {
   padding-top: 106px;
 }
+
+.profile-view {
+  margin-top: 106px;
+  border-top: 1px solid #ccc;
+  padding-top: 5vh;
+}
+
+/*-----------------------------------------------------------------------------------*/

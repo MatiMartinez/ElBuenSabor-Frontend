@@ -19,3 +19,13 @@ export const customStyleProduct = {
     maxHeight: "90vh",
   },
 };
+
+export const customStyleCarrito = {
+  content: {
+    borderRadius: "0px",
+    marginLeft: "50%",
+    marginRight: "0%",
+    height: "max-content",
+    maxHeight: "90vh",
+  },
+};

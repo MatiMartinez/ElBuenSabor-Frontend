@@ -9,6 +9,7 @@ import Buscador from "./HeroCatalog/Buscador";
 import SliderCategorias from "./SliderCategorias/SliderCategorias";
 import Hero from "./HeroCatalog/HeroCatalog";
 import CatalogoProductos from "./CatalogoProductos/CatalogoProductos";
+import ModalCarrito from "./Carrito/ModalCarrito";
 
 const Catalog = () => {
   // Busqueda, form y estado de la busqueda
@@ -25,6 +26,14 @@ const Catalog = () => {
     setBusqueda(e.target.value);
   };
 
+  // Carrito de compras
+  const [isOpen, setIsOpen] = useState(false);
+  const [compras, setCompras] = useState([]);
+
+  function toggle() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <div className="">
       {/** Hero */}
@@ -39,6 +48,11 @@ const Catalog = () => {
       <hr className="container mb-5" />
       {/** Catalogo de productos */}
       <CatalogoProductos />
+      {/** Modal del carrito de compras */}
+      <ModalCarrito isOpen={isOpen} toggle={toggle} />
+      <button className="btn btn-carrito" onClick={() => toggle()}>
+        <i className="fas fa-shopping-cart mr-2"></i> {compras.length}
+      </button>
     </div>
   );
 };

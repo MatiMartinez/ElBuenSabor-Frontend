@@ -44,7 +44,7 @@ export default function TablaPlatos({ toggle }) {
         </div>
         {/** Informacion del plato */}
         <div className="col-4 info-plato">
-          <h4>Información de Plato</h4>
+          <h4 className="text-muted">Información de Plato</h4>
           <h5>{platoSeleccionado.denominacion}</h5>
           {platoSeleccionado !== "" && <InfoPlato plato={platoSeleccionado} />}
         </div>

@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormIngrediente from "./FormIngrediente";
 import { addIngredientes } from "../../../../../../API/ApiPlatos";
 
 export default function InfoPlato({ plato }) {
-  const [ingredientes, setIngredientes] = useState([
-    {
-      insumo_id: "",
-      cantidad: 0,
-    },
-  ]);
+  const [ingredientes, setIngredientes] = useState([]);
+
+  useEffect(() => {
+    if (plato.ingredientes.length !== 0) {
+      setIngredientes(plato.ingredientes);
+    } else {
+      setIngredientes([
+        {
+          insumo_id: "",
+          cantidad: 0,
+        },
+      ]);
+    }
+  }, [plato]);
 
   function addIngrediente() {
     setIngredientes([
@@ -33,7 +41,7 @@ export default function InfoPlato({ plato }) {
 
   async function onSubmit(e) {
     console.log(ingredientes);
-    await addIngredientes(plato._id, ingredientes); // Aqui es donde no andaba
+    await addIngredientes(plato._id, ingredientes);
   }
 
   return (

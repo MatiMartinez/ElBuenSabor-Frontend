@@ -1,0 +1,12 @@
+.btn-carrito {
+  position: fixed;
+  top: 5%;
+  right: 2.5%;
+  background: #ad2118;
+  color: white;
+}
+
+.btn-carrito:hover {
+  background: #c8261b;
+  color: white;
+}

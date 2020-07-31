@@ -42,9 +42,10 @@ export default function FormIngrediente({
       </div>
       {/** Select de insumo */}
       <SelectInsumos
-        value={ingrediente.insumo}
+        value={ingrediente.insumo_id}
         handleChange={handleChange}
         index={index}
+        rubroId={value}
       />
       <div className="form-group" style={{ width: "30%" }}>
         <input

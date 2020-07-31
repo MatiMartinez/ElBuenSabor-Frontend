@@ -43,7 +43,6 @@ export const Auth0Provider = ({
         // Conexion usuario con base de datos
         const userdb = await getUsuarioByEmail(user.email);
         setUserdb(userdb);
-        console.log("Usuario obtenido por email: ", userdb);
       }
 
       setLoading(false);

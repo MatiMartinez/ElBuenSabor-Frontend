@@ -8,7 +8,7 @@ import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Landing/Footer";
 import Home from "./views/Home";
-import Profile from "./views/Profile";
+import Profile from "./components/Profile/Profile";
 import Cocina from "./views/Cocina";
 import Caja from "./views/Caja";
 import Admin from "./views/Admin/Admin";
