@@ -53,7 +53,7 @@ export async function getRubrosInsumo() {
 }
 
 export async function createRubro(rubro) {
-  return await api
+  await api
     .post("/rubros/", rubro)
     .then((res) => {
       console.log("Rubro creado: " + res);
@@ -64,7 +64,7 @@ export async function createRubro(rubro) {
 }
 
 export async function setBorradoRubro(id, borrado) {
-  return await api
+  await api
     .put(`/rubros/softdelete/${id}`)
     .then((res) => {
       console.log("Rubro borrado");

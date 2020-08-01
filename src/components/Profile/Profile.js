@@ -5,6 +5,7 @@ import { useAuth0 } from "../../react-auth0-spa";
 import "./Profile.css";
 import ImageProfile from "./DataProfile/ImageProfile";
 import UserData from "./DataProfile/UserData";
+import Addresses from "./DataProfile/Addresses";
 
 const Profile = () => {
   const { loading, user, userdb } = useAuth0();
@@ -22,6 +23,8 @@ const Profile = () => {
           </div>
           <div className="col-6">
             <UserData />
+            <hr />
+            <Addresses />
           </div>
           <div className="col-3"></div>
         </div>

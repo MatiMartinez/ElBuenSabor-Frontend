@@ -67,13 +67,15 @@ export default function UserData() {
           value={userData.telefono}
           handleChange={handleChange}
         />
-        <button
-          className="btn btn-cambiar btn-secondary"
-          disabled={isEdit}
-          type="submit"
-        >
-          Cambiar
-        </button>
+        <div className="d-flex flex-row-reverse">
+          <button
+            className="btn btn-cambiar btn-secondary"
+            disabled={isEdit}
+            type="submit"
+          >
+            Cambiar
+          </button>
+        </div>
       </form>
     </div>
   );
