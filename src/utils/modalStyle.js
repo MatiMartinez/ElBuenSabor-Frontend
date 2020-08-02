@@ -23,8 +23,10 @@ export const customStyleProduct = {
 export const customStyleCarrito = {
   content: {
     borderRadius: "0px",
-    marginLeft: "50%",
+    marginLeft: "65%",
     marginRight: "0%",
+    top: "0",
+    right: "0",
     height: "max-content",
     maxHeight: "90vh",
   },

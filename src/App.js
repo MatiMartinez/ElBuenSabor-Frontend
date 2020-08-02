@@ -23,6 +23,7 @@ import "./App.css";
 import initFontAwesome from "./utils/initFontAwesome";
 import SelectHome from "./views/SelectHome/SelectHome";
 import Catalog from "./components/Clientes/Catalog/Catalog";
+import { CartProvider } from "./context/CartContext";
 initFontAwesome();
 
 const App = () => {
@@ -37,15 +38,17 @@ const App = () => {
       <div id="app" className="d-flex flex-column h-100">
         <NavBar />
         <div className="w-100">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <PrivateRoute path="/catalog" component={Catalog} />
-            <PrivateRoute path="/select-home" component={SelectHome} />
-            <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute path="/cocina" component={Cocina} />
-            <PrivateRoute path="/caja" component={Caja} />
-            <PrivateRoute path="/admin" component={Admin} />
-          </Switch>
+          <CartProvider>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <PrivateRoute path="/catalog" component={Catalog} />
+              <PrivateRoute path="/select-home" component={SelectHome} />
+              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/cocina" component={Cocina} />
+              <PrivateRoute path="/caja" component={Caja} />
+              <PrivateRoute path="/admin" component={Admin} />
+            </Switch>
+          </CartProvider>
         </div>
         <Footer />
       </div>

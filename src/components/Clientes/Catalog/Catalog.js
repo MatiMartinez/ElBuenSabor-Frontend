@@ -10,8 +10,11 @@ import SliderCategorias from "./SliderCategorias/SliderCategorias";
 import Hero from "./HeroCatalog/HeroCatalog";
 import CatalogoProductos from "./CatalogoProductos/CatalogoProductos";
 import ModalCarrito from "./Carrito/ModalCarrito";
+import { useCart } from "../../../context/CartContext";
 
 const Catalog = () => {
+  const { itemsOnCart } = useCart();
+
   // Busqueda, form y estado de la busqueda
   const [busqueda, setBusqueda] = useState(null);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
@@ -28,7 +31,6 @@ const Catalog = () => {
 
   // Carrito de compras
   const [isOpen, setIsOpen] = useState(false);
-  const [compras, setCompras] = useState([]);
 
   function toggle() {
     setIsOpen(!isOpen);
@@ -50,8 +52,9 @@ const Catalog = () => {
       <CatalogoProductos />
       {/** Modal del carrito de compras */}
       <ModalCarrito isOpen={isOpen} toggle={toggle} />
+      {/** Boton siempre flotante del carrito */}
       <button className="btn btn-carrito" onClick={() => toggle()}>
-        <i className="fas fa-shopping-cart mr-2"></i> {compras.length}
+        <i className="fas fa-shopping-cart mr-2"></i> {itemsOnCart}
       </button>
     </div>
   );

@@ -19,6 +19,7 @@ export default function TablaInsumos({ toggle }) {
     window.location.reload(true);
   };
 
+  /** JSX -------------------------------------------------------------------------------- */
   return (
     <table className="table div-shadow bg-white mt-3">
       <thead className="font-bold-700">

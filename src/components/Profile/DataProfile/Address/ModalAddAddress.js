@@ -5,7 +5,7 @@ import InputField from "../../../GlobalReusable/InputField";
 import { createDomicilio } from "../../../../API/ApiDomicilios";
 import { useAuth0 } from "../../../../react-auth0-spa";
 
-export default function ModalAddAddress({ isOpen }) {
+export default function ModalAddAddress({ isOpen, toggle }) {
   const { userdb } = useAuth0();
   const { register, handleSubmit } = useForm();
 
@@ -25,6 +25,12 @@ export default function ModalAddAddress({ isOpen }) {
 
   return (
     <Modal isOpen={isOpen} ariaHideApp={false}>
+      <div className="d-flex justify-content-between">
+        <h6>Agregar domicilio</h6>
+        <button className="btn" onClick={() => toggle()}>
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
           id="alias"
@@ -68,7 +74,7 @@ export default function ModalAddAddress({ isOpen }) {
           name="departamento"
           register={register}
         />
-        <button type="submit" className="btn btn-danger float-right">
+        <button type="submit" className="btn btn-cambiar float-right w-25">
           Crear
         </button>
       </form>

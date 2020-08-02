@@ -7,7 +7,6 @@ export default function UserData() {
   const { userdb } = useAuth0();
 
   const [userData, setUserData] = useState({
-    email: userdb.email,
     nombre: userdb.nombre,
     apellido: userdb.apellido,
     fechaNacimiento: userdb.fechaNacimiento,
@@ -32,13 +31,6 @@ export default function UserData() {
     <div className="container">
       <h6 className="text-muted mb-3">Información Personal:</h6>
       <form onSubmit={handleSubmit}>
-        <InputFieldControl
-          label="Email"
-          type="text"
-          name="email"
-          value={userData.email}
-          handleChange={handleChange}
-        />
         <InputFieldControl
           label="Nombre"
           type="text"
@@ -68,11 +60,7 @@ export default function UserData() {
           handleChange={handleChange}
         />
         <div className="d-flex flex-row-reverse">
-          <button
-            className="btn btn-cambiar btn-secondary"
-            disabled={isEdit}
-            type="submit"
-          >
+          <button className="btn btn-cambiar" disabled={isEdit} type="submit">
             Cambiar
           </button>
         </div>

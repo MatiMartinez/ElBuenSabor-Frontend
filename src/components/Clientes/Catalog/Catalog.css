@@ -10,3 +10,36 @@
   background: #c8261b;
   color: white;
 }
+
+/*-----------------------------------------------------------------------------------*/
+/* ProductoEnCarrito */
+.producto-carrito {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.producto-carrito p,
+.producto-carrito button {
+  padding: 0;
+  margin: 0;
+}
+
+.btn-quitar {
+  color: red;
+}
+
+.btn-quitar:hover {
+  color: #ad2118;
+}
+
+/* ModalCarrito */
+.btn-terminar-pedido {
+  background: #c8261b;
+  color: #ffffff;
+}
+
+.btn-terminar-pedido:hover {
+  background: #ad2118;
+  color: #ffffff;
+}

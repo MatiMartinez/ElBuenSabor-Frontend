@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPlatos, setBorradoPlato } from "../../../../../API/ApiPlatos";
+import { getPlatos } from "../../../../../API/ApiPlatos";
 import PlatoCard from "./PlatoCard";
 
 import "./TablaPlatos.css";

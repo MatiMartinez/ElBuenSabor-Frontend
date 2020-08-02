@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Loading from "../Loading";
 import { useAuth0 } from "../../react-auth0-spa";
 
@@ -8,7 +8,7 @@ import UserData from "./DataProfile/UserData";
 import Addresses from "./DataProfile/Addresses";
 
 const Profile = () => {
-  const { loading, user, userdb } = useAuth0();
+  const { loading, userdb } = useAuth0();
 
   if (loading || !userdb) {
     return <Loading />;

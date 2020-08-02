@@ -24,8 +24,7 @@ const Insumos = () => {
 
   const onSubmit = (data) => {
     setSelectCategoria(data.categoria);
-    console.log(data.categoria);
-    // Consultar por metodo para filtrar la tabla
+    console.log(selectCategoria);
   };
 
   /** JSX -------------------------------------------------------------------------------- */

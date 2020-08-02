@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../../../react-auth0-spa";
 
 export default function SelectEnvio() {
-  const [domicilios, setDomicilios] = useState([]);
-  const [envio, setEnvio] = useState("local");
-  const [domicilio, setDomicilio] = useState({});
-
   const { userdb } = useAuth0();
+
+  const [domicilios, setDomicilios] = useState([]); // Domicilios del usuario, cargados para el select
+  const [envio, setEnvio] = useState("local");
+  const [domicilio, setDomicilio] = useState({}); // Domicilio seleccionado
 
   useEffect(() => {
     if (envio === "delivery") {
@@ -27,7 +27,7 @@ export default function SelectEnvio() {
         <select
           name="envio"
           id="envio"
-          className="form-control"
+          className="form-control form-control-sm"
           value={envio}
           onChange={(e) => handleChange(e)}
         >
@@ -43,12 +43,14 @@ export default function SelectEnvio() {
           <select
             name="domicilio"
             id="domicilio"
-            className="form-control"
+            className="form-control form-control-sm"
             value={domicilio}
             onChange={(e) => setDomicilio(e.target.value)}
           >
             {domicilios.map((domicilio) => (
-              <option value={domicilio.alias}>domicilio.alias</option>
+              <option key={domicilio._id} value={domicilio._id}>
+                {domicilio.alias}
+              </option>
             ))}
           </select>
         </div>

@@ -1,7 +1,5 @@
 import React from "react";
 
-import Image from "../../../../assets/food-duotone.png";
-
 import "./SliderCardCategoria.css";
 
 export default function SliderCardCategoria({ categoria }) {

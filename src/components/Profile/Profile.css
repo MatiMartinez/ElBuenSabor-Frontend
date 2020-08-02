@@ -9,9 +9,16 @@
 }
 
 .btn-cambiar {
+  border: none;
+  background: #a2f634;
   width: 30%;
   color: #ffffff;
   font-weight: bold;
+}
+
+.btn-cambiar:hover {
+  color: #ffffff;
+  background: #6adc04;
 }
 
 .btn-cambiar:disabled {

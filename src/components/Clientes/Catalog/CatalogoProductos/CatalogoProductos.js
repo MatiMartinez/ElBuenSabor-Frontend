@@ -17,22 +17,22 @@ export default function CatalogoProductos() {
 
   function seleccionarProducto(data) {
     setProductoSeleccionado(data);
-    setIsOpen(!isOpen);
-  }
-
-  function addCarrito(data) {
-    console.log(data);
+    toggle();
   }
 
   // Modal de producto
   const [isOpen, setIsOpen] = useState(false);
 
+  function toggle() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <div className="container">
       <div className="row">
         {productos.length !== 0 &&
-          productos.map((producto) => (
-            <div className="col-6" key={producto._id}>
+          productos.map((producto, index) => (
+            <div className="col-6" key={index}>
               <ProductoCard
                 producto={producto}
                 seleccionarProducto={seleccionarProducto}
@@ -42,9 +42,8 @@ export default function CatalogoProductos() {
       </div>
       <ModalProducto
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        toggle={toggle}
         producto={productoSeleccionado}
-        addCarrito={addCarrito}
       />
     </div>
   );

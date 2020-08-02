@@ -11,7 +11,8 @@ export default function ImageProfile() {
         className="rounded-circle img-fluid"
         alt="user-img"
       />
-      <button className="btn btn-outline-secondary w-100 mt-5">
+      <h6 className="text-bold mt-3">{userdb.email}</h6>
+      <button className="btn btn-outline-secondary w-100 mt-3">
         <i className="fas fa-camera mr-2"></i>Subir
       </button>
     </div>

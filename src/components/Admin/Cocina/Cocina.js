@@ -10,6 +10,8 @@ const Cocina = () => {
   const toggle = (number) => {
     setEnable(number);
   };
+
+  /** JSX -------------------------------------------------------------------------------- */
   return (
     <div>
       {/** Nav Administrar Cocina */}

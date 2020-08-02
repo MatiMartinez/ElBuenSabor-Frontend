@@ -15,13 +15,13 @@ export default function SelectHome() {
     );
   }
 
-  function HomeCajero() {
+  /*function HomeCajero() {
     return (
       <Link className="icon-container p-4 m-4" to="/caja">
         <i className="fas fa-cash-register fa-8x"></i>
       </Link>
     );
-  }
+  }*/
 
   function HomeAdmin() {
     return (
@@ -42,20 +42,23 @@ export default function SelectHome() {
   return (
     <div className="mt-5 d-flex justify-content-center select-home mb-5">
       <div className="d-flex justify-content-center home-container p-4">
-        {userdb.roles.map((rol) => {
+        {userdb.roles.map((rol, index) => {
           if (rol.nombreRol === "Administrador") {
-            return <HomeAdmin />;
+            return <HomeAdmin key={index} />;
           }
+          return null;
         })}
-        {userdb.roles.map((rol) => {
+        {userdb.roles.map((rol, index) => {
           if (rol.nombreRol === "Cocinero") {
-            return <HomeCocinero />;
+            return <HomeCocinero key={index} />;
           }
+          return null;
         })}
-        {userdb.roles.map((rol) => {
+        {userdb.roles.map((rol, index) => {
           if (rol.nombreRol === "Cajero") {
-            return <HomeCocinero />;
+            return <HomeCocinero key={index} />;
           }
+          return null;
         })}
         <HomeCatalog />
       </div>

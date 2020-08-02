@@ -1,11 +1,9 @@
 import React, { Fragment } from "react";
 
-import Catalog from "../components/Clientes/Catalog/Catalog";
 import Hero from "../components/Landing/Hero";
 import Intro from "../components/Landing/Intro";
 import Content from "../components/Landing/Content";
 import { useAuth0 } from "../react-auth0-spa";
-import SelectHome from "./SelectHome/SelectHome";
 
 const Home = () => {
   const { isAuthenticated, userdb } = useAuth0();

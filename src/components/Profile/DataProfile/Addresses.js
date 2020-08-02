@@ -9,7 +9,7 @@ export default function Addresses() {
 
   useEffect(() => {
     setDomicilios(userdb.domicilios);
-  }, []);
+  }, [userdb.domicilios]);
 
   // Modal agregar domicilio
   const [isOpen, setIsOpen] = useState(false);
@@ -27,14 +27,14 @@ export default function Addresses() {
         ))}
       <div className="d-flex justify-content-center">
         <button
-          className="btn btn-secondary"
+          className="btn btn-primary w-25"
           type="button"
           onClick={() => toggle()}
         >
-          <i className="fas fa-map-marker-alt mr-2"></i>Agregar
+          <i className="fas fa-map-marker-alt mr-2"></i>AGREGAR
         </button>
       </div>
-      <ModalAddAddress isOpen={isOpen} />
+      <ModalAddAddress isOpen={isOpen} toggle={toggle} />
     </div>
   );
 }
