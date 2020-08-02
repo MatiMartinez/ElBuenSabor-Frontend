@@ -1,10 +1,11 @@
 import React from "react";
 
-import "./ProductoCard.css";
-
 export default function ProductoCard({ producto, seleccionarProducto }) {
   return (
-    <div className="card mb-4" onClick={() => seleccionarProducto(producto)}>
+    <div
+      className="card card-product mb-4"
+      onClick={() => seleccionarProducto(producto)}
+    >
       <div className="row h-100">
         <div className="col-md-8 my-auto">
           <div className="card-body p-2 pl-4">

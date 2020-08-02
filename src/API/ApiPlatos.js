@@ -14,6 +14,20 @@ export async function getPlatos() {
     });
 }
 
+export async function getPlatosPorRubro(categoriaId) {
+  return await api
+    .get(`/platos/rubro/${categoriaId}`)
+    .then((res) => {
+      console.log(res);
+      console.log("Platos obtenidos");
+      const resData = res.data;
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export async function createPlato(plato) {
   await api
     .post("/platos/", plato) // Aqui em quede haciendo codigo

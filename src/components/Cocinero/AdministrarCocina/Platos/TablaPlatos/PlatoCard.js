@@ -11,7 +11,7 @@ export default function PlatoCard({ plato, toggle }) {
   }
 
   return (
-    <div className="card">
+    <div className="card card-plato">
       <img className="card-img-top" src={plato.imagenPath} alt="img-plato" />
       <div className="card-body">
         <h5 className="card-title">{plato.denominacion}</h5>

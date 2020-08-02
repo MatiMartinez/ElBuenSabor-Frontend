@@ -33,7 +33,7 @@ export default function TablaPlatos({ toggle }) {
             {platos.length !== 0 &&
               platos.map((plato) => (
                 <div
-                  className="col-3 mb-4 plato-card"
+                  className="col-3 mb-4 plato-card-pointer"
                   key={plato._id}
                   onClick={() => seleccionarPlato(plato)}
                 >

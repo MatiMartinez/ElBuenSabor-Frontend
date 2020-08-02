@@ -17,7 +17,7 @@ const Catalog = () => {
 
   // Busqueda, form y estado de la busqueda
   const [busqueda, setBusqueda] = useState(null);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const onSubmitBusqueda = (e) => {
     e.preventDefault();
@@ -45,11 +45,11 @@ const Catalog = () => {
         </form>
       </Hero>
       {/** Categorías */}
-      <SliderCategorias setCategoriaSeleccionada={setCategoriaSeleccionada} />
+      <SliderCategorias setSelectedCategory={setSelectedCategory} />
       {/** Separador */}
       <hr className="container mb-5" />
       {/** Catalogo de productos */}
-      <CatalogoProductos />
+      <CatalogoProductos selectedCategory={selectedCategory} />
       {/** Modal del carrito de compras */}
       <ModalCarrito isOpen={isOpen} toggle={toggle} />
       {/** Boton siempre flotante del carrito */}

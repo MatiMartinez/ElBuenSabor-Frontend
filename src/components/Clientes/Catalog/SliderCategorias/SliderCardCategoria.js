@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./SliderCardCategoria.css";
-
 export default function SliderCardCategoria({ categoria }) {
   return (
     <div

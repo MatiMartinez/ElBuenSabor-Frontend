@@ -43,3 +43,45 @@
   background: #ad2118;
   color: #ffffff;
 }
+
+/* SliderCategorias */
+.onclick-container {
+  cursor: pointer;
+}
+
+.onclick-container:hover {
+  opacity: 0.9;
+}
+
+/*.slick-arrow {
+  background-color: #333;
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+}
+
+.slick-arrow:hover {
+  background-color: #333 !important;
+}*/
+
+/* SliderCardCategoria */
+.text-slider-card {
+  height: 40%;
+  width: 100%;
+  color: #ffffff;
+  background: #00000099;
+}
+
+/* ProductoCard */
+.text-producto {
+  font-size: 12px;
+}
+
+.card-product {
+  cursor: pointer;
+  max-height: 110px;
+}
+
+.card-product:hover {
+  background: #f7f7f7;
+}

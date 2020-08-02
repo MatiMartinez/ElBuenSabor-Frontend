@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import ProductoCard from "./ProductoCard";
-import { getPlatos } from "../../../../API/ApiPlatos";
+import { getPlatosPorRubro } from "../../../../API/ApiPlatos";
 import ModalProducto from "./ModalProducto";
 
-export default function CatalogoProductos() {
+export default function CatalogoProductos({ selectedCategory }) {
   const [productos, setProductos] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState({});
 
   useEffect(() => {
     async function cargarProductos() {
-      const data = await getPlatos();
+      const data = await getPlatosPorRubro(selectedCategory);
       setProductos(data);
     }
-    cargarProductos();
-  }, []);
+    if (selectedCategory !== "") {
+      cargarProductos();
+    } else {
+      // Ruta para mostrar los productos por defecto, el admin puede indicar cuales son.
+    }
+  }, [selectedCategory]);
 
   function seleccionarProducto(data) {
     setProductoSeleccionado(data);

@@ -4,9 +4,7 @@ import SliderCardCategoria from "./SliderCardCategoria";
 
 import { getRubrosCatalogo } from "../../../../API/ApiCategorias";
 
-import "./SliderCategorias.css";
-
-export default function SliderCategorias({ setCategoriaSeleccionada }) {
+export default function SliderCategorias({ setSelectedCategory }) {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -17,8 +15,8 @@ export default function SliderCategorias({ setCategoriaSeleccionada }) {
     cargarCategorias();
   }, []);
 
-  function seleccionarCategoria(data) {
-    setCategoriaSeleccionada(data);
+  function selectCategory(categoriaId) {
+    setSelectedCategory(categoriaId);
   }
 
   let settings = {
@@ -34,7 +32,7 @@ export default function SliderCategorias({ setCategoriaSeleccionada }) {
         {categorias.length !== 0 &&
           categorias.map((categoria) => (
             <div
-              onClick={() => seleccionarCategoria(categoria._id)}
+              onClick={() => selectCategory(categoria._id)}
               className="onclick-container"
               key={categoria._id}
             >

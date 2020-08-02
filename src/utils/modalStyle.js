@@ -27,7 +27,6 @@ export const customStyleCarrito = {
     marginRight: "0%",
     top: "0",
     right: "0",
-    height: "max-content",
-    maxHeight: "90vh",
+    height: "100vh",
   },
 };
