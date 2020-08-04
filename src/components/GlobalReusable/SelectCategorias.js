@@ -17,22 +17,25 @@ const SelectCategorias = (props) => {
       setCategorias(data);
     };
     cargarRubros();
-  }, [props.tipo]); // Verificar raiz
+  }, [props.tipo]);
 
   // OnChange
   const [value, setValue] = useState(props.defaultValue);
 
   return (
-    <div className="form-group">
+    <div className="form-group m-1">
       {props.label === true && (
-        <label htmlFor="selectCategoria" className="control-label">
+        <label
+          htmlFor="selectCategoria"
+          className="col-form-label col-form-label-sm"
+        >
           Categoría
         </label>
       )}
       <select
         name={props.name}
         id="selectCategoria"
-        className="form-control"
+        className="form-control form-control-sm"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         ref={props.register}

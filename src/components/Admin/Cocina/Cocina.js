@@ -5,7 +5,7 @@ import Categorias from "./Categorias/Categorias";
 import Platos from "../../Cocinero/AdministrarCocina/Platos/Platos";
 
 const Cocina = () => {
-  const [enable, setEnable] = useState(1);
+  const [enable, setEnable] = useState(3);
 
   const toggle = (number) => {
     setEnable(number);
@@ -15,18 +15,34 @@ const Cocina = () => {
   return (
     <div>
       {/** Nav Administrar Cocina */}
-      <div className="d-flex justify-content-center pb-2 pt-2 border-top bg-secondary">
-        <div className="d-flex justify-content-around w-50">
-          <button className="btn btn-nav" onClick={() => toggle(0)}>
+      <div className="d-flex justify-content-center border-top bg-secondary">
+        <div className="d-flex justify-content-center w-100">
+          <button
+            className="btn btn-nav"
+            onClick={() => toggle(0)}
+            disabled={enable === 0 ? true : false}
+          >
             Insumos
           </button>
-          <button className="btn btn-nav" onClick={() => toggle(1)}>
+          <button
+            className="btn btn-nav"
+            onClick={() => toggle(1)}
+            disabled={enable === 1 ? true : false}
+          >
             Platos
           </button>
-          <button className="btn btn-nav" onClick={() => toggle(2)}>
+          <button
+            className="btn btn-nav"
+            onClick={() => toggle(2)}
+            disabled={enable === 2 ? true : false}
+          >
             Categorías
           </button>
-          <button className="btn btn-nav" onClick={() => toggle(3)}>
+          <button
+            className="btn btn-nav"
+            onClick={() => toggle(3)}
+            disabled={enable === 3 ? true : false}
+          >
             Art. Reventa
           </button>
         </div>

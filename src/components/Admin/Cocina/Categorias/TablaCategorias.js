@@ -34,13 +34,13 @@ export default function TablaCategorias({ toggle }) {
           {rubros.map((rubro) => (
             <tr key={rubro._id}>
               <th>{rubro.denominacion}</th>
-              <th>{rubro.esRubroInsumo ? "Si" : "No"}</th>
-              <th>
+              <td>{rubro.esRubroInsumo ? "Si" : "No"}</td>
+              <td>
                 {rubro.rubroPadre === null
                   ? "-"
                   : rubro.rubroPadre.denominacion}
-              </th>
-              <th>
+              </td>
+              <td>
                 <div className="d-flex align-items-center">
                   <button className="btn" onClick={() => toggle(rubro)}>
                     <i className="far fa-edit"></i>
@@ -52,7 +52,7 @@ export default function TablaCategorias({ toggle }) {
                     <i className="far fa-trash-alt"></i>
                   </button>
                 </div>
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>

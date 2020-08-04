@@ -17,13 +17,11 @@ export default function Encabezado(props) {
         </div>
       </div>
       <form onSubmit={props.handleSubmit(props.onSubmit)}>
-        <div className="d-flex">
+        <div className="d-flex align-items-center justify-content-center">
           <div className="mr-3">{props.children}</div>
-          <div>
-            <button type="submit" className="btn btn-apply">
-              APLICAR FILTROS
-            </button>
-          </div>
+          <button type="submit" className="btn btn-apply">
+            APLICAR FILTROS
+          </button>
         </div>
       </form>
     </div>

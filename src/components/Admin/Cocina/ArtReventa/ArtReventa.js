@@ -19,20 +19,22 @@ const ArtReventa = () => {
   };
 
   // Select categorias
-  const [selectCategoria, setSelectCategoria] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("todos");
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.categoria);
-    setSelectCategoria(data.categoria);
+    setSelectedCategory(data.rubro);
   };
+
+  // Re-render
+  const [reload, setReload] = useState(true);
 
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div>
       {/** Modal */}
-      <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <Form idEdit={idEdit} setIsOpen={setIsOpen} />
+      <ModalForm isOpen={isOpen}>
+        <Form idEdit={idEdit} setIsOpen={setIsOpen} setReload={setReload} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -42,14 +44,20 @@ const ArtReventa = () => {
         title={"Artículos de reventa"}
       >
         <SelectCategorias
+          name="rubro"
           register={register}
           label={false}
           allValue={true}
-          raiz={false}
+          defaultValue={selectedCategory}
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaReventas selectCategoria={selectCategoria} toggle={toggle} />
+      <TablaReventas
+        selectedCategory={selectedCategory}
+        toggle={toggle}
+        reload={reload}
+        setReload={setReload}
+      />
     </div>
   );
 };

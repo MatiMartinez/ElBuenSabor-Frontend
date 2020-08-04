@@ -69,24 +69,27 @@
   color: #fff;
 }
 
+/*-----------------------------------------------------------------------------------*/
+/* Botones del modal form de gestion */
+
 .btn-modal {
-  background-color: #ad2118;
+  background-color: #a2f634;
   color: #fff;
 }
 
 .btn-modal:hover {
-  background-color: #c8261b;
+  background-color: #6adc04;
   color: #fff;
 }
 
 .btn-modal-outline {
   background-color: #fff;
-  color: #ad2118;
-  border: 2px solid #ad2118;
+  color: #ff0000;
+  border: 2px solid #ff0000;
 }
 
 .btn-modal-outline:hover {
-  background-color: #ad2118;
+  background-color: #ff0000;
   color: #fff;
 }
 
@@ -140,3 +143,8 @@
 }
 
 /*-----------------------------------------------------------------------------------*/
+/* Tablas de artículos (Reventas, Insumos, Categorias) */
+.table td,
+.table th {
+  vertical-align: middle;
+}
