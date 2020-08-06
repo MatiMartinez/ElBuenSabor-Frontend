@@ -11,7 +11,8 @@ export default function Form(props) {
   const onSubmit = async (data) => {
     const rol = { usuario: idEncontrado, nombreRol: data.nombreRol };
     await createRol(rol);
-    window.location.reload(true);
+    props.setReload(true);
+    props.setIsOpen(false);
   };
 
   return (

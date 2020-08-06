@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getReventas, setBorradoReventa } from "../../../../API/ArtReventaApi";
 import BodyTablaReventas from "./BodyTablaReventas";
 
-export default function TablaReventas(props) {
+export default function TablaReventas({
+  toggle,
+  reload,
+  setReload,
+  selectedCategory,
+}) {
   // Tabla
   const [reventas, setReventas] = useState([]);
 
@@ -10,17 +15,17 @@ export default function TablaReventas(props) {
     const cargarReventas = async () => {
       const data = await getReventas();
       setReventas(data);
-      props.setReload(false);
+      setReload(false);
     };
-    if (props.reload === true) {
+    if (reload === true) {
       cargarReventas();
     }
-  }, [props.reload]);
+  }, [reload]);
 
   // Metodos de articulos de reventa
   const borrarReventa = async (id) => {
     await setBorradoReventa(id);
-    props.setReload(true);
+    setReload(true);
   };
 
   return reventas.length !== 0 ? (
@@ -40,21 +45,23 @@ export default function TablaReventas(props) {
         </tr>
       </thead>
       <tbody>
-        {props.selectedCategory === "todos"
-          ? reventas.map((reventa) => (
+        {selectedCategory === "todos"
+          ? reventas.map((reventa, index) => (
               <BodyTablaReventas
                 reventa={reventa}
-                toggle={props.toggle}
+                toggle={toggle}
                 borrarReventa={borrarReventa}
+                key={index}
               />
             ))
           : reventas
-              .filter((reventa) => reventa.rubro._id === props.selectedCategory)
-              .map((reventa) => (
+              .filter((reventa) => reventa.rubro._id === selectedCategory)
+              .map((reventa, index) => (
                 <BodyTablaReventas
                   reventa={reventa}
-                  toggle={props.toggle}
+                  toggle={toggle}
                   borrarReventa={borrarReventa}
+                  key={index}
                 />
               ))}
       </tbody>

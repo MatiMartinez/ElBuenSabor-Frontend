@@ -19,38 +19,49 @@ const Categorias = () => {
   };
 
   // Select categorias
-  const [selectCategoria, setSelectCategoria] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(selectCategoria);
-    setSelectCategoria(data.categoria);
+    setSelectedCategory(data.rubro);
   };
+
+  // Re-render
+  const [reload, setReload] = useState(true);
 
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div className="mt-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <FormCategorias idEdit={idEdit} setIsOpen={setIsOpen} />
+        <FormCategorias
+          idEdit={idEdit}
+          setIsOpen={setIsOpen}
+          setReload={setReload}
+        />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
         onSubmit={onSubmit}
         handleSubmit={handleSubmit}
         toggle={toggle}
-        title={"Categoría"}
+        title={"Categorías"}
       >
         <SelectCategorias
+          name="rubro"
           register={register}
           label={false}
           allValue={true}
-          raiz={false}
-          name="rubro"
+          defaultValue={selectedCategory}
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaCategorias toggle={toggle} />
+      <TablaCategorias
+        toggle={toggle}
+        reload={reload}
+        setReload={setReload}
+        selectedCategory={selectedCategory}
+      />
     </div>
   );
 };

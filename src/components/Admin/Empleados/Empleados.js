@@ -28,11 +28,14 @@ const Empleados = () => {
     setRolSeleccionado(data.nombreRol);
   };
 
+  // Render
+  const [reload, setReload] = useState(true);
+
   return (
     <div className="m-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen}>
-        <Form setIsOpen={setIsOpen} />
+        <Form setIsOpen={setIsOpen} setReload={setReload} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -44,7 +47,11 @@ const Empleados = () => {
         <SelectRoles conLabel={false} register={register} opcionTodos={true} />
       </Encabezado>
       {/** Lista de empleados */}
-      <ListaEmpleados rolSeleccionado={rolSeleccionado} />
+      <ListaEmpleados
+        rolSeleccionado={rolSeleccionado}
+        reload={reload}
+        setReload={setReload}
+      />
     </div>
   );
 };

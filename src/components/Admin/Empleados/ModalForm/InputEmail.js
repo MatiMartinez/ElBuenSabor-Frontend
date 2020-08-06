@@ -11,10 +11,13 @@ export default function InputEmail({ idEncontrado, setIdEncontrado }) {
     const usuario = await getUsuarioByEmail(email);
     if (usuario.email) {
       setUsuario(usuario);
-      setIdEncontrado(usuario._id);
+      await setIdEncontrado(usuario._id);
     } else {
-      setIdEncontrado("");
+      await setIdEncontrado("");
     }
+    console.log(email);
+    console.log(usuario);
+    console.log(idEncontrado);
   }
 
   return (

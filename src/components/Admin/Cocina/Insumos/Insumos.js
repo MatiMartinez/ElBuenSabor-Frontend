@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import SelectCategorias from "../../../GlobalReusable/SelectCategorias";
 import ModalForm from "../../../GlobalReusable/ModalForm";
 import Encabezado from "../../../GlobalReusable/Encabezado";
-import TablaInsumos from "./TablaInsumos";
+import TablaInsumos from "./TablaInsumos/TablaInsumos";
 import FormInsumos from "./ModalForm/FormInsumos";
 
 const Insumos = () => {
@@ -19,20 +19,27 @@ const Insumos = () => {
   };
 
   // Select categorias
-  const [selectCategoria, setSelectCategoria] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("todos");
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    setSelectCategoria(data.categoria);
-    console.log(selectCategoria);
+    setSelectedCategory(data.rubro);
   };
+
+  // Re-render
+  const [reload, setReload] = useState(true);
 
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div className="mt-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <FormInsumos idEdit={idEdit} setIsOpen={setIsOpen} />
+        <FormInsumos
+          idEdit={idEdit}
+          setIsOpen={setIsOpen}
+          reload={reload}
+          setReload={setReload}
+        />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -45,12 +52,17 @@ const Insumos = () => {
           register={register}
           label={false}
           allValue={true}
-          raiz={false}
           name="rubro"
+          defaultValue={selectedCategory}
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaInsumos toggle={toggle} />
+      <TablaInsumos
+        selectedCategory={selectedCategory}
+        toggle={toggle}
+        reload={reload}
+        setReload={setReload}
+      />
     </div>
   );
 };

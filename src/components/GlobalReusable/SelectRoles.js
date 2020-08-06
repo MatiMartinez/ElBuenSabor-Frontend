@@ -13,16 +13,16 @@ const SelectRoles = ({ register, conLabel, opcionTodos }) => {
   }, []);
 
   return (
-    <div className="form-group">
+    <div className="form-group m-1">
       {conLabel === true && (
-        <label className="control-label" forhtml="rol">
+        <label className="control-label control-label-sm" forhtml="rol">
           Rol
         </label>
       )}
       <select
         name="nombreRol"
         id="rol"
-        className="form-control"
+        className="form-control form-control-sm"
         defaultValue={""}
         ref={register}
       >

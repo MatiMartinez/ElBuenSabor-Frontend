@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getRubros, setBorradoRubro } from "../../../../API/ApiCategorias";
+import BodyTablaCategorias from "./BodyTablaCategorias";
 
-export default function TablaCategorias({ toggle }) {
+export default function TablaCategorias({
+  toggle,
+  reload,
+  setReload,
+  selectedCategory,
+}) {
   // State
   const [rubros, setRubros] = useState([]);
 
@@ -9,54 +15,44 @@ export default function TablaCategorias({ toggle }) {
     const cargarRubros = async () => {
       const data = await getRubros();
       setRubros(data);
+      setReload(false);
     };
-    cargarRubros();
-  }, []);
+    if (reload === true) {
+      cargarRubros();
+    }
+  }, [reload]);
 
   // Metodos de Categorias
   const borrarRubro = async (id) => {
     await setBorradoRubro(id, true);
-    window.location.reload(true);
+    setReload(true);
   };
 
-  return (
+  return rubros.length !== 0 ? (
     <table className="table div-shadow bg-white mt-3">
-      <thead className="font-bold-700">
+      <thead className="bg-light">
         <tr>
+          <th>Imagen</th>
           <th>Denominación</th>
           <th>Categoría de insumo</th>
           <th>Categoría</th>
           <th>Opciones</th>
         </tr>
       </thead>
-      {rubros.length !== 0 && (
-        <tbody>
-          {rubros.map((rubro) => (
-            <tr key={rubro._id}>
-              <th>{rubro.denominacion}</th>
-              <td>{rubro.esRubroInsumo ? "Si" : "No"}</td>
-              <td>
-                {rubro.rubroPadre === null
-                  ? "-"
-                  : rubro.rubroPadre.denominacion}
-              </td>
-              <td>
-                <div className="d-flex align-items-center">
-                  <button className="btn" onClick={() => toggle(rubro)}>
-                    <i className="far fa-edit"></i>
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={() => borrarRubro(rubro._id)}
-                  >
-                    <i className="far fa-trash-alt"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      )}
+      <tbody>
+        {rubros.map((rubro, index) => (
+          <BodyTablaCategorias
+            key={index}
+            rubro={rubro}
+            toggle={toggle}
+            borrarRubro={borrarRubro}
+          />
+        ))}
+      </tbody>
     </table>
+  ) : (
+    <div className="container text-center text-muted mt-5 mb-5">
+      <h3>No hay Categorías cargadas</h3>
+    </div>
   );
 }

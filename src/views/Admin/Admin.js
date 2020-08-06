@@ -15,7 +15,7 @@ const Admin = () => {
   return (
     <div className="admin-view">
       {/** Nav Admin */}
-      <NavAdmin changeToggle={changeToggle} />
+      <NavAdmin changeToggle={changeToggle} toggle={toggle} />
       {/** Content Admin */}
       {toggle === 0 && <Cocina />}
       {toggle === 1 && <Empleados />}

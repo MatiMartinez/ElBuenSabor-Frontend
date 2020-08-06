@@ -11,3 +11,15 @@ export async function createRol(data) {
       console.log(err);
     });
 }
+
+export async function setBorradoRol(id) {
+  await api
+    .put(`/roles/softdelete/${id}`)
+    .then((res) => {
+      console.log("Rol quitado");
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

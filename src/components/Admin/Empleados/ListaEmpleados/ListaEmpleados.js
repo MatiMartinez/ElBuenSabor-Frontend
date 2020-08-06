@@ -4,8 +4,9 @@ import EmpleadoCard from "./EmpleadoCard";
 
 import "./ListaEmpleados.css";
 import EmpleadoData from "./EmpleadoData";
+import { setBorradoRol } from "../../../../API/ApiRoles";
 
-export default function ListaEmpleados({ rolSeleccionado }) {
+export default function ListaEmpleados({ rolSeleccionado, reload, setReload }) {
   // State
   const [empleados, setEmpleados] = useState([]);
 
@@ -13,15 +14,17 @@ export default function ListaEmpleados({ rolSeleccionado }) {
     const cargarEmpleados = async () => {
       const data = await getUsuarios();
       setEmpleados(data);
+      setReload(false);
     };
-    cargarEmpleados();
-  }, []);
+    if (reload === true) {
+      cargarEmpleados();
+    }
+  }, [reload]);
 
   // Empleado seleccionado
   const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
 
   function seleccionarEmpleado(empleado) {
-    console.log(empleado);
     setEmpleadoSeleccionado(empleado);
   }
 
@@ -52,10 +55,16 @@ export default function ListaEmpleados({ rolSeleccionado }) {
       ));
   }
 
+  // Quitar rol a empleado
+  async function quitarRol(id) {
+    await setBorradoRol(id);
+    setReload(true);
+  }
+
   return (
     <div className="mt-3 row">
       {/** Lista de tarjetas de empleados */}
-      <div className="col-8">
+      <div className="col-6">
         {empleados.length !== 0 && rolSeleccionado === "todos" ? (
           <TodosEmpleados />
         ) : (
@@ -63,8 +72,8 @@ export default function ListaEmpleados({ rolSeleccionado }) {
         )}
       </div>
       {/** Estadisticas del empleado */}
-      <div className="col-4">
-        <EmpleadoData empleado={empleadoSeleccionado} />
+      <div className="col-6">
+        <EmpleadoData empleado={empleadoSeleccionado} quitarRol={quitarRol} />
       </div>
     </div>
   );

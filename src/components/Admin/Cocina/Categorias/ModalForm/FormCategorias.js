@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { createRubro, updateRubro } from "../../../../../API/ApiCategorias";
 import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
 import InputField from "../../../../GlobalReusable/InputField";
+import CheckBoxField from "../../../../GlobalReusable/CheckBoxField";
 
 export default function FormCategorias(props) {
-  console.log(props.idEdit);
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
   const rubroPadre = watch("rubroPadre");
   const esRubroInsumo = watch("esRubroInsumo");
 
@@ -16,10 +16,13 @@ export default function FormCategorias(props) {
     }
     if (props.idEdit === undefined) {
       await createRubro(data);
+      props.setReload(true);
+      reset();
     } else {
       await updateRubro(props.idEdit._id, data);
+      props.setReload(true);
+      props.setIsOpen(false);
     }
-    window.location.reload(true);
   };
 
   return (
@@ -35,27 +38,22 @@ export default function FormCategorias(props) {
         }
       />
       <SelectCategorias
+        name="rubroPadre"
         register={register}
         label={true}
         allValue={false}
-        raiz={false}
-        name="rubroPadre"
         sinRubro={true}
+        defaultValue={props.idEdit === undefined ? "" : props.idEdit.rubroPadre}
       />
-      <div className="form-group">
-        <div className="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            name="esRubroInsumo"
-            className="custom-control-input"
-            id="checkboxRubroInsumo"
-            ref={register}
-          />
-          <label className="custom-control-label" htmlFor="checkboxRubroInsumo">
-            Categoría de insumo
-          </label>
-        </div>
-      </div>
+      <CheckBoxField
+        name="esRubroInsumo"
+        label="Categoría de insumo"
+        id="checkboxRubroInsumo"
+        register={register}
+        defaultValue={
+          props.idEdit === undefined ? false : props.idEdit.esRubroInsumo
+        }
+      />
       {/** Valida si es un rubro de catalogo para mostrar el campo imagenPath */}
       {rubroPadre === "" && esRubroInsumo === false && (
         <InputField
@@ -70,7 +68,7 @@ export default function FormCategorias(props) {
         />
       )}
       {/** Botones del modal */}
-      <div className="d-flex justify-content-center border-top mt-5">
+      <div className="d-flex justify-content-center border-top mt-4">
         <div className="d-flex justify-content-around pt-3 w-50">
           <button type="submit" className="btn btn-modal w-100 m-2">
             Guardar

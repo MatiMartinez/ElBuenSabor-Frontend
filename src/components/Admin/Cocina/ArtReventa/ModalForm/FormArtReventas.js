@@ -11,11 +11,13 @@ export default function Form(props) {
   const onSubmit = async (data) => {
     if (props.idEdit === undefined) {
       await createReventa(data);
+      props.setReload(true);
+      reset();
     } else {
       await updateReventa(props.idEdit._id, data);
+      props.setReload(true);
+      props.setIsOpen(false);
     }
-    props.setReload(true);
-    reset();
   };
 
   return (
@@ -105,7 +107,7 @@ export default function Form(props) {
         defaultValue={props.idEdit === undefined ? "" : props.idEdit.imagenPath}
       />
       {/** Botones del modal */}
-      <div className="d-flex justify-content-center border-top mt-5">
+      <div className="d-flex justify-content-center border-top mt-4">
         <div className="d-flex justify-content-around pt-3 w-50">
           <button type="submit" className="btn btn-modal w-100 m-2">
             Guardar
