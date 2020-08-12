@@ -20,6 +20,7 @@ export default function TablaCategorias({
     if (reload === true) {
       cargarRubros();
     }
+    // eslint-disable-next-line
   }, [reload]);
 
   // Metodos de Categorias

@@ -20,6 +20,7 @@ export default function TablaInsumos({
     if (reload === true) {
       cargarInsumos();
     }
+    // eslint-disable-next-line
   }, [reload]);
 
   // Metodos de insumos

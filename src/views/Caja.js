@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import PedidosCaja from '../components/Cajero/PedidosCaja';
+import PedidosCaja from "../components/Cajero/PedidosCaja/PedidosCaja";
 
 const Caja = () => {
-  const [toogle, setToogle] = useState(false);
-  const [enable, setEnable] = useState(true);
+  const [toogle, setToogle] = useState(true);
 
   const changeToogle = () => {
     setToogle(!toogle);
-    setEnable(!enable);
   };
   return (
-    <div>
+    <div className="caja-view">
       {/** Nav Cajero */}
-      <div className="d-flex justify-content-center mt-3">
+      <div className="d-flex justify-content-center pt-2 pb-2 bg-dark">
         <div className="d-flex justify-content-center w-50">
           <button
             className="btn btn-nav btn-lg"
             onClick={changeToogle}
-            disabled={!enable}
+            disabled={toogle}
           >
             Pedidos
           </button>
           <button
             className="btn btn-nav btn-lg"
             onClick={changeToogle}
-            disabled={enable}
+            disabled={!toogle}
           >
             Administrar Caja
           </button>
@@ -33,7 +31,7 @@ const Caja = () => {
       </div>
       {/** Content Cocina */}
       {toogle && <PedidosCaja />}
-      {}
+      {!toogle && <div>AdministrarCaja</div>}
     </div>
   );
 };

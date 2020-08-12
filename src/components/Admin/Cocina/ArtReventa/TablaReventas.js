@@ -20,6 +20,7 @@ export default function TablaReventas({
     if (reload === true) {
       cargarReventas();
     }
+    // eslint-disable-next-line
   }, [reload]);
 
   // Metodos de articulos de reventa

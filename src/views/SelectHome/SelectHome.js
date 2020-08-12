@@ -15,13 +15,13 @@ export default function SelectHome() {
     );
   }
 
-  /*function HomeCajero() {
+  function HomeCajero() {
     return (
       <Link className="icon-container p-4 m-4" to="/caja">
         <i className="fas fa-cash-register fa-8x"></i>
       </Link>
     );
-  }*/
+  }
 
   function HomeAdmin() {
     return (
@@ -56,7 +56,7 @@ export default function SelectHome() {
         })}
         {userdb.roles.map((rol, index) => {
           if (rol.nombreRol === "Cajero") {
-            return <HomeCocinero key={index} />;
+            return <HomeCajero key={index} />;
           }
           return null;
         })}

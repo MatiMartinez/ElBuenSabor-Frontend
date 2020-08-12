@@ -19,3 +19,13 @@ export async function updateDomicilio(id, domicilio) {
     })
     .catch((err) => console.log(err));
 }
+
+export async function setBorradoDomicilio(id) {
+  await api
+    .put(`/domicilios/softdelete/${id}`)
+    .then((res) => {
+      console.log(res);
+      console.log("Domicilio borrado");
+    })
+    .catch((err) => console.log(err));
+}

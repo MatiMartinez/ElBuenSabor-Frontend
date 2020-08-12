@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../../../react-auth0-spa";
 
-export default function SelectEnvio() {
+export default function SelectEnvio({ toggleEnvio, domicilio, setDomicilio }) {
   const { userdb } = useAuth0();
 
   const [domicilios, setDomicilios] = useState([]); // Domicilios del usuario, cargados para el select
   const [envio, setEnvio] = useState("local");
-  const [domicilio, setDomicilio] = useState({}); // Domicilio seleccionado
 
   useEffect(() => {
     if (envio === "delivery") {
       setDomicilios(userdb.domicilios);
     }
-  }, [envio, userdb.domicilios]);
+    // eslint-disable-next-line
+  }, [envio]);
 
   function handleChange(e) {
     setEnvio(e.target.value);
+    toggleEnvio(e.target.value);
   }
 
   return (
-    <div>
-      <div className="form-group">
-        <label className="control-label" htmlFor="envio">
+    <div className="w-75">
+      <div className="form-group m-2">
+        <label className="control-label control-label-sm" htmlFor="envio">
           Envio
         </label>
         <select
@@ -36,8 +37,8 @@ export default function SelectEnvio() {
         </select>
       </div>
       {envio === "delivery" && (
-        <div className="form-group">
-          <label className="control-label" htmlFor="domicilio">
+        <div className="form-group m-2">
+          <label className="control-label control-label-sm" htmlFor="domicilio">
             Domicilio
           </label>
           <select
@@ -46,7 +47,11 @@ export default function SelectEnvio() {
             className="form-control form-control-sm"
             value={domicilio}
             onChange={(e) => setDomicilio(e.target.value)}
+            required
           >
+            <option hidden disabled value="">
+              Seleccione un domicilio...
+            </option>
             {domicilios.map((domicilio) => (
               <option key={domicilio._id} value={domicilio._id}>
                 {domicilio.alias}

@@ -19,6 +19,7 @@ export default function ListaEmpleados({ rolSeleccionado, reload, setReload }) {
     if (reload === true) {
       cargarEmpleados();
     }
+    // eslint-disable-next-line
   }, [reload]);
 
   // Empleado seleccionado

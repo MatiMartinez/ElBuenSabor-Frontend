@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputFieldControl from "../../../GlobalReusable/InputFieldControl";
-import { updateDomicilio } from "../../../../API/ApiDomicilios";
+import {
+  updateDomicilio,
+  setBorradoDomicilio,
+} from "../../../../API/ApiDomicilios";
 
 export default function Address({ domicilio }) {
   const [domicilioState, setDomicilioState] = useState({
@@ -22,12 +25,11 @@ export default function Address({ domicilio }) {
   async function handleSubmit(e) {
     e.preventDefault();
     await updateDomicilio(domicilio._id, domicilioState);
-    setRel(true);
   }
 
-  const [rel, setRel] = useState(false);
-
-  useEffect(() => {}, [rel]);
+  async function borrarDomicilio() {
+    await setBorradoDomicilio(domicilio._id);
+  }
 
   // Funcion para desplegar el formulario de direcciones
   const [visible, setVisible] = useState(false);
@@ -52,7 +54,11 @@ export default function Address({ domicilio }) {
             {domicilioState.calle + " " + domicilioState.numero}
           </p>
         </div>
-        <i className="fas fa-chevron-down"></i>
+        {visible === true ? (
+          <i className="fas fa-chevron-up"></i>
+        ) : (
+          <i className="fas fa-chevron-down"></i>
+        )}
       </div>
       {visible === true && (
         <form onSubmit={handleSubmit}>
@@ -103,6 +109,13 @@ export default function Address({ domicilio }) {
           <div className="d-flex flex-row-reverse">
             <button className="btn btn-cambiar" disabled={isEdit} type="submit">
               Cambiar
+            </button>
+            <button
+              type="button"
+              className="btn btn-borrar-domicilio"
+              onClick={() => borrarDomicilio()}
+            >
+              Borrar
             </button>
           </div>
         </form>

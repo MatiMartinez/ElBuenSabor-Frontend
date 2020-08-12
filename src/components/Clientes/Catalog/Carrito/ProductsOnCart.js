@@ -11,7 +11,7 @@ export default function ProductsOnCart() {
   }
 
   return (
-    <>
+    <div>
       {platos.map((plato, index) => (
         <div className="row producto-carrito" key={index}>
           <div className="col-1">{plato.cantidad}</div>
@@ -35,6 +35,6 @@ export default function ProductsOnCart() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }

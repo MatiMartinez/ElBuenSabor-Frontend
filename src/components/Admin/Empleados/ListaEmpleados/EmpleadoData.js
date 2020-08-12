@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function EmpleadoData({ empleado, quitarRol }) {
   return (
@@ -44,8 +44,11 @@ export default function EmpleadoData({ empleado, quitarRol }) {
             <div className="col-12">
               <b>Roles:</b>
               <div className="row">
-                {empleado.roles.map((rol) => (
-                  <div className="col-6 d-flex align-items-center justify-content-between">
+                {empleado.roles.map((rol, index) => (
+                  <div
+                    className="col-6 d-flex align-items-center justify-content-between"
+                    key={index}
+                  >
                     <p className="m-1">{rol.nombreRol}</p>
                     <button
                       className="btn m-1"

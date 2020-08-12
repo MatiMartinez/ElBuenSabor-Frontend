@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
-import { customStyleCarrito } from "../../../../utils/modalStyle";
 import SelectEnvio from "./SelectEnvio";
 import ProductsOnCart from "./ProductsOnCart";
 import { useCart } from "../../../../context/CartContext";
+import { useAuth0 } from "../../../../react-auth0-spa";
+import { createPedido } from "../../../../API/ApiPedidos";
 
 export default function ModalCarrito({ toggle, isOpen }) {
   const {
@@ -16,10 +17,23 @@ export default function ModalCarrito({ toggle, isOpen }) {
     setItemsOnCart,
   } = useCart();
 
+  const { userdb } = useAuth0();
+
   function emptyCart() {
     setPlatos([]);
     setReventas([]);
     setItemsOnCart(Number(0));
+  }
+
+  const [delivery, setDelivery] = useState(false);
+  const [domicilio, setDomicilio] = useState(""); // Domicilio seleccionado
+
+  function toggleEnvio(data) {
+    if (data === "local") {
+      setDelivery(false);
+    } else {
+      setDelivery(true);
+    }
   }
 
   async function handleSubmit(e) {
@@ -30,31 +44,44 @@ export default function ModalCarrito({ toggle, isOpen }) {
     const reventasId = reventas.map((reventa) => {
       return { item_id: reventa.item._id, cantidad: reventa.cantidad };
     });
-    console.log(platosId);
-    console.log(reventasId);
     const detallePedido = {
+      usuario: userdb._id,
+      delivery: delivery,
+      formaPago: "Efectivo",
+      domicilio: domicilio,
       platos: platosId,
       reventas: reventasId,
-      subtotal: subTotal,
     };
-    console.log(detallePedido);
+    await createPedido(detallePedido);
+    toggle();
   }
 
   return (
-    <Modal isOpen={isOpen} ariaHideApp={false} style={customStyleCarrito}>
+    <Modal
+      isOpen={isOpen}
+      ariaHideApp={false}
+      className="modal-carrito"
+      overlayClassName="modal-carrito-overlay"
+    >
       <form
         className="d-flex flex-column justify-content-between h-100"
         onSubmit={handleSubmit}
       >
         <div>
-          <button className="btn float-right" onClick={() => toggle()}>
-            <i className="fas fa-times fa-2x"></i>
+          <button className="btn float-right m-3" onClick={() => toggle()}>
+            <i className="fas fa-times-circle fa-2x"></i>
           </button>
-          <h4>Tu pedido</h4>
-          <SelectEnvio />
+          <div className="m-4">
+            <h3 className="mt-3 mb-3">Tu pedido</h3>
+            <SelectEnvio
+              toggleEnvio={toggleEnvio}
+              domicilio={domicilio}
+              setDomicilio={setDomicilio}
+            />
+          </div>
           <ProductsOnCart />
         </div>
-        <div className="d-flex">
+        <div className="d-flex p-2">
           <button
             className="btn btn-light w-50 rounded m-2"
             type="button"

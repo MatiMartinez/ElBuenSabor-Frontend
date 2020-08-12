@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BodyTablaReventas({ reventa, toggle, borrarReventa }) {
   return (
-    <tr key={reventa._id} className="asdd">
+    <tr key={reventa._id}>
       <td>
         <div
           style={{
