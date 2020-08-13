@@ -10,6 +10,7 @@ import { getPedidosByEstado } from "../../../API/ApiPedidos";
 import EnProceso from "./PedidosEstado/EnProceso/EnProceso";
 import Preparados from "./PedidosEstado/Preparados/Preparados";
 import EnDelivery from "./PedidosEstado/EnDelivery/EnDelivery";
+import Entregados from "./PedidosEstado/Entregados/Entregados";
 
 export default function PedidosCaja() {
   const [pedidosPendientes, setPedidosPendientes] = useState([]);
@@ -70,7 +71,7 @@ export default function PedidosCaja() {
   }, [reload]);
 
   return (
-    <div className="m-4 row">
+    <div className="p-4 row">
       {/** Sidebar de pedidos */}
       <SidebarPedidos
         cantPedidosPendientes={pedidosPendientes.length}
@@ -96,28 +97,19 @@ export default function PedidosCaja() {
           />
         </PrivateRoute>
         <PrivateRoute path="/caja/cancelados">
-          <Cancelados
-            pedidosCancelados={pedidosCancelados}
-            toggleReload={toggleReload}
-          />
+          <Cancelados pedidosCancelados={pedidosCancelados} />
         </PrivateRoute>
         <PrivateRoute path="/caja/en-proceso">
-          <EnProceso
-            pedidosEnProceso={pedidosEnProceso}
-            toggleReload={toggleReload}
-          />
+          <EnProceso pedidosEnProceso={pedidosEnProceso} />
         </PrivateRoute>
         <PrivateRoute path="/caja/preparados">
-          <Preparados
-            pedidosPreparados={pedidosPreparados}
-            toggleReload={toggleReload}
-          />
+          <Preparados pedidosPreparados={pedidosPreparados} />
         </PrivateRoute>
         <PrivateRoute path="/caja/en-delivery">
-          <EnDelivery
-            pedidosEnDelivery={pedidosEnDelivery}
-            toggleReload={toggleReload}
-          />
+          <EnDelivery pedidosEnDelivery={pedidosEnDelivery} />
+        </PrivateRoute>
+        <PrivateRoute path="/caja/entregados">
+          <Entregados pedidosEntregados={pedidosEntregados} />
         </PrivateRoute>
       </div>
     </div>

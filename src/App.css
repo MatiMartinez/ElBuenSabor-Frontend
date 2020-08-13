@@ -135,6 +135,8 @@
 
 .cocina-view {
   padding-top: 106px;
+  background: #f7f7f7;
+  min-height: 100vh;
 }
 
 .profile-view {

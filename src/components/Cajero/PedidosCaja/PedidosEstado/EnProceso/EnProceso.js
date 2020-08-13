@@ -1,7 +1,7 @@
 import React from "react";
 import PopoverDetalle from "../PopoverDetalle";
 
-export default function EnProceso({ pedidosEnProceso, toggleReload }) {
+export default function EnProceso({ pedidosEnProceso }) {
   return (
     <div className="d-flex flex-column">
       <div className="text-muted">

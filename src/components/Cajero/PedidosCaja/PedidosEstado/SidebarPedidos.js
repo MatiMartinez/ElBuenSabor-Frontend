@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function SidebarPedidos(props) {
   return (
     <div className="col-2 mt-2 d-flex flex-column">
-      <h4 className="text-info mb-4">Pedidos</h4>
+      <h4 className="text-info mb-4">Pedidos caja</h4>
       <hr className="w-100" />
       <Link to="/caja/pendientes" className="caja-links">
         <i className="fas fa-question mr-2 fa-sm"></i>

@@ -1,15 +1,15 @@
 import React from "react";
 import PopoverDetalle from "../PopoverDetalle";
 
-export default function Cancelados({ pedidosCancelados }) {
+export default function Entregados({ pedidosEntregados }) {
   return (
     <div className="d-flex flex-column">
       <div className="text-muted">
-        <i className="fas fa-times mr-2"></i>
-        Cancelados
+        <i className="fas fa-hamburger mr-2"></i>
+        En Proceso
       </div>
       <div className="w-100">
-        {pedidosCancelados.length !== 0 ? (
+        {pedidosEntregados.length !== 0 ? (
           <table className="table div-shadow mt-3">
             <thead>
               <tr className="thead-light">
@@ -19,10 +19,11 @@ export default function Cancelados({ pedidosCancelados }) {
                 <th>Detalle</th>
                 <th>Envio</th>
                 <th>Total</th>
+                <th>Demora</th>
               </tr>
             </thead>
             <tbody>
-              {pedidosCancelados.map((pedido, index) => (
+              {pedidosEntregados.map((pedido, index) => (
                 <tr key={index}>
                   <td>{pedido.numero}</td>
                   <td>{pedido.fecha}</td>
@@ -41,13 +42,14 @@ export default function Cancelados({ pedidosCancelados }) {
                   </PopoverDetalle>
                   <td>{pedido.delivery === true ? "Delivery" : "Local"}</td>
                   <td>$ {pedido.total}</td>
+                  <td>{pedido.minutosDemora}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         ) : (
           <div className="container text-center text-muted mt-3 mb-3">
-            <h3>No hay pedidos cancelados actualmente</h3>
+            <h3>No hay pedidos entregados actualmente</h3>
           </div>
         )}
       </div>

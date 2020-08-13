@@ -1,5 +1,4 @@
 import React from "react";
-import DropdownOpciones from "../Pendientes/OpcionesPendientes";
 import PopoverDetalle from "../PopoverDetalle";
 import OpcionesAprobados from "./OpcionesAprobados";
 
