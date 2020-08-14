@@ -17,7 +17,7 @@ export default function AprobadosCocina({ pedidosAprobados, toggleReload }) {
               <Button
                 className="w-100 border-0 mt-3"
                 style={{ background: "#7ddc1f" }}
-                onClick={() => comenzarPedido()}
+                onClick={() => comenzarPedido(pedido._id)}
               >
                 Comenzar
               </Button>
