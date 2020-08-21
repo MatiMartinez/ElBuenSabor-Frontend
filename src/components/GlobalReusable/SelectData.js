@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const SelectData = ({ datos, label, id, register, name }) => {
   return (
@@ -10,7 +10,7 @@ const SelectData = ({ datos, label, id, register, name }) => {
         name={name}
         id={id}
         className="form-control"
-        defaultValue={''}
+        defaultValue={""}
         ref={register}
       >
         <option hidden disabled value="">

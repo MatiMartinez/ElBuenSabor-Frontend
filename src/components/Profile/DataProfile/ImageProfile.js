@@ -8,7 +8,7 @@ export default function ImageProfile() {
     <div className="bg-image-profile p-4">
       <img
         src={user.picture}
-        className="rounded-circle img-fluid"
+        className="rounded-circle img-fluid image-profile-user"
         alt="user-img"
       />
       <h6 className="text-bold mt-3">{userdb.email}</h6>

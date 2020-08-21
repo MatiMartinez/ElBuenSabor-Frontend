@@ -4,7 +4,6 @@ import Aprobados from "./PedidosEstado/Aprobados/Aprobados";
 import Cancelados from "./PedidosEstado/Cancelados/Cancelados";
 import PrivateRoute from "../../../routes/PrivateRoute";
 
-import "./Caja.css";
 import SidebarPedidos from "./PedidosEstado/SidebarPedidos";
 import { getPedidosByEstado } from "../../../API/ApiPedidos";
 import EnProceso from "./PedidosEstado/EnProceso/EnProceso";
@@ -103,10 +102,16 @@ export default function PedidosCaja() {
           <EnProceso pedidosEnProceso={pedidosEnProceso} />
         </PrivateRoute>
         <PrivateRoute path="/caja/preparados">
-          <Preparados pedidosPreparados={pedidosPreparados} />
+          <Preparados
+            pedidosPreparados={pedidosPreparados}
+            toggleReload={toggleReload}
+          />
         </PrivateRoute>
         <PrivateRoute path="/caja/en-delivery">
-          <EnDelivery pedidosEnDelivery={pedidosEnDelivery} />
+          <EnDelivery
+            pedidosEnDelivery={pedidosEnDelivery}
+            toggleReload={toggleReload}
+          />
         </PrivateRoute>
         <PrivateRoute path="/caja/entregados">
           <Entregados pedidosEntregados={pedidosEntregados} />

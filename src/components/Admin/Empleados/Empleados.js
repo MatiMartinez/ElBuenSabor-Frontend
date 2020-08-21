@@ -8,7 +8,6 @@ import Form from "./ModalForm/Form";
 import ModalForm from "../../GlobalReusable/ModalForm";
 
 // Style
-import "../Admin.css";
 import Encabezado from "../../GlobalReusable/Encabezado";
 import ListaEmpleados from "./ListaEmpleados/ListaEmpleados";
 
@@ -31,11 +30,15 @@ const Empleados = () => {
   // Render
   const [reload, setReload] = useState(true);
 
+  function toggleReload() {
+    setReload(!reload);
+  }
+
   return (
     <div className="m-4">
       {/** Modal */}
       <ModalForm isOpen={isOpen}>
-        <Form setIsOpen={setIsOpen} setReload={setReload} />
+        <Form toggle={toggle} toggleReload={toggleReload} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -50,7 +53,7 @@ const Empleados = () => {
       <ListaEmpleados
         rolSeleccionado={rolSeleccionado}
         reload={reload}
-        setReload={setReload}
+        toggleReload={toggleReload}
       />
     </div>
   );

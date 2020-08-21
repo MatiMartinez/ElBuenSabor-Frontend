@@ -33,7 +33,8 @@ export default function CatalogoProductos({ selectedCategory }) {
 
   return (
     <div className="container">
-      <div className="row">
+      <h4>Productos</h4>
+      <div className="row mt-3">
         {productos.length !== 0 &&
           productos.map((producto, index) => (
             <div className="col-6" key={index}>

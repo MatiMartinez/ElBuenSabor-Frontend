@@ -9,58 +9,67 @@ export default function SelectHome() {
 
   function HomeCocinero() {
     return (
-      <Link className="icon-container p-4 m-4" to="/cocina">
-        <i className="fas fa-utensils fa-8x"></i>
+      <Link className="select-home-link" to="/cocina">
+        <i className="fas fa-hamburger fa-6x fas-border icon-circle-border"></i>
+        <h6 className="text-muted mt-5">COCINERO</h6>
       </Link>
     );
   }
 
   function HomeCajero() {
     return (
-      <Link className="icon-container p-4 m-4" to="/caja">
-        <i className="fas fa-cash-register fa-8x"></i>
+      <Link className="select-home-link" to="/caja">
+        <i className="fas fa-cash-register fa-6x icon-circle-border" />
+        <h6 className="text-muted mt-5">CAJERO</h6>
       </Link>
     );
   }
 
   function HomeAdmin() {
     return (
-      <Link className="icon-container p-4 m-4" to="/admin">
-        <i className="fas fa-user-cog fa-8x"></i>
+      <Link className="select-home-link" to="/admin">
+        <i className="fas fa-user-cog fa-6x icon-circle-border"></i>
+        <h6 className="text-muted mt-5">ADMINISTRADOR</h6>
       </Link>
     );
   }
 
   function HomeCatalog() {
     return (
-      <Link className="icon-container p-4 m-4" to="/catalog">
-        <i className="fas fa-store fa-8x"></i>
+      <Link className="select-home-link" to="/catalog">
+        <i className="fas fa-store fa-6x icon-circle-border"></i>
+        <h6 className="text-muted mt-5">CATÁLOGO</h6>
       </Link>
     );
   }
 
   return (
-    <div className="mt-5 d-flex justify-content-center select-home mb-5">
-      <div className="d-flex justify-content-center home-container p-4">
-        {userdb.roles.map((rol, index) => {
-          if (rol.nombreRol === "Administrador") {
-            return <HomeAdmin key={index} />;
-          }
-          return null;
-        })}
-        {userdb.roles.map((rol, index) => {
-          if (rol.nombreRol === "Cocinero") {
-            return <HomeCocinero key={index} />;
-          }
-          return null;
-        })}
-        {userdb.roles.map((rol, index) => {
-          if (rol.nombreRol === "Cajero") {
-            return <HomeCajero key={index} />;
-          }
-          return null;
-        })}
-        <HomeCatalog />
+    <div className="select-home text-center">
+      <h4 className="mt-5 mb-5 select-home-title">
+        SELECCIONA EL TIPO DE USUARIO
+      </h4>
+      <div className="mt-5 d-flex justify-content-center p-5">
+        <div className="container d-flex justify-content-around w-100">
+          {userdb.roles.map((rol, index) => {
+            if (rol.nombreRol === "Administrador") {
+              return <HomeAdmin key={index} />;
+            }
+            return null;
+          })}
+          {userdb.roles.map((rol, index) => {
+            if (rol.nombreRol === "Cocinero") {
+              return <HomeCocinero key={index} />;
+            }
+            return null;
+          })}
+          {userdb.roles.map((rol, index) => {
+            if (rol.nombreRol === "Cajero") {
+              return <HomeCajero key={index} />;
+            }
+            return null;
+          })}
+          <HomeCatalog />
+        </div>
       </div>
     </div>
   );

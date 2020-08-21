@@ -1,7 +1,8 @@
 import React from "react";
 import PopoverDetalle from "../PopoverDetalle";
+import OpcionesPreparados from "./OpcionesPreparados";
 
-export default function Preparados({ pedidosPreparados }) {
+export default function Preparados({ pedidosPreparados, toggleReload }) {
   return (
     <div className="d-flex flex-column">
       <div className="text-muted">
@@ -20,6 +21,9 @@ export default function Preparados({ pedidosPreparados }) {
                 <th>Envio</th>
                 <th>Total</th>
                 <th>Demora</th>
+                <th className="text-center">
+                  <i className="fas fa-cog"></i>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -42,7 +46,14 @@ export default function Preparados({ pedidosPreparados }) {
                   </PopoverDetalle>
                   <td>{pedido.delivery === true ? "Delivery" : "Local"}</td>
                   <td>$ {pedido.total}</td>
-                  <td>{pedido.minutosDemora}</td>
+                  <td>{pedido.minutosDemora.toFixed(2)}</td>
+                  <td className="text-center">
+                    <OpcionesPreparados
+                      id={pedido._id}
+                      toggleReload={toggleReload}
+                      delivery={pedido.delivery}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>

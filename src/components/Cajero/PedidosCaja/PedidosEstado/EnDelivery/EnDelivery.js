@@ -1,7 +1,8 @@
 import React from "react";
 import PopoverDetalle from "../PopoverDetalle";
+import OpcionesEnDelivery from "./OpcionesEnDelivery";
 
-export default function EnDelivery({ pedidosEnDelivery }) {
+export default function EnDelivery({ pedidosEnDelivery, toggleReload }) {
   return (
     <div className="d-flex flex-column">
       <div className="text-muted">
@@ -20,6 +21,9 @@ export default function EnDelivery({ pedidosEnDelivery }) {
                 <th>Envio</th>
                 <th>Total</th>
                 <th>Demora</th>
+                <th className="text-center">
+                  <i className="fas fa-cog"></i>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -42,7 +46,13 @@ export default function EnDelivery({ pedidosEnDelivery }) {
                   </PopoverDetalle>
                   <td>{pedido.delivery === true ? "Delivery" : "Local"}</td>
                   <td>$ {pedido.total}</td>
-                  <td>{pedido.minutosDemora}</td>
+                  <td>{pedido.minutosDemora.toFixed(2)}</td>
+                  <td className="text-center">
+                    <OpcionesEnDelivery
+                      id={pedido._id}
+                      toggleReload={toggleReload}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>

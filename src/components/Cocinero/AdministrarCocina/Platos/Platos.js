@@ -20,6 +20,12 @@ const Platos = () => {
     setIdEdit(data);
   };
 
+  const [reload, setReload] = useState(true);
+
+  function toggleReload() {
+    setReload(!reload);
+  }
+
   // Select categorias
   const [selectCategoria, setSelectCategoria] = useState("");
   const { register, handleSubmit } = useForm();
@@ -34,8 +40,12 @@ const Platos = () => {
   return (
     <div className="mt-4">
       {/** Modal */}
-      <ModalForm isOpen={isOpen} idEdit={idEdit}>
-        <FormPlatos idEdit={idEdit} setIsOpen={setIsOpen} />
+      <ModalForm isOpen={isOpen}>
+        <FormPlatos
+          idEdit={idEdit}
+          toggleReload={toggleReload}
+          toggle={toggle}
+        />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -51,7 +61,11 @@ const Platos = () => {
         />
       </Encabezado>
       {/** Tabla */}
-      <TablaPlatos toggle={toggle} />
+      <TablaPlatos
+        toggle={toggle}
+        reload={reload}
+        toggleReload={toggleReload}
+      />
     </div>
   );
 };

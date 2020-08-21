@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getPlatos } from "../../../../../API/ApiPlatos";
-import PlatoCard from "./PlatoCard";
+import PlatoCard from "../PlatoCard/PlatoCard";
 
-import "./TablaPlatos.css";
-import InfoPlato from "./InfoPlato/InfoPlato";
-
-export default function TablaPlatos({ toggle }) {
+export default function TablaPlatos({ toggle, toggleReload, reload }) {
   // state
   const [platos, setPlatos] = useState([]);
 
@@ -14,41 +11,31 @@ export default function TablaPlatos({ toggle }) {
       const data = await getPlatos();
       setPlatos(data);
     }
-    cargarPlatos();
-  }, []);
-
-  // Seleccionar plato para agregar, editar o borrar ingredientes
-  const [platoSeleccionado, setPlatoSeleccionado] = useState("");
-
-  function seleccionarPlato(plato) {
-    setPlatoSeleccionado(plato);
-  }
+    if (reload === true) {
+      cargarPlatos();
+      toggleReload();
+    }
+    // eslint-disable-next-line
+  }, [reload]);
 
   return (
     <div className="mt-3 d-flex">
-      <div className="row">
-        {/** Lista de platos */}
-        <div className="col-8">
-          <div className="row">
-            {platos.length !== 0 &&
-              platos.map((plato) => (
-                <div
-                  className="col-3 mb-4 plato-card-pointer"
-                  key={plato._id}
-                  onClick={() => seleccionarPlato(plato)}
-                >
-                  <PlatoCard plato={plato} toggle={toggle} />
-                </div>
-              ))}
-          </div>
+      {platos.length !== 0 ? (
+        <div className="row w-100">
+          {platos.map((plato, index) => (
+            <PlatoCard
+              key={index}
+              plato={plato}
+              toggleReload={toggleReload}
+              togglePlato={toggle}
+            />
+          ))}
         </div>
-        {/** Informacion del plato */}
-        <div className="col-4 info-plato">
-          <h4 className="text-muted">Información de Plato</h4>
-          <h5>{platoSeleccionado.denominacion}</h5>
-          {platoSeleccionado !== "" && <InfoPlato plato={platoSeleccionado} />}
+      ) : (
+        <div className="container text-center text-muted mt-3 mb-3">
+          <h3>No hay platos cargados</h3>
         </div>
-      </div>
+      )}
     </div>
   );
 }

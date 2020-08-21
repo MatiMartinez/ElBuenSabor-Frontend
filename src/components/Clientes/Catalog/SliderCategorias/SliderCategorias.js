@@ -27,19 +27,22 @@ export default function SliderCategorias({ setSelectedCategory }) {
   };
 
   return (
-    <div className="container mt-5 mb-5 d-flex justify-content-center">
-      <Slider className="w-100 row" {...settings}>
-        {categorias.length !== 0 &&
-          categorias.map((categoria) => (
-            <div
-              onClick={() => selectCategory(categoria._id)}
-              className="onclick-container"
-              key={categoria._id}
-            >
-              <SliderCardCategoria categoria={categoria} />
-            </div>
-          ))}
-      </Slider>
+    <div className="slider-categorias-container">
+      <div className="container pt-4 pb-4 d-flex flex-column justify-content-center align-items-center">
+        <h3>CATEGORÍAS</h3>
+        <Slider className="w-100 mt-4 row" {...settings}>
+          {categorias.length !== 0 &&
+            categorias.map((categoria) => (
+              <div
+                onClick={() => selectCategory(categoria._id)}
+                className="onclick-container"
+                key={categoria._id}
+              >
+                <SliderCardCategoria categoria={categoria} />
+              </div>
+            ))}
+        </Slider>
+      </div>
     </div>
   );
 }

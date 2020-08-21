@@ -24,6 +24,7 @@ import initFontAwesome from "./utils/initFontAwesome";
 import SelectHome from "./views/SelectHome/SelectHome";
 import Catalog from "./components/Clientes/Catalog/Catalog";
 import { CartProvider } from "./context/CartContext";
+import PageNotFound from "./components/404NotFound/PageNotFound";
 initFontAwesome();
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
               <PrivateRoute path="/cocina" component={Cocina} />
               <PrivateRoute path="/caja" component={Caja} />
               <PrivateRoute path="/admin" component={Admin} />
+              <Route path="*" component={PageNotFound} />
             </Switch>
           </CartProvider>
         </div>

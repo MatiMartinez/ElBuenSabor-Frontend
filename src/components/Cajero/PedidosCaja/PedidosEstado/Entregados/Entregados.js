@@ -19,7 +19,6 @@ export default function Entregados({ pedidosEntregados }) {
                 <th>Detalle</th>
                 <th>Envio</th>
                 <th>Total</th>
-                <th>Demora</th>
               </tr>
             </thead>
             <tbody>
@@ -42,7 +41,6 @@ export default function Entregados({ pedidosEntregados }) {
                   </PopoverDetalle>
                   <td>{pedido.delivery === true ? "Delivery" : "Local"}</td>
                   <td>$ {pedido.total}</td>
-                  <td>{pedido.minutosDemora}</td>
                 </tr>
               ))}
             </tbody>

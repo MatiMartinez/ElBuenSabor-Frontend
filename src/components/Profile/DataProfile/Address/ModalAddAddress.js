@@ -6,8 +6,12 @@ import { createDomicilio } from "../../../../API/ApiDomicilios";
 import { useAuth0 } from "../../../../react-auth0-spa";
 import { customStyle } from "../../../../utils/modalStyle";
 
-export default function ModalAddAddress({ isOpen, toggle }) {
-  const { userdb } = useAuth0();
+export default function ModalAddAddress({
+  isOpen,
+  toggle,
+  toggleReload,
+  userdb,
+}) {
   const { register, handleSubmit } = useForm();
 
   async function onSubmit(data) {
@@ -21,6 +25,8 @@ export default function ModalAddAddress({ isOpen, toggle }) {
       departamento: data.departamento,
     };
     await createDomicilio(domicilio);
+    toggle();
+    toggleReload();
   }
 
   return (
@@ -32,6 +38,7 @@ export default function ModalAddAddress({ isOpen, toggle }) {
           type="text"
           name="alias"
           register={register}
+          required={true}
         />
         <InputField
           id="calle"
@@ -39,21 +46,26 @@ export default function ModalAddAddress({ isOpen, toggle }) {
           type="text"
           name="calle"
           register={register}
+          required={true}
         />
-        <InputField
-          id="numero"
-          label="Número"
-          type="number"
-          name="numero"
-          register={register}
-        />
-        <InputField
-          id="localidad"
-          label="Localidad"
-          type="text"
-          name="localidad"
-          register={register}
-        />
+        <div className="d-flex justify-content-between">
+          <InputField
+            id="numero"
+            label="Número"
+            type="number"
+            name="numero"
+            register={register}
+            required={true}
+          />
+          <InputField
+            id="localidad"
+            label="Localidad"
+            type="text"
+            name="localidad"
+            register={register}
+            required={true}
+          />
+        </div>
         <div className="d-flex justify-content-between">
           <InputField
             id="departamento"
@@ -61,6 +73,7 @@ export default function ModalAddAddress({ isOpen, toggle }) {
             type="text"
             name="departamento"
             register={register}
+            required={false}
           />
           <InputField
             id="piso"
@@ -68,6 +81,7 @@ export default function ModalAddAddress({ isOpen, toggle }) {
             type="text"
             name="piso"
             register={register}
+            required={false}
           />
         </div>
         <div className="d-flex justify-content-center border-top mt-4">

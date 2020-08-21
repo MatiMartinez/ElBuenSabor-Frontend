@@ -28,6 +28,7 @@ export default function Form(props) {
         type="text"
         name="denominacion"
         register={register}
+        required={true}
         defaultValue={
           props.idEdit === undefined ? "" : props.idEdit.denominacion
         }
@@ -39,6 +40,7 @@ export default function Form(props) {
           type="number"
           name="precioCompra"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.precioCompra
           }
@@ -49,6 +51,7 @@ export default function Form(props) {
           type="number"
           name="precioVenta"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.precioVenta
           }
@@ -67,6 +70,7 @@ export default function Form(props) {
           type="number"
           name="stockMinimo"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockMinimo
           }
@@ -76,6 +80,7 @@ export default function Form(props) {
           label="Stock Máximo"
           type="number"
           name="stockMaximo"
+          required={true}
           register={register}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockMaximo
@@ -86,6 +91,7 @@ export default function Form(props) {
           label="Stock Actual"
           type="number"
           name="stockActual"
+          required={true}
           register={register}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockActual
@@ -96,7 +102,13 @@ export default function Form(props) {
         register={register}
         label={true}
         name="rubro"
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.rubro._id}
+        defaultValue={
+          props.idEdit === undefined
+            ? ""
+            : props.idEdit.rubro === null
+            ? ""
+            : props.idEdit.rubro._id
+        }
       />
       <InputField
         id="imagenPath"
@@ -104,6 +116,7 @@ export default function Form(props) {
         type="text"
         name="imagenPath"
         register={register}
+        required={true}
         defaultValue={props.idEdit === undefined ? "" : props.idEdit.imagenPath}
       />
       {/** Botones del modal */}

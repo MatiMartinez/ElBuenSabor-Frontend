@@ -43,29 +43,27 @@ export default function TablaInsumos({
           <th>Opciones</th>
         </tr>
       </thead>
-      {insumos.length !== 0 && (
-        <tbody>
-          {selectedCategory === "todos"
-            ? insumos.map((insumo, index) => (
+      <tbody>
+        {selectedCategory === "todos"
+          ? insumos.map((insumo, index) => (
+              <BodyTablaInsumos
+                insumo={insumo}
+                toggle={toggle}
+                borrarInsumo={borrarInsumo}
+                key={index}
+              />
+            ))
+          : insumos
+              .filter((insumo) => insumo.rubro._id === selectedCategory)
+              .map((insumo, index) => (
                 <BodyTablaInsumos
                   insumo={insumo}
                   toggle={toggle}
                   borrarInsumo={borrarInsumo}
                   key={index}
                 />
-              ))
-            : insumos
-                .filter((insumo) => insumo.rubro._id === selectedCategory)
-                .map((insumo, index) => (
-                  <BodyTablaInsumos
-                    insumo={insumo}
-                    toggle={toggle}
-                    borrarInsumo={borrarInsumo}
-                    key={index}
-                  />
-                ))}
-        </tbody>
-      )}
+              ))}
+      </tbody>
     </table>
   ) : (
     <div className="container text-center text-muted mt-5 mb-5">

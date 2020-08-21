@@ -130,23 +130,23 @@
 
 /*-----------------------------------------------------------------------------------*/
 .admin-view {
-  padding-top: 106px;
+  border-top: 1px solid #ccc;
+  background: #f7f7f7;
 }
 
 .cocina-view {
-  padding-top: 106px;
+  border-top: 1px solid #ccc;
   background: #f7f7f7;
   min-height: 100vh;
 }
 
 .profile-view {
-  margin-top: 106px;
   border-top: 1px solid #ccc;
   padding-top: 5vh;
 }
 
 .caja-view {
-  padding-top: 106px;
+  border-top: 1px solid #ccc;
   background: #f7f7f7;
 }
 
@@ -155,4 +155,13 @@
 .table td,
 .table th {
   vertical-align: middle;
+}
+
+.caja-links {
+  color: #333;
+}
+
+/*-----------------------------------------------------------------------------------*/
+.caja-links:hover {
+  color: #555;
 }

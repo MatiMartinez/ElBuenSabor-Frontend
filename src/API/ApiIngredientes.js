@@ -9,3 +9,13 @@ export async function createIngrediente(ingrediente) {
     })
     .catch((err) => console.log(err));
 }
+
+export async function softDeleteIngrediente(id) {
+  api
+    .put(`/ingredientes/softdelete/${id}`)
+    .then((res) => {
+      console.log(res);
+      console.log("Ingrediente quitado");
+    })
+    .catch((err) => console.log(err));
+}

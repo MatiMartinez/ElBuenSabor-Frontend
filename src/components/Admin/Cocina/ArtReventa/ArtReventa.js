@@ -14,8 +14,8 @@ const ArtReventa = () => {
   const [idEdit, setIdEdit] = useState(undefined);
 
   const toggle = (data) => {
-    setIsOpen(!isOpen);
     setIdEdit(data);
+    setIsOpen(!isOpen);
   };
 
   // Select categorias

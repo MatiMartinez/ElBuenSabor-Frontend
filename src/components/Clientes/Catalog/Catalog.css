@@ -23,15 +23,18 @@
 
 .btn-carrito {
   position: fixed;
-  top: 5%;
-  right: 2.5%;
-  background: #ad2118;
-  color: white;
+  top: 3.2%;
+  right: 1%;
+  background: #c8261b;
+  color: #ffffff;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
 }
 
 .btn-carrito:hover {
-  background: #c8261b;
-  color: white;
+  background: #ad2118;
+  color: #ffffff;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -68,6 +71,10 @@
 }
 
 /* SliderCategorias */
+.slider-categorias-container {
+  background: #ffffff;
+}
+
 .onclick-container {
   cursor: pointer;
 }

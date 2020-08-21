@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = () => (
-  <div className="footer text-center p-5">
+  <div className="footer text-center p-5" id="footer-user">
     <div className="container d-flex justify-content-between social-data-content">
       {/** Iconos de social media */}
       <div className="footer-items d-flex align-items-center">

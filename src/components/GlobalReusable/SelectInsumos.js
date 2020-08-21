@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getInsumosPorRubro } from "../../API/InsumosApi";
 
-export default function SelectInsumos({ value, handleChange, index, rubroId }) {
+export default function SelectInsumos({ rubroId, value, onChange, required }) {
   const [insumos, setInsumos] = useState([]);
 
   useEffect(() => {
     async function cargarInsumos() {
       const data = await getInsumosPorRubro(rubroId);
-      console.log(data);
       setInsumos(data);
     }
     if (rubroId !== "") {
@@ -16,20 +15,27 @@ export default function SelectInsumos({ value, handleChange, index, rubroId }) {
   }, [rubroId]);
 
   return (
-    <div className="form-group" style={{ width: "30%" }}>
+    <div className="form-group w-100 m-1">
+      <label
+        htmlFor="selectInsumos"
+        className="col-form-label col-form-label-sm"
+      >
+        Insumo
+      </label>
       <select
         name="insumo_id"
         id="selectInsumos"
-        className="form-control"
+        className="form-control form-control-sm"
         value={value}
-        onChange={(e) => handleChange(index, e)}
+        onChange={onChange}
+        required={required}
       >
         <option hidden disabled value="">
-          Insumo
+          Selecciona
         </option>
         {insumos.length !== 0 &&
-          insumos.map((insumo) => (
-            <option key={insumo._id} value={insumo._id}>
+          insumos.map((insumo, index) => (
+            <option key={index} value={insumo._id}>
               {insumo.denominacion}
             </option>
           ))}

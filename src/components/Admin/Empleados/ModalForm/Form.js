@@ -4,15 +4,15 @@ import { createRol } from "../../../../API/ApiRoles";
 import InputEmail from "./InputEmail";
 import SelectRoles from "../../../GlobalReusable/SelectRoles";
 
-export default function Form(props) {
+export default function Form({ toggle, toggleReload }) {
   const { register, handleSubmit } = useForm();
   const [idEncontrado, setIdEncontrado] = useState("");
 
   const onSubmit = async (data) => {
     const rol = { usuario: idEncontrado, nombreRol: data.nombreRol };
     await createRol(rol);
-    props.setReload(true);
-    props.setIsOpen(false);
+    toggleReload();
+    toggle(false);
   };
 
   return (
@@ -36,7 +36,7 @@ export default function Form(props) {
           </button>
           <button
             className="btn btn-modal-outline w-100 m-2"
-            onClick={() => props.setIsOpen(false)}
+            onClick={() => toggle()}
           >
             Volver
           </button>

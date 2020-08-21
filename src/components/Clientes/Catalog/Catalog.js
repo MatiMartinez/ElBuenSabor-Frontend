@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Carousel
 import "slick-carousel/slick/slick.css";
@@ -18,6 +18,15 @@ const Catalog = () => {
   // Busqueda, form y estado de la busqueda
   const [busqueda, setBusqueda] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  useEffect(() => {
+    document.getElementById("navbar-user-color").style.background =
+      "transparent";
+    return () => {
+      document.getElementById("navbar-user-color").style.background =
+        "transparent";
+    };
+  }, []);
 
   const onSubmitBusqueda = (e) => {
     e.preventDefault();
@@ -47,14 +56,15 @@ const Catalog = () => {
       {/** Categorías */}
       <SliderCategorias setSelectedCategory={setSelectedCategory} />
       {/** Separador */}
-      <hr className="container mb-5" />
+      <hr className="container mb-4" />
       {/** Catalogo de productos */}
       <CatalogoProductos selectedCategory={selectedCategory} />
       {/** Modal del carrito de compras */}
       <ModalCarrito isOpen={isOpen} toggle={toggle} />
       {/** Boton siempre flotante del carrito */}
       <button className="btn btn-carrito" onClick={() => toggle()}>
-        <i className="fas fa-shopping-cart mr-2"></i> {itemsOnCart}
+        <i className="fas fa-shopping-cart mr-1"></i>
+        <small className="p-0 m-0">{itemsOnCart}</small>
       </button>
     </div>
   );

@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import { getUsuarioByEmail } from "../../../../API/ApiUsuario";
-import { useForm } from "react-hook-form";
+import { getUsuario } from "../../../../API/ApiUsuario";
 
 export default function InputEmail({ idEncontrado, setIdEncontrado }) {
-  const { register, getValues } = useForm();
   const [usuario, setUsuario] = useState({});
 
+  const [email, setEmail] = useState("");
+
   async function buscarEmail() {
-    const email = await getValues("email");
-    const usuario = await getUsuarioByEmail(email);
-    if (usuario.email) {
+    const usuario = await getUsuario(email);
+    if (usuario) {
       setUsuario(usuario);
       await setIdEncontrado(usuario._id);
     } else {
       await setIdEncontrado("");
     }
-    console.log(email);
-    console.log(usuario);
-    console.log(idEncontrado);
   }
 
   return (
@@ -32,11 +28,12 @@ export default function InputEmail({ idEncontrado, setIdEncontrado }) {
             id="email"
             type="email"
             name="email"
-            ref={register}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <button
             type="button"
-            className="btn ml-auto w-25"
+            className="btn btn-outline-secondary ml-auto"
             onClick={() => buscarEmail()}
           >
             <i className="fas fa-search mr-2"></i>Buscar

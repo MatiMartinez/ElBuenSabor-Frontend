@@ -28,6 +28,7 @@ export default function FormInsumos(props) {
         type="text"
         name="denominacion"
         register={register}
+        required={true}
         defaultValue={
           props.idEdit === undefined ? "" : props.idEdit.denominacion
         }
@@ -39,6 +40,7 @@ export default function FormInsumos(props) {
           type="number"
           name="precioCompra"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? 0 : props.idEdit.precioCompra
           }
@@ -57,6 +59,7 @@ export default function FormInsumos(props) {
           type="number"
           name="stockMinimo"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockMinimo
           }
@@ -67,6 +70,7 @@ export default function FormInsumos(props) {
           type="number"
           name="stockMaximo"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockMaximo
           }
@@ -77,6 +81,7 @@ export default function FormInsumos(props) {
           type="number"
           name="stockActual"
           register={register}
+          required={true}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.stockMaximo
           }

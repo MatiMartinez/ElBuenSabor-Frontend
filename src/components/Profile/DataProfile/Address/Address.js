@@ -5,7 +5,7 @@ import {
   setBorradoDomicilio,
 } from "../../../../API/ApiDomicilios";
 
-export default function Address({ domicilio }) {
+export default function Address({ domicilio, toggleReload }) {
   const [domicilioState, setDomicilioState] = useState({
     alias: domicilio.alias,
     calle: domicilio.calle,
@@ -25,10 +25,12 @@ export default function Address({ domicilio }) {
   async function handleSubmit(e) {
     e.preventDefault();
     await updateDomicilio(domicilio._id, domicilioState);
+    toggleReload();
   }
 
   async function borrarDomicilio() {
     await setBorradoDomicilio(domicilio._id);
+    toggleReload();
   }
 
   // Funcion para desplegar el formulario de direcciones

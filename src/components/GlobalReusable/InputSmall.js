@@ -1,14 +1,14 @@
 import React from "react";
 
-const InputField = ({
+export default function InputSmall({
   id,
   label,
   type,
   name,
-  register,
-  defaultValue,
+  value,
+  onChange,
   required,
-}) => {
+}) {
   return (
     <div className="form-group w-100 m-1">
       <label className="col-form-label col-form-label-sm" forhtml={id}>
@@ -19,12 +19,10 @@ const InputField = ({
         id={id}
         type={type}
         name={name}
-        ref={register}
-        defaultValue={defaultValue}
         required={required}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );
-};
-
-export default InputField;
+}

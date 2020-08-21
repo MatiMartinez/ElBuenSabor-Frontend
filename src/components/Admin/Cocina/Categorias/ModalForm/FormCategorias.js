@@ -33,6 +33,7 @@ export default function FormCategorias(props) {
         type="text"
         name="denominacion"
         register={register}
+        required={true}
         defaultValue={
           props.idEdit === undefined ? "" : props.idEdit.denominacion
         }
@@ -41,9 +42,14 @@ export default function FormCategorias(props) {
         name="rubroPadre"
         register={register}
         label={true}
-        allValue={false}
         sinRubro={true}
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.rubroPadre}
+        defaultValue={
+          props.idEdit === undefined
+            ? ""
+            : props.idEdit.rubroPadre === null
+            ? ""
+            : props.idEdit.rubroPadre
+        }
       />
       <CheckBoxField
         name="esRubroInsumo"
@@ -61,6 +67,7 @@ export default function FormCategorias(props) {
           label="Imagen"
           type="text"
           name="imagenPath"
+          required={true}
           register={register}
           defaultValue={
             props.idEdit === undefined ? "" : props.idEdit.imagenPath

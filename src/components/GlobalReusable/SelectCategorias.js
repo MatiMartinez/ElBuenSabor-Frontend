@@ -7,7 +7,7 @@ const SelectCategorias = (props) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    const cargarRubros = async () => {
+    async function cargarRubros() {
       let data;
       if (props.tipo === "insumos") {
         data = await getRubrosInsumo();
@@ -15,12 +15,10 @@ const SelectCategorias = (props) => {
         data = await getRubros();
       }
       setCategorias(data);
-    };
+    }
     cargarRubros();
-  }, [props.tipo]);
-
-  // OnChange
-  const [value, setValue] = useState(props.defaultValue);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="form-group m-1">
@@ -36,9 +34,8 @@ const SelectCategorias = (props) => {
         name={props.name}
         id="selectCategoria"
         className="form-control form-control-sm"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
         ref={props.register}
+        defaultValue={props.defaultValue}
       >
         <option hidden disabled value="">
           Seleccione una categoría

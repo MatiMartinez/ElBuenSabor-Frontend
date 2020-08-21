@@ -1,6 +1,7 @@
 import api from "./api";
 
-export const getUsuarioByEmail = async (email) => {
+// Busca el usuario y si no lo encuentra lo crea.
+export async function getUsuarioByEmail(email) {
   return await api
     .get(`/usuarios/check/${email}`)
     .then((res) => {
@@ -11,9 +12,23 @@ export const getUsuarioByEmail = async (email) => {
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const updateUsuario = async (id, usuario) => {
+// Busca el usuario pero no lo crea si no existe.
+export async function getUsuario(email) {
+  return await api
+    .get(`/usuarios/buscar/${email}`)
+    .then((res) => {
+      const resData = res.data;
+      console.log(resData);
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function updateUsuario(id, usuario) {
   return await api
     .put(`/usuarios/${id}`, usuario)
     .then((res) => {
@@ -23,9 +38,9 @@ export const updateUsuario = async (id, usuario) => {
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const deleteUsuario = async (id) => {
+export async function deleteUsuario(id) {
   return await api
     .put(`/usuarios/softdelete/${id}`)
     .then((res) => {
@@ -35,9 +50,9 @@ export const deleteUsuario = async (id) => {
     .catch((err) => {
       console.log(err);
     });
-};
+}
 
-export const getUsuarios = async () => {
+export async function getUsuarios() {
   return await api
     .get("/usuarios/")
     .then((res) => {
@@ -47,4 +62,16 @@ export const getUsuarios = async () => {
     .catch((err) => {
       console.log(err);
     });
-};
+}
+
+export async function getEmpleados() {
+  return await api
+    .get("/usuarios/empleados")
+    .then((res) => {
+      const dataRes = res.data;
+      return dataRes;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

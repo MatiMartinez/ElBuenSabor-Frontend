@@ -1,30 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function NavAdmin({ changeToggle, toggle }) {
+export default function NavAdmin() {
   return (
     <div className="d-flex justify-content-center bg-dark">
       <div className="d-flex justify-content-center w-100">
-        <button
-          className="btn btn-nav btn-lg"
-          onClick={() => changeToggle(0)}
-          disabled={toggle === 0 ? true : false}
-        >
+        <Link className="btn btn-nav btn-lg" to="/admin/cocina">
           Cocina
-        </button>
-        <button
-          className="btn btn-nav btn-lg"
-          onClick={() => changeToggle(1)}
-          disabled={toggle === 1 ? true : false}
-        >
+        </Link>
+        <Link className="btn btn-nav btn-lg" to="/admin/empleados">
           Empleados
-        </button>
-        <button
-          className="btn btn-nav btn-lg"
-          onClick={() => changeToggle(2)}
-          disabled={toggle === 2 ? true : false}
-        >
-          Estadísticas
-        </button>
+        </Link>
+        <Link className="btn btn-nav btn-lg" to="/admin/reportes">
+          Reportes
+        </Link>
       </div>
     </div>
   );

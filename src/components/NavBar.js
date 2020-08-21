@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import { NavLink as RouterNavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import './Navbar.css';
+import "./Navbar.css";
 
 import {
   Collapse,
@@ -17,9 +17,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
+} from "reactstrap";
 
-import { useAuth0 } from '../react-auth0-spa';
+import { useAuth0 } from "../react-auth0-spa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,8 +32,13 @@ const NavBar = () => {
     });
 
   return (
-    <div className="nav-container">
-      <Navbar color="" light expand="md" className="nav pt-4 pb-4">
+    <div id="navbar-user">
+      <Navbar
+        id="navbar-user-color"
+        light
+        expand="md"
+        className="nav pt-4 pb-4"
+      >
         <Container>
           <NavbarBrand className="logo-ebs" href="/" />
           <NavbarToggler onClick={toggle} />
@@ -77,7 +82,7 @@ const NavBar = () => {
                       id="qsLogoutBtn"
                       onClick={() => logoutWithRedirect()}
                     >
-                      <FontAwesomeIcon icon="power-off" className="mr-3" />{' '}
+                      <FontAwesomeIcon icon="power-off" className="mr-3" />{" "}
                       Salir
                     </DropdownItem>
                   </DropdownMenu>

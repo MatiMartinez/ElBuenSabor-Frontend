@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import InputFieldControl from "../../GlobalReusable/InputFieldControl";
-import { useAuth0 } from "../../../react-auth0-spa";
 import { updateUsuario } from "../../../API/ApiUsuario";
+import TextField from "@material-ui/core/TextField";
 
-export default function UserData() {
-  const { userdb } = useAuth0();
-
+export default function UserData({ toggleReload, userdb }) {
   const [userData, setUserData] = useState({
     nombre: userdb.nombre,
     apellido: userdb.apellido,
@@ -45,13 +43,20 @@ export default function UserData() {
           value={userData.apellido}
           handleChange={handleChange}
         />
-        <InputFieldControl
-          label="Fecha de Nacimiento"
-          type="text"
-          name="fechaNacimiento"
-          value={userData.fechaNacimiento}
-          handleChange={handleChange}
-        />
+        <div className="input-group mb-4 w-100">
+          <TextField
+            id="date"
+            name="fechaNacimiento"
+            label="Fecha de Nacimiento"
+            type="date"
+            value={userData.fechaNacimiento}
+            onChange={handleChange}
+            className="ml-auto"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </div>
         <InputFieldControl
           label="Teléfono"
           type="number"

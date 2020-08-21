@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useAuth0 } from "../../../react-auth0-spa";
+import React, { useState } from "react";
 import ModalAddAddress from "./Address/ModalAddAddress";
 import Address from "./Address/Address";
 
-export default function Addresses() {
-  const { userdb } = useAuth0();
-  const [domicilios, setDomicilios] = useState([]);
-
-  useEffect(() => {
-    setDomicilios(userdb.domicilios);
-  }, [userdb.domicilios]);
-
+export default function Addresses({ toggleReload, userdb }) {
   // Modal agregar domicilio
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,20 +13,25 @@ export default function Addresses() {
   return (
     <div className="container">
       <h6 className="text-muted mb-3">Direcciones:</h6>
-      {domicilios.length !== 0 &&
-        domicilios.map((domicilio) => (
-          <Address key={domicilio._id} domicilio={domicilio} />
+      {userdb.domicilios.length !== 0 &&
+        userdb.domicilios.map((domicilio) => (
+          <Address
+            key={domicilio._id}
+            domicilio={domicilio}
+            toggleReload={toggleReload}
+          />
         ))}
       <div className="d-flex justify-content-center">
-        <button
-          className="btn btn-primary w-25"
-          type="button"
-          onClick={() => toggle()}
-        >
-          <i className="fas fa-map-marker-alt mr-2"></i>AGREGAR
+        <button className="btn btn-info" type="button" onClick={() => toggle()}>
+          AGREGAR
         </button>
       </div>
-      <ModalAddAddress isOpen={isOpen} toggle={toggle} />
+      <ModalAddAddress
+        isOpen={isOpen}
+        toggle={toggle}
+        toggleReload={toggleReload}
+        userdb={userdb}
+      />
     </div>
   );
 }

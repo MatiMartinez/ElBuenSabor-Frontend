@@ -1,68 +1,80 @@
-import React from "react";
-import InputField from "../../../../GlobalReusable/InputField";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import { createPlato, updatePlato } from "../../../../../API/ApiPlatos";
-import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
+import InputSmall from "../../../../GlobalReusable/InputSmall";
+import SelectCategoria from "../../../../GlobalReusable/SelectCategoria";
 
-export default function FormPlatos(props) {
-  const { register, handleSubmit } = useForm();
+export default function FormPlatos({ idEdit, toggleReload, toggle }) {
+  const [plato, setPlato] = useState({
+    denominacion: idEdit === undefined ? "" : idEdit.denominacion,
+    tiempoCocina: idEdit === undefined ? 0 : idEdit.tiempoCocina,
+    precioVenta: idEdit === undefined ? 0 : idEdit.precioVenta,
+    imagenPath: idEdit === undefined ? "" : idEdit.imagenPath,
+    rubro: idEdit === undefined ? "" : idEdit.rubro._id,
+  });
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    if (props.idEdit === undefined) {
-      await createPlato(data);
+  function onChange(e) {
+    e.preventDefault();
+    setPlato({ ...plato, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (idEdit === undefined) {
+      await createPlato(plato);
+      toggleReload();
     } else {
-      await updatePlato(props.idEdit._id, data);
+      await updatePlato(idEdit._id, plato);
+      toggleReload();
+      toggle(undefined);
     }
-    window.location.reload(true);
-  };
+  }
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <InputField
+    <form onSubmit={handleSubmit}>
+      <InputSmall
         id="denominacion"
         label="Denominación"
         type="text"
         name="denominacion"
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.denominacion
-        }
+        value={plato.denominacion}
+        onChange={onChange}
+        required={true}
       />
-      <InputField
+      <InputSmall
         id="tiempoCocina"
         label="Tiempo de cocina (minutos)"
         type="number"
         name="tiempoCocina"
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.tiempoCocina
-        }
+        value={plato.tiempoCocina}
+        onChange={onChange}
+        required={true}
       />
-      <InputField
+      <InputSmall
         id="precioVenta"
         label="Precio de venta"
         type="number"
         name="precioVenta"
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.precioVenta
-        }
+        value={plato.precioVenta}
+        onChange={onChange}
+        required={true}
       />
-      <InputField
+      <InputSmall
         id="imagenPath"
         label="Imagen"
         type="text"
         name="imagenPath"
-        register={register}
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.imagenPath}
+        value={plato.imagenPath}
+        onChange={onChange}
+        required={true}
       />
-      <SelectCategorias
-        register={register}
-        label={true}
+      <SelectCategoria
         name="rubro"
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.rubro._id}
+        value={plato.rubro}
+        onChange={onChange}
+        tipo="catalogo"
+        required={true}
       />
-      {/** Boton siguiente del modal */}
+      {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-5">
         <div className="d-flex justify-content-center pt-3 w-50">
           <button type="submit" className="btn btn-modal w-100 m-2">
@@ -70,7 +82,7 @@ export default function FormPlatos(props) {
           </button>
           <button
             className="btn btn-modal-outline w-100 m-2"
-            onClick={() => props.setIsOpen(false)}
+            onClick={() => toggle(undefined)}
           >
             Volver
           </button>
