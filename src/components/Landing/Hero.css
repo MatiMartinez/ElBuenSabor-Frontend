@@ -1,6 +1,5 @@
 .landing-hero {
-  height: 70vh;
-  margin-top: 106px;
+  height: 60vh;
   background: url("../../assets/landing-hero.jpg") no-repeat center;
   background-size: cover;
 }

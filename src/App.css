@@ -41,23 +41,6 @@
 }
 
 /** Botones de la nav de cocinero cajero y administrador */
-.btn-nav {
-  color: #fff;
-  border-radius: 0%;
-  width: 100%;
-  margin: 5px;
-  max-width: 203px;
-}
-
-.btn-nav:hover {
-  border-bottom: 1px solid #ad2118;
-  color: #ad2118;
-}
-
-.btn-nav:disabled:hover {
-  border-bottom: 1px solid gray;
-  color: gray;
-}
 
 .btn-add {
   background-color: #b68207;

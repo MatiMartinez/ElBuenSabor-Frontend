@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 
 import "./Navbar.css";
 
@@ -77,6 +78,15 @@ const NavBar = () => {
                       activeClassName="router-link-exact-active"
                     >
                       <FontAwesomeIcon icon="user" className="mr-3" /> Perfil
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={RouterNavLink}
+                      to="/pedidos"
+                      className="dropdown-profile"
+                      activeClassName="router-link-exact-active"
+                    >
+                      <FontAwesomeIcon icon={faFileAlt} className="mr-3" />{" "}
+                      Pedidos
                     </DropdownItem>
                     <DropdownItem
                       id="qsLogoutBtn"

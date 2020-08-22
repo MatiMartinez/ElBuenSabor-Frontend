@@ -83,37 +83,40 @@ export default function PedidosCaja() {
       />
       {/** Tabla con pedidos */}
       <div className="col-10 mt-2">
-        <PrivateRoute path="/caja/pendientes">
+        <PrivateRoute path="/caja/pendientes" component={Pendientes}>
           <Pendientes
             pedidosPendientes={pedidosPendientes}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/aprobados">
+        <PrivateRoute path="/caja/aprobados" component={Aprobados}>
           <Aprobados
             pedidosAprobados={pedidosAprobados}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/cancelados">
+        <PrivateRoute path="/caja/cancelados" component={Cancelados}>
           <Cancelados pedidosCancelados={pedidosCancelados} />
         </PrivateRoute>
-        <PrivateRoute path="/caja/en-proceso">
-          <EnProceso pedidosEnProceso={pedidosEnProceso} />
+        <PrivateRoute path="/caja/en-proceso" component={EnProceso}>
+          <EnProceso
+            pedidosEnProceso={pedidosEnProceso}
+            component={EnProceso}
+          />
         </PrivateRoute>
-        <PrivateRoute path="/caja/preparados">
+        <PrivateRoute path="/caja/preparados" component={Preparados}>
           <Preparados
             pedidosPreparados={pedidosPreparados}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/en-delivery">
+        <PrivateRoute path="/caja/en-delivery" component={EnDelivery}>
           <EnDelivery
             pedidosEnDelivery={pedidosEnDelivery}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/entregados">
+        <PrivateRoute path="/caja/entregados" component={Entregados}>
           <Entregados pedidosEntregados={pedidosEntregados} />
         </PrivateRoute>
       </div>

@@ -10,8 +10,8 @@ export default function SelectHome() {
   function HomeCocinero() {
     return (
       <Link className="select-home-link" to="/cocina">
-        <i className="fas fa-hamburger fa-6x fas-border icon-circle-border"></i>
-        <h6 className="text-muted mt-5">COCINERO</h6>
+        <i className="fas fa-hamburger fas-border icon-circle-border"></i>
+        <h6 className="text-muted mt-4">COCINERO</h6>
       </Link>
     );
   }
@@ -19,17 +19,17 @@ export default function SelectHome() {
   function HomeCajero() {
     return (
       <Link className="select-home-link" to="/caja">
-        <i className="fas fa-cash-register fa-6x icon-circle-border" />
-        <h6 className="text-muted mt-5">CAJERO</h6>
+        <i className="fas fa-cash-register icon-circle-border" />
+        <h6 className="text-muted mt-4">CAJERO</h6>
       </Link>
     );
   }
 
   function HomeAdmin() {
     return (
-      <Link className="select-home-link" to="/admin">
-        <i className="fas fa-user-cog fa-6x icon-circle-border"></i>
-        <h6 className="text-muted mt-5">ADMINISTRADOR</h6>
+      <Link className="select-home-link" to="/admin/cocina/insumos">
+        <i className="fas fa-user-cog icon-circle-border"></i>
+        <h6 className="text-muted mt-4">ADMINISTRADOR</h6>
       </Link>
     );
   }
@@ -37,38 +37,46 @@ export default function SelectHome() {
   function HomeCatalog() {
     return (
       <Link className="select-home-link" to="/catalog">
-        <i className="fas fa-store fa-6x icon-circle-border"></i>
-        <h6 className="text-muted mt-5">CATÁLOGO</h6>
+        <i className="fas fa-store icon-circle-border"></i>
+        <h6 className="text-muted mt-4">CATÁLOGO</h6>
       </Link>
     );
   }
 
   return (
-    <div className="select-home text-center">
-      <h4 className="mt-5 mb-5 select-home-title">
+    <div className="select-home">
+      <h4 className="container mt-5 mb-5 select-home-title">
         SELECCIONA EL TIPO DE USUARIO
       </h4>
-      <div className="mt-5 d-flex justify-content-center p-5">
-        <div className="container d-flex justify-content-around w-100">
-          {userdb.roles.map((rol, index) => {
-            if (rol.nombreRol === "Administrador") {
-              return <HomeAdmin key={index} />;
-            }
-            return null;
-          })}
-          {userdb.roles.map((rol, index) => {
-            if (rol.nombreRol === "Cocinero") {
-              return <HomeCocinero key={index} />;
-            }
-            return null;
-          })}
-          {userdb.roles.map((rol, index) => {
-            if (rol.nombreRol === "Cajero") {
-              return <HomeCajero key={index} />;
-            }
-            return null;
-          })}
-          <HomeCatalog />
+      <div className="mt-5 d-flex justify-content-center">
+        <div className="container row">
+          <div className="col-6 col-lg-3">
+            {userdb.roles.map((rol, index) => {
+              if (rol.nombreRol === "Administrador") {
+                return <HomeAdmin key={index} />;
+              }
+              return null;
+            })}
+          </div>
+          <div className="col-6 col-lg-3">
+            {userdb.roles.map((rol, index) => {
+              if (rol.nombreRol === "Cocinero") {
+                return <HomeCocinero key={index} />;
+              }
+              return null;
+            })}
+          </div>
+          <div className="col-6 col-lg-3">
+            {userdb.roles.map((rol, index) => {
+              if (rol.nombreRol === "Cajero") {
+                return <HomeCajero key={index} />;
+              }
+              return null;
+            })}
+          </div>
+          <div className="col-6 col-lg-3">
+            <HomeCatalog />
+          </div>
         </div>
       </div>
     </div>

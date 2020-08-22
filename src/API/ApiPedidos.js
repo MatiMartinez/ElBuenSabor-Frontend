@@ -35,3 +35,16 @@ export async function updateEstado(estado, id) {
       console.log(err);
     });
 }
+
+export async function getPedidosUsuario(id) {
+  return await api
+    .get(`/pedidos/usuario/${id}`)
+    .then((res) => {
+      console.log(res);
+      const resData = res.data;
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

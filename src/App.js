@@ -25,6 +25,7 @@ import SelectHome from "./views/SelectHome/SelectHome";
 import Catalog from "./components/Clientes/Catalog/Catalog";
 import { CartProvider } from "./context/CartContext";
 import PageNotFound from "./components/404NotFound/PageNotFound";
+import HistorialPedidos from "./components/Clientes/HistorialPedidos/HistorialPedidos";
 initFontAwesome();
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
               <PrivateRoute path="/catalog" component={Catalog} />
               <PrivateRoute path="/select-home" component={SelectHome} />
               <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/pedidos" component={HistorialPedidos} />
               <PrivateRoute path="/cocina" component={Cocina} />
               <PrivateRoute path="/caja" component={Caja} />
               <PrivateRoute path="/admin" component={Admin} />
