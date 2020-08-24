@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { TextField } from "@material-ui/core";
-import { getRecaudaciones } from "../../../../API/ApiReportes";
+import TextField from "@material-ui/core/TextField";
+import { getPedidosPorCliente } from "../../../../../API/ApiReportes";
+import OpcionesPedidosReporte from "./OpcionesPedidosReporte";
 
-export default function RecaudacionesReporte() {
-  const [recaudaciones, setRecaudaciones] = useState([]);
+export default function PedidosReporte() {
+  const [pedidos, setPedidos] = useState([]);
   const [fecha_desde, setFecha_desde] = useState("2020-08-01");
   const [fecha_hasta, setFecha_hasta] = useState("2020-08-23");
 
   async function onSubmit() {
-    const data = await getRecaudaciones({ fecha_desde, fecha_hasta });
-    console.log(data);
-    setRecaudaciones(data);
+    const data = await getPedidosPorCliente({ fecha_desde, fecha_hasta });
+    setPedidos(data);
   }
 
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-between align-items-center">
-        <div className="text-muted">Recaudaciones</div>
+        <div className="text-muted">Pedidos</div>
         <div>
           <a
             className="btn btn-info mb-1"
-            href="http://localhost:3033/api/reportes/descargar/recaudaciones"
+            href={`http://localhost:3033/api/reportes/descargar/pedidos-cliente?fecha_desde=${fecha_desde}&fecha_hasta=${fecha_hasta}`}
           >
             <i className="fas fa-file-download mr-2"></i>
             Excel
@@ -61,30 +61,35 @@ export default function RecaudacionesReporte() {
           Buscar
         </button>
       </div>
-      {recaudaciones.length !== 0 ? (
+      {pedidos.length !== 0 && (
         <div>
           <table className="table">
             <thead>
               <tr>
-                <th>Tipo</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Pedidos Realizados</th>
+                <th>Pedidos Entregados</th>
+                <th className="text-center">
+                  <i className="fas fa-cog"></i>
+                </th>
               </tr>
             </thead>
             <tbody>
-              {recaudaciones.map((recaudacion, index) => (
-                <tr key={index}>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+              {pedidos.map((pedido, index) => (
+                <tr key="index">
+                  <td>{pedido.nombre}</td>
+                  <td>{pedido.email}</td>
+                  <td>{pedido.pedidosRealizados}</td>
+                  <td>{pedido.pedidosEntregados}</td>
+                  <td className="text-center">
+                    <OpcionesPedidosReporte userId={pedido.usuarioId} />
+                  </td>
                 </tr>
               ))}
-              {/** Se me ocurrio mostrar cantidad y total de reventas, insumos y el total de todo */}
             </tbody>
           </table>
         </div>
-      ) : (
-        <div></div>
       )}
     </div>
   );

@@ -3,7 +3,8 @@ import SidebarReportes from "./SidebarReportes";
 import PrivateRoute from "../../../routes/PrivateRoute";
 import StockReporte from "./TablasReportes/StockReporte";
 import RecaudacionesReporte from "./TablasReportes/RecaudacionesReporte";
-import PedidosReporte from "./TablasReportes/PedidosReporte";
+import PedidosReporte from "./TablasReportes/PedidosReportes/PedidosReporte";
+import RankingReporte from "./TablasReportes/RankingReportes/RankingReporte";
 
 export default function Reportes() {
   return (
@@ -18,7 +19,7 @@ export default function Reportes() {
           />
           <PrivateRoute
             path="/admin/reportes/ranking"
-            component={StockReporte}
+            component={RankingReporte}
           />
           <PrivateRoute
             path="/admin/reportes/pedidos"

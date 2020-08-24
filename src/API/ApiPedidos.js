@@ -40,8 +40,21 @@ export async function getPedidosUsuario(id) {
   return await api
     .get(`/pedidos/usuario/${id}`)
     .then((res) => {
-      console.log(res);
       const resData = res.data;
+      console.log(resData);
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function facturarPedido(id) {
+  return await api
+    .get(`/pedidos/${id}/facturar`)
+    .then((res) => {
+      const resData = res.data;
+      console.log(resData);
       return resData;
     })
     .catch((err) => {
