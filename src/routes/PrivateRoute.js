@@ -21,16 +21,22 @@ const PrivateRoute = ({ component: Component, path, rol, ...rest }) => {
   }, [loading, isAuthenticated, loginWithRedirect, path, userdb, rol]);
 
   function verificarRol(nombreRol) {
-    if (rol === "") {
-      return true;
-    } else if (nombreRol.nombreRol === "Administrador") {
+    if (nombreRol.nombreRol === "Administrador") {
       return true;
     }
     return nombreRol.nombreRol === rol;
   }
 
+  function verificarUser() {
+    if (rol === "") {
+      return true;
+    } else {
+      userdb.roles.some(verificarRol);
+    }
+  }
+
   const render = (props) =>
-    isAuthenticated === true && userdb.roles.some(verificarRol) ? (
+    isAuthenticated === true && verificarUser() ? (
       <Component {...props} />
     ) : (
       <PageNotFound />
