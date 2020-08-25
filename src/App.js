@@ -53,11 +53,7 @@ const App = () => {
               />
               <PrivateRoute path="/cocina" component={Cocina} rol="Cocinero" />
               <PrivateRoute path="/caja" component={Caja} rol="Cajero" />
-              <PrivateRoute
-                path="/admin"
-                component={Admin}
-                rol="Administrador"
-              />
+              <PrivateRoute path="/admin" component={Admin} rol="" />
               <Route path="*" component={PageNotFound} />
             </Switch>
           </CartProvider>
