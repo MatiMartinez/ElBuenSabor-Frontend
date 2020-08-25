@@ -83,40 +83,64 @@ export default function PedidosCaja() {
       />
       {/** Tabla con pedidos */}
       <div className="col-10 mt-2">
-        <PrivateRoute path="/caja/pendientes" component={Pendientes}>
+        <PrivateRoute
+          path="/caja/pendientes"
+          component={Pendientes}
+          rol="Cajero"
+        >
           <Pendientes
             pedidosPendientes={pedidosPendientes}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/aprobados" component={Aprobados}>
+        <PrivateRoute path="/caja/aprobados" component={Aprobados} rol="Cajero">
           <Aprobados
             pedidosAprobados={pedidosAprobados}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/cancelados" component={Cancelados}>
+        <PrivateRoute
+          path="/caja/cancelados"
+          component={Cancelados}
+          rol="Cajero"
+        >
           <Cancelados pedidosCancelados={pedidosCancelados} />
         </PrivateRoute>
-        <PrivateRoute path="/caja/en-proceso" component={EnProceso}>
+        <PrivateRoute
+          path="/caja/en-proceso"
+          component={EnProceso}
+          rol="Cajero"
+        >
           <EnProceso
             pedidosEnProceso={pedidosEnProceso}
             component={EnProceso}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/preparados" component={Preparados}>
+        <PrivateRoute
+          path="/caja/preparados"
+          component={Preparados}
+          rol="Cajero"
+        >
           <Preparados
             pedidosPreparados={pedidosPreparados}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/en-delivery" component={EnDelivery}>
+        <PrivateRoute
+          path="/caja/en-delivery"
+          component={EnDelivery}
+          rol="Cajero"
+        >
           <EnDelivery
             pedidosEnDelivery={pedidosEnDelivery}
             toggleReload={toggleReload}
           />
         </PrivateRoute>
-        <PrivateRoute path="/caja/entregados" component={Entregados}>
+        <PrivateRoute
+          path="/caja/entregados"
+          component={Entregados}
+          rol="Cajero"
+        >
           <Entregados pedidosEntregados={pedidosEntregados} />
         </PrivateRoute>
       </div>

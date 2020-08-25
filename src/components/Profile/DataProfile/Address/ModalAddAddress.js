@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import InputField from "../../../GlobalReusable/InputField";
 import { createDomicilio } from "../../../../API/ApiDomicilios";
-import { useAuth0 } from "../../../../react-auth0-spa";
 import { customStyle } from "../../../../utils/modalStyle";
 
 export default function ModalAddAddress({

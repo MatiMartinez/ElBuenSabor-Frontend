@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Route, withRouter } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-spa";
+import PageNotFound from "../components/404NotFound/PageNotFound";
 
-const PrivateRoute = ({ component: Component, path, ...rest }) => {
-  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
+const PrivateRoute = ({ component: Component, path, rol, ...rest }) => {
+  const { loading, isAuthenticated, loginWithRedirect, userdb } = useAuth0();
 
   useEffect(() => {
     if (loading || isAuthenticated) {
+      console.log(rol);
       return;
     }
     const fn = async () => {
@@ -16,10 +18,23 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
       });
     };
     fn();
-  }, [loading, isAuthenticated, loginWithRedirect, path]);
+  }, [loading, isAuthenticated, loginWithRedirect, path, userdb, rol]);
+
+  function verificarRol(nombreRol) {
+    if (rol === "") {
+      return true;
+    } else if (nombreRol.nombreRol === "Administrador") {
+      return true;
+    }
+    return nombreRol.nombreRol === rol;
+  }
 
   const render = (props) =>
-    isAuthenticated === true ? <Component {...props} /> : null;
+    isAuthenticated === true && userdb.roles.some(verificarRol) ? (
+      <Component {...props} />
+    ) : (
+      <PageNotFound />
+    );
 
   return <Route path={path} render={render} {...rest} />;
 };

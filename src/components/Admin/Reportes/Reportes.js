@@ -12,18 +12,25 @@ export default function Reportes() {
       <div className="row">
         <SidebarReportes />
         <div className="col-10">
-          <PrivateRoute path="/admin/reportes/stock" component={StockReporte} />
+          <PrivateRoute
+            path="/admin/reportes/stock"
+            component={StockReporte}
+            rol="Administrador"
+          />
           <PrivateRoute
             path="/admin/reportes/recaudaciones"
             component={RecaudacionesReporte}
+            rol="Administrador"
           />
           <PrivateRoute
             path="/admin/reportes/ranking"
             component={RankingReporte}
+            rol="Administrador"
           />
           <PrivateRoute
             path="/admin/reportes/pedidos"
             component={PedidosReporte}
+            rol="Administrador"
           />
         </div>
       </div>

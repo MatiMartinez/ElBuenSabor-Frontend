@@ -20,7 +20,7 @@ export default function OpcionesPedidosReporte({ userId }) {
       console.log(data);
     }
     getPedidos();
-  }, []);
+  }, []); //eslint-disable-line
 
   const [dropdownOpen, setOpen] = useState(false);
 

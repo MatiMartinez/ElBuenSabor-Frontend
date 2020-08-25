@@ -12,9 +12,21 @@ const Admin = () => {
       {/** Nav Admin */}
       <NavAdmin />
       {/** Content Admin */}
-      <PrivateRoute path="/admin/cocina" component={Cocina} />
-      <PrivateRoute path="/admin/empleados" component={Empleados} />
-      <PrivateRoute path="/admin/reportes" component={Reportes} />
+      <PrivateRoute
+        path="/admin/cocina"
+        component={Cocina}
+        rol="Administrador"
+      />
+      <PrivateRoute
+        path="/admin/empleados"
+        component={Empleados}
+        rol="Administrador"
+      />
+      <PrivateRoute
+        path="/admin/reportes"
+        component={Reportes}
+        rol="Administrador"
+      />
     </div>
   );
 };

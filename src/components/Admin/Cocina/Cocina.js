@@ -9,12 +9,25 @@ const Cocina = () => {
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div className="m-4">
-      <PrivateRoute path="/admin/cocina/insumos" component={Insumos} />
-      <PrivateRoute path="/admin/cocina/platos" component={Platos} />
-      <PrivateRoute path="/admin/cocina/categorias" component={Categorias} />
+      <PrivateRoute
+        path="/admin/cocina/insumos"
+        component={Insumos}
+        rol="Administrador"
+      />
+      <PrivateRoute
+        path="/admin/cocina/platos"
+        component={Platos}
+        rol="Administrador"
+      />
+      <PrivateRoute
+        path="/admin/cocina/categorias"
+        component={Categorias}
+        rol="Administrador"
+      />
       <PrivateRoute
         path="/admin/cocina/articulos-reventa"
         component={ArtReventa}
+        rol="Administrador"
       />
     </div>
   );

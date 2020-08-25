@@ -43,13 +43,21 @@ const App = () => {
           <CartProvider>
             <Switch>
               <Route path="/" exact component={Home} />
-              <PrivateRoute path="/catalog" component={Catalog} />
-              <PrivateRoute path="/select-home" component={SelectHome} />
-              <PrivateRoute path="/profile" component={Profile} />
-              <PrivateRoute path="/pedidos" component={HistorialPedidos} />
-              <PrivateRoute path="/cocina" component={Cocina} />
-              <PrivateRoute path="/caja" component={Caja} />
-              <PrivateRoute path="/admin" component={Admin} />
+              <PrivateRoute path="/catalog" component={Catalog} rol="" />
+              <PrivateRoute path="/select-home" component={SelectHome} rol="" />
+              <PrivateRoute path="/profile" component={Profile} rol="" />
+              <PrivateRoute
+                path="/pedidos"
+                component={HistorialPedidos}
+                rol=""
+              />
+              <PrivateRoute path="/cocina" component={Cocina} rol="Cocinero" />
+              <PrivateRoute path="/caja" component={Caja} rol="Cajero" />
+              <PrivateRoute
+                path="/admin"
+                component={Admin}
+                rol="Administrador"
+              />
               <Route path="*" component={PageNotFound} />
             </Switch>
           </CartProvider>
