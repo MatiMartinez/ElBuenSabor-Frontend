@@ -37,7 +37,7 @@ export default function CatalogoProductos({ selectedCategory }) {
       <div className="row mt-3">
         {productos.length !== 0 &&
           productos.map((producto, index) => (
-            <div className="col-6" key={index}>
+            <div className="col-6 col-md-6" key={index}>
               <ProductoCard
                 producto={producto}
                 seleccionarProducto={seleccionarProducto}

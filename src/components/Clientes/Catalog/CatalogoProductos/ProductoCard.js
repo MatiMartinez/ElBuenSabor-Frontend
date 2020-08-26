@@ -7,7 +7,7 @@ export default function ProductoCard({ producto, seleccionarProducto }) {
       onClick={() => seleccionarProducto(producto)}
     >
       <div className="row h-100">
-        <div className="col-md-8 my-auto">
+        <div className="col-12 col-md-8 my-auto">
           <div className="card-body p-2 pl-4">
             <h6 className="m-0">{producto.denominacion}</h6>
             <p className="text-producto text-muted m-0">
@@ -18,7 +18,7 @@ export default function ProductoCard({ producto, seleccionarProducto }) {
             <h6 className="m-0">$ {producto.precioVenta}</h6>
           </div>
         </div>
-        <div className="col-md-4 my-auto">
+        <div className="col-12 col-md-4 my-auto">
           <img
             src={producto.imagenPath}
             className="card-img p-0 m-0"

@@ -9,7 +9,6 @@ const PrivateRoute = ({ component: Component, path, rol, ...rest }) => {
 
   useEffect(() => {
     if (loading || isAuthenticated) {
-      console.log(rol);
       return;
     }
     const fn = async () => {
@@ -20,18 +19,15 @@ const PrivateRoute = ({ component: Component, path, rol, ...rest }) => {
     fn();
   }, [loading, isAuthenticated, loginWithRedirect, path, userdb, rol]);
 
-  function verificarRol(nombreRol) {
-    if (nombreRol.nombreRol === "Administrador") {
-      return true;
-    }
-    return nombreRol.nombreRol === rol;
-  }
+  const even = (ele) => ele.nombreRol === rol;
+
+  const evenAdmin = (ele) => ele.nombreRol === "Administrador";
 
   function verificarUser() {
-    if (rol === "") {
+    if (userdb.roles.some(even) || userdb.roles.some(evenAdmin) || rol === "") {
       return true;
     } else {
-      userdb.roles.some(verificarRol);
+      return false;
     }
   }
 

@@ -5,9 +5,25 @@
   background-size: cover;
 }
 
+.content-title-catalog {
+  width: 75%;
+}
+
+@media (min-width: 768px) {
+  .content-title-catalog {
+    width: 50%;
+  }
+}
+
 .title-catalog {
   font-weight: 1000;
-  font-size: 64px;
+  font-size: 44px;
   text-align: center;
   color: #222;
+}
+
+@media (min-width: 768px) {
+  .title-catalog {
+    font-size: 64px;
+  }
 }

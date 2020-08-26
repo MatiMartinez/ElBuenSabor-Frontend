@@ -18,7 +18,6 @@ export default function OpcionesIngrediente({
     setOpen(!dropdownOpen);
   }
 
-  // Opciones para editar o borrar ingrediente
   async function borrarIngrediente() {
     await softDeleteIngrediente(ingrediente._id);
     toggleReload();

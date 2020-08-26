@@ -44,15 +44,27 @@ export default function ModalCarrito({ toggle, isOpen }) {
     const reventasId = reventas.map((reventa) => {
       return { item_id: reventa.item._id, cantidad: reventa.cantidad };
     });
-    const detallePedido = {
-      usuario: userdb._id,
-      delivery: delivery,
-      formaPago: "Efectivo",
-      domicilio: domicilio,
-      platos: platosId,
-      reventas: reventasId,
-    };
+    var detallePedido = {};
+    if (domicilio === "") {
+      detallePedido = {
+        usuario: userdb._id,
+        delivery: delivery,
+        formaPago: "Efectivo",
+        platos: platosId,
+        reventas: reventasId,
+      };
+    } else {
+      detallePedido = {
+        usuario: userdb._id,
+        delivery: delivery,
+        formaPago: "Efectivo",
+        domicilio: domicilio,
+        platos: platosId,
+        reventas: reventasId,
+      };
+    }
     await createPedido(detallePedido);
+    emptyCart();
     toggle();
   }
 

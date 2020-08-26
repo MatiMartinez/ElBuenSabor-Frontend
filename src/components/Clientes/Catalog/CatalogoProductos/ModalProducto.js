@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { customStyleProduct } from "../../../../utils/modalStyle";
 import { useCart } from "../../../../context/CartContext";
 
 export default function ModalProducto({ isOpen, toggle, producto }) {
@@ -16,7 +15,12 @@ export default function ModalProducto({ isOpen, toggle, producto }) {
   }
 
   return (
-    <Modal isOpen={isOpen} ariaHideApp={false} style={customStyleProduct}>
+    <Modal
+      isOpen={isOpen}
+      ariaHideApp={false}
+      className="modal-producto"
+      overlayClassName="modal-producto-overlay"
+    >
       <div>
         <button className="btn float-right" onClick={() => toggle()}>
           <i className="fas fa-times fa-2x"></i>

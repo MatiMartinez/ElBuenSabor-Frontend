@@ -5,11 +5,15 @@ import InputSmall from "../../../../GlobalReusable/InputSmall";
 import { addIngredientes } from "../../../../../API/ApiPlatos";
 
 export default function FormIngredientes({ idEdit, toggle, toggleReload, id }) {
-  const [categoria, setCategoria] = useState(idEdit === undefined ? "" : ""); // Falta el rubro del insumo
+  const [categoria, setCategoria] = useState(
+    idEdit === undefined ? "" : idEdit.insumo.rubro._id
+  );
   const [ingrediente, setIngrediente] = useState({
     insumo_id: idEdit === undefined ? "" : idEdit.insumo._id,
     cantidad: idEdit === undefined ? 1 : idEdit.cantidad,
   });
+
+  console.log(idEdit);
 
   function onChange(e) {
     setIngrediente({ ...ingrediente, [e.target.name]: e.target.value });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Carousel
 import "slick-carousel/slick/slick.css";
@@ -19,15 +19,6 @@ const Catalog = () => {
   const [busqueda, setBusqueda] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    document.getElementById("navbar-user-color").style.background =
-      "transparent";
-    return () => {
-      document.getElementById("navbar-user-color").style.background =
-        "transparent";
-    };
-  }, []);
-
   const onSubmitBusqueda = (e) => {
     e.preventDefault();
     console.log(busqueda);
@@ -46,10 +37,10 @@ const Catalog = () => {
   }
 
   return (
-    <div className="">
+    <div>
       {/** Hero */}
       <Hero>
-        <form onSubmit={onSubmitBusqueda} className="w-50">
+        <form onSubmit={onSubmitBusqueda} className="buscador-content">
           <Buscador onChange={onChange} />
         </form>
       </Hero>

@@ -12,7 +12,7 @@ export default function Form({ toggle, toggleReload }) {
     const rol = { usuario: idEncontrado, nombreRol: data.nombreRol };
     await createRol(rol);
     toggleReload();
-    toggle(false);
+    toggle();
   };
 
   return (
