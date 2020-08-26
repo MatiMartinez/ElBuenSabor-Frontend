@@ -20,7 +20,7 @@ export default function PlatoCard({ plato, toggleReload, togglePlato }) {
   }
 
   return (
-    <div className="col-6">
+    <div className="col-6 mb-3">
       <ModalForm isOpen={isOpen}>
         <FormIngredientes
           idEdit={idEdit}

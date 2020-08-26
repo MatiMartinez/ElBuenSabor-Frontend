@@ -3,6 +3,7 @@ import SelectInsumos from "../../../../GlobalReusable/SelectInsumos";
 import SelectCategoria from "../../../../GlobalReusable/SelectCategoria";
 import InputSmall from "../../../../GlobalReusable/InputSmall";
 import { addIngredientes } from "../../../../../API/ApiPlatos";
+import { updateIngrediente } from "../../../../../API/ApiIngredientes";
 
 export default function FormIngredientes({ idEdit, toggle, toggleReload, id }) {
   const [categoria, setCategoria] = useState(
@@ -34,7 +35,7 @@ export default function FormIngredientes({ idEdit, toggle, toggleReload, id }) {
       setCategoria("");
       setIngrediente({ insumo_id: "", cantidad: 1 });
     } else {
-      // Editar Ingrediente
+      updateIngrediente(id, ingrediente);
       toggle();
     }
   }

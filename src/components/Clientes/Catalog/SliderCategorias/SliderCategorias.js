@@ -32,14 +32,12 @@ export default function SliderCategorias({ setSelectedCategory }) {
         <h3>CATEGORÍAS</h3>
         <Slider className="w-100 mt-4 row" {...settings}>
           {categorias.length !== 0 &&
-            categorias.map((categoria) => (
-              <div
-                onClick={() => selectCategory(categoria._id)}
-                className="onclick-container"
-                key={categoria._id}
-              >
-                <SliderCardCategoria categoria={categoria} />
-              </div>
+            categorias.map((categoria, index) => (
+              <SliderCardCategoria
+                categoria={categoria}
+                selectCategory={selectCategory}
+                key={index}
+              />
             ))}
         </Slider>
       </div>

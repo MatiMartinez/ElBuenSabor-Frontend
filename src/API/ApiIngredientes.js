@@ -1,7 +1,7 @@
 import api from "./api";
 
 export async function createIngrediente(ingrediente) {
-  api
+  await api
     .post("/ingredientes/", ingrediente)
     .then((res) => {
       console.log(res);
@@ -11,11 +11,23 @@ export async function createIngrediente(ingrediente) {
 }
 
 export async function softDeleteIngrediente(id) {
-  api
+  await api
     .put(`/ingredientes/softdelete/${id}`)
     .then((res) => {
       console.log(res);
       console.log("Ingrediente quitado");
     })
     .catch((err) => console.log(err));
+}
+
+export async function updateIngrediente(id, data) {
+  await api
+    .put(`/ingredientes/${id}`, data)
+    .then((res) => {
+      console.log(res);
+      console.log("Ingrediente editado");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }

@@ -109,11 +109,19 @@
 
 /* SliderCardCategoria */
 .text-slider-card {
-  height: 40%;
+  height: 30%;
   width: 100%;
-  position: fixed;
   color: #ffffff;
   background: #00000099;
+  font-size: 14px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .text-slider-card {
+    font-size: 18px;
+  }
 }
 
 /* ProductoCard */

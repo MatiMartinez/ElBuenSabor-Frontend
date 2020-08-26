@@ -1,20 +1,22 @@
 import React from "react";
 
-export default function SliderCardCategoria({ categoria }) {
+export default function SliderCardCategoria({ categoria, selectCategory }) {
   return (
     <div
-      className="d-flex flex-column-reverse"
+      className="d-flex flex-column-reverse onclick-container"
       style={{
         backgroundImage: `url(${categoria.imagenPath})`,
-        width: "100%",
         height: "130px",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        borderRadius: "10px",
+        margin: "10px",
       }}
+      onClick={() => selectCategory(categoria._id)}
     >
       <div className="text-slider-card d-flex align-items-center justify-content-center">
-        <h5>{categoria.denominacion}</h5>
+        {categoria.denominacion}
       </div>
     </div>
   );
