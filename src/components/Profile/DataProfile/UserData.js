@@ -7,7 +7,10 @@ export default function UserData({ toggleReload, userdb }) {
   const [userData, setUserData] = useState({
     nombre: userdb.nombre,
     apellido: userdb.apellido,
-    fechaNacimiento: userdb.fechaNacimiento.slice(0, 10),
+    fechaNacimiento:
+      userdb.fechaNacimiento !== null
+        ? userdb.fechaNacimiento.slice(0, 10)
+        : "",
     telefono: userdb.telefono,
   });
 
