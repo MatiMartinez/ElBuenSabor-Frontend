@@ -1,97 +1,110 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import { createInsumo, updateInsumo } from "../../../../../API/InsumosApi";
-import InputField from "../../../../GlobalReusable/InputField";
 import SelectMedida from "../../../../GlobalReusable/SelectMedida";
-import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
+import InputSmall from "../../../../GlobalReusable/InputSmall";
+import SelectCategoria from "../../../../GlobalReusable/SelectCategoria";
 
-export default function FormInsumos(props) {
-  const { register, handleSubmit, reset } = useForm();
+export default function FormInsumos({ idEdit, toggle, toggleReload }) {
+  const [insumo, setInsumo] = useState({
+    denominacion: idEdit === undefined ? "" : idEdit.denominacion,
+    precioCompra: idEdit === undefined ? 0 : idEdit.precioCompra,
+    stockMinimo: idEdit === undefined ? 0 : idEdit.stockMinimo,
+    stockMaximo: idEdit === undefined ? 0 : idEdit.stockMaximo,
+    stockActual: idEdit === undefined ? 0 : idEdit.stockActual,
+    unidadMedida: idEdit === undefined ? "" : idEdit.unidadMedida,
+    rubro: idEdit === undefined ? "" : idEdit.rubro._id,
+  });
 
-  const onSubmit = async (data) => {
-    if (props.idEdit === undefined) {
-      await createInsumo(data);
-      props.setReload(true);
-      reset();
+  function onChange(e) {
+    e.preventDefault();
+    setInsumo({ ...insumo, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (idEdit === undefined) {
+      await createInsumo(insumo);
+      toggleReload();
+      setInsumo({
+        denominacion: "",
+        precioCompra: 0,
+        stockMinimo: 0,
+        stockMaximo: 0,
+        stockActual: 0,
+        unidadMedida: "",
+        rubro: "",
+      });
     } else {
-      await updateInsumo(props.idEdit._id, data);
-      props.setReload(true);
-      props.setIsOpen(false);
+      await updateInsumo(idEdit._id, insumo);
+      toggleReload();
+      toggle(undefined);
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <InputField
+    <form onSubmit={handleSubmit}>
+      <InputSmall
         id="denominacion"
         label="Denominación"
         type="text"
         name="denominacion"
-        register={register}
+        value={insumo.denominacion}
+        onChange={onChange}
         required={true}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.denominacion
-        }
       />
+
       <div className="w-50">
-        <InputField
+        <InputSmall
           id="precioCompra"
           label="Precio de compra"
           type="number"
           name="precioCompra"
-          register={register}
+          value={insumo.precioCompra}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? 0 : props.idEdit.precioCompra
-          }
         />
       </div>
       <SelectMedida
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.unidadMedida
-        }
+        name="unidadMedida"
+        value={insumo.unidadMedida}
+        onChange={onChange}
+        required={true}
       />
       <div className="d-flex justify-content-between">
-        <InputField
+        <InputSmall
           id="stockMinimo"
           label="Stock mínimo"
           type="number"
           name="stockMinimo"
-          register={register}
+          value={insumo.stockMinimo}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockMinimo
-          }
         />
-        <InputField
+        <InputSmall
           id="stockMaximo"
           label="Stock máximo"
           type="number"
           name="stockMaximo"
-          register={register}
+          value={insumo.stockMaximo}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockMaximo
-          }
         />
-        <InputField
+        <InputSmall
           id="stockActual"
           label="Stock Actual"
           type="number"
           name="stockActual"
-          register={register}
+          value={insumo.stockActual}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockMaximo
-          }
         />
       </div>
-      <SelectCategorias
-        register={register}
-        label={true}
+      <SelectCategoria
         name="rubro"
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.rubro._id}
+        value={insumo.rubro}
+        onChange={onChange}
+        tipo="insumo"
+        required={true}
       />
       {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-4">
@@ -101,7 +114,7 @@ export default function FormInsumos(props) {
           </button>
           <button
             className="btn btn-modal-outline w-100 m-2"
-            onClick={() => props.setIsOpen(false)}
+            onClick={() => toggle(undefined)}
           >
             Volver
           </button>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getUnidadesMedida } from "../../API/ApiOpciones";
 
-const SelectMedida = ({ register, defaultValue }) => {
+const SelectMedida = ({ value, onChange, required, name }) => {
   const [medidas, setMedidas] = useState([]);
 
   useEffect(() => {
@@ -12,8 +12,6 @@ const SelectMedida = ({ register, defaultValue }) => {
     cargarMedidas();
   }, []);
 
-  const [value, setValue] = useState(defaultValue);
-
   return (
     <div className="form-group m-1">
       <label
@@ -23,12 +21,12 @@ const SelectMedida = ({ register, defaultValue }) => {
         Unidad de Medida
       </label>
       <select
-        name="unidadMedida"
+        name={name}
         id="selectMedida"
         className="form-control form-control-sm"
         value={value}
-        ref={register}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange}
+        required={required}
       >
         <option hidden disabled value="">
           Seleccione una unidad de medida

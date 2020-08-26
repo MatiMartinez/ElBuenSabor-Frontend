@@ -29,16 +29,19 @@ const Insumos = () => {
   // Re-render
   const [reload, setReload] = useState(true);
 
+  function toggleReload() {
+    setReload(!reload);
+  }
+
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div className="mt-4">
       {/** Modal */}
-      <ModalForm isOpen={isOpen} idEdit={idEdit}>
+      <ModalForm isOpen={isOpen}>
         <FormInsumos
           idEdit={idEdit}
-          setIsOpen={setIsOpen}
-          reload={reload}
-          setReload={setReload}
+          toggle={toggle}
+          toggleReload={toggleReload}
         />
       </ModalForm>
       {/** Encabezado */}
