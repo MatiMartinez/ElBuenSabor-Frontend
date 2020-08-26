@@ -56,6 +56,7 @@ const Insumos = () => {
           label={false}
           allValue={true}
           name="rubro"
+          tipo="insumos"
           defaultValue={selectedCategory}
         />
       </Encabezado>

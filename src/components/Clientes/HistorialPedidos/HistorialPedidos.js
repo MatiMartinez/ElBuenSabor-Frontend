@@ -5,8 +5,6 @@ import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import "./HistorialPedidos.css";
 import { getPedidosUsuario } from "../../../API/ApiPedidos";
 import { useAuth0 } from "../../../react-auth0-spa";
-import { Table } from "reactstrap";
-import PopoverDetalle from "../../Cajero/PedidosCaja/PedidosEstado/PopoverDetalle";
 import TableEntregados from "./TableEntregados";
 import TablePendientes from "./TablePendientes";
 
