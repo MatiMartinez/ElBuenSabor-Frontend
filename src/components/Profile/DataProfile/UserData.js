@@ -11,7 +11,7 @@ export default function UserData({ toggleReload, userdb }) {
       userdb.fechaNacimiento !== null
         ? userdb.fechaNacimiento.slice(0, 10)
         : "",
-    telefono: userdb.telefono,
+    telefono: userdb.telefono !== null ? userdb.telefono : "",
   });
 
   function handleChange(e) {
