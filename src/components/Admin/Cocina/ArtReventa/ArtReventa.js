@@ -29,12 +29,16 @@ const ArtReventa = () => {
   // Re-render
   const [reload, setReload] = useState(true);
 
+  function toggleReload() {
+    setReload(!reload);
+  }
+
   /** JSX -------------------------------------------------------------------------------- */
   return (
     <div>
       {/** Modal */}
       <ModalForm isOpen={isOpen}>
-        <Form idEdit={idEdit} setIsOpen={setIsOpen} setReload={setReload} />
+        <Form idEdit={idEdit} toggle={toggle} toggleReload={toggleReload} />
       </ModalForm>
       {/** Encabezado */}
       <Encabezado
@@ -44,6 +48,7 @@ const ArtReventa = () => {
         title={"Artículos de reventa"}
       >
         <SelectCategorias
+          tipo="catalogo"
           name="rubro"
           register={register}
           label={false}

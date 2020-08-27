@@ -1,123 +1,130 @@
-import React from "react";
-import InputField from "../../../../GlobalReusable/InputField";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import InputSmall from "../../../../GlobalReusable/InputSmall";
 import { createReventa, updateReventa } from "../../../../../API/ArtReventaApi";
-import SelectCategorias from "../../../../GlobalReusable/SelectCategorias";
 import SelectMedida from "../../../../GlobalReusable/SelectMedida";
+import SelectCategoria from "../../../../GlobalReusable/SelectCategoria";
 
-export default function Form(props) {
-  const { register, handleSubmit, reset } = useForm();
+export default function Form({ idEdit, toggle, toggleReload }) {
+  const [reventa, setReventa] = useState({
+    denominacion: idEdit === undefined ? "" : idEdit.denominacion,
+    precioCompra: idEdit === undefined ? 0 : idEdit.precioCompra,
+    precioVenta: idEdit === undefined ? 0 : idEdit.precioVenta,
+    stockMinimo: idEdit === undefined ? 0 : idEdit.stockMinimo,
+    stockMaximo: idEdit === undefined ? 0 : idEdit.stockMaximo,
+    stockActual: idEdit === undefined ? 0 : idEdit.stockActual,
+    unidadMedida: idEdit === undefined ? "" : idEdit.unidadMedida,
+    rubro: idEdit === undefined ? "" : idEdit.rubro._id,
+    imagenPath: idEdit === undefined ? "" : idEdit.imagenPath,
+  });
 
-  const onSubmit = async (data) => {
-    if (props.idEdit === undefined) {
-      await createReventa(data);
-      props.setReload(true);
-      reset();
+  function onChange(e) {
+    setReventa({ ...reventa, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (idEdit === undefined) {
+      await createReventa(reventa);
+      toggleReload();
+      setReventa({
+        denominacion: "",
+        precioCompra: 0,
+        precioVenta: 0,
+        stockMinimo: 0,
+        stockMaximo: 0,
+        stockActual: 0,
+        unidadMedida: "",
+        rubro: "",
+        imagenPath: "",
+      });
     } else {
-      await updateReventa(props.idEdit._id, data);
-      props.setReload(true);
-      props.setIsOpen(false);
+      await updateReventa(idEdit._id, reventa);
+      toggleReload();
+      toggle(undefined);
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <InputField
+    <form onSubmit={handleSubmit}>
+      <InputSmall
         id="denominacion"
         label="Denominación"
         type="text"
         name="denominacion"
-        register={register}
+        value={reventa.denominacion}
+        onChange={onChange}
         required={true}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.denominacion
-        }
       />
       <div className="d-flex justify-content-between">
-        <InputField
+        <InputSmall
           id="precioCompra"
           label="Precio de Compra"
           type="number"
           name="precioCompra"
-          register={register}
+          value={reventa.precioCompra}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.precioCompra
-          }
         />
-        <InputField
+        <InputSmall
           id="precioVenta"
           label="Precio de Venta"
           type="number"
           name="precioVenta"
-          register={register}
+          value={reventa.precioVenta}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.precioVenta
-          }
         />
       </div>
       <SelectMedida
-        register={register}
-        defaultValue={
-          props.idEdit === undefined ? "" : props.idEdit.unidadMedida
-        }
+        value={reventa.unidadMedida}
+        onChange={onChange}
+        required={true}
+        name="unidadMedida"
       />
       <div className="d-flex justify-content-between">
-        <InputField
+        <InputSmall
           id="stockMinimo"
           label="Stock Mínimo"
           type="number"
           name="stockMinimo"
-          register={register}
+          value={reventa.stockMinimo}
+          onChange={onChange}
           required={true}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockMinimo
-          }
         />
-        <InputField
+        <InputSmall
           id="stockMaximo"
           label="Stock Máximo"
           type="number"
           name="stockMaximo"
+          value={reventa.stockMaximo}
+          onChange={onChange}
           required={true}
-          register={register}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockMaximo
-          }
         />
-        <InputField
+        <InputSmall
           id="stockActual"
           label="Stock Actual"
           type="number"
           name="stockActual"
+          value={reventa.stockActual}
+          onChange={onChange}
           required={true}
-          register={register}
-          defaultValue={
-            props.idEdit === undefined ? "" : props.idEdit.stockActual
-          }
         />
       </div>
-      <SelectCategorias
-        register={register}
-        label={true}
+      <SelectCategoria
+        value={reventa.rubro}
+        onChange={onChange}
+        required={true}
         name="rubro"
-        defaultValue={
-          props.idEdit === undefined
-            ? ""
-            : props.idEdit.rubro === null
-            ? ""
-            : props.idEdit.rubro._id
-        }
+        tipo="catalogo"
       />
-      <InputField
+      <InputSmall
         id="imagenPath"
         label="URL Imagen"
         type="text"
         name="imagenPath"
-        register={register}
+        value={reventa.imagenPath}
+        onChange={onChange}
         required={true}
-        defaultValue={props.idEdit === undefined ? "" : props.idEdit.imagenPath}
       />
       {/** Botones del modal */}
       <div className="d-flex justify-content-center border-top mt-4">
@@ -127,7 +134,7 @@ export default function Form(props) {
           </button>
           <button
             className="btn btn-modal-outline w-100 m-2"
-            onClick={() => props.setIsOpen(false)}
+            onClick={() => toggle(undefined)}
           >
             Cerrar
           </button>

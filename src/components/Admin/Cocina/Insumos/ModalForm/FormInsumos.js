@@ -16,7 +16,6 @@ export default function FormInsumos({ idEdit, toggle, toggleReload }) {
   });
 
   function onChange(e) {
-    e.preventDefault();
     setInsumo({ ...insumo, [e.target.name]: e.target.value });
   }
 

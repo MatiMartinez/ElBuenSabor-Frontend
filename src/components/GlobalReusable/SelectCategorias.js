@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 //API
-import { getRubros, getRubrosInsumo } from "../../API/ApiCategorias";
+import {
+  getRubros,
+  getRubrosInsumo,
+  getRubrosCatalogo,
+} from "../../API/ApiCategorias";
 
 const SelectCategorias = (props) => {
   const [categorias, setCategorias] = useState([]);
@@ -11,6 +15,8 @@ const SelectCategorias = (props) => {
       let data;
       if (props.tipo === "insumos") {
         data = await getRubrosInsumo();
+      } else if (props.tipo === "catalogo") {
+        data = await getRubrosCatalogo();
       } else {
         data = await getRubros();
       }
