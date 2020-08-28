@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import React from "react";
+import { PopoverHeader, PopoverBody, UncontrolledPopover } from "reactstrap";
 
 export default function PopoverDetalle(props) {
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
-  function toggle() {
-    setPopoverOpen(!popoverOpen);
-  }
-
   return (
     <td>
-      <button className="btn btn-info rounded-0" type="button" id="popover">
+      <button
+        className="btn btn-info rounded-0"
+        type="button"
+        id={"PopoverFocus-" + props.index}
+      >
         Ver
       </button>
-      <Popover
+      <UncontrolledPopover
+        trigger="focus"
         placement="bottom"
-        isOpen={popoverOpen}
-        target="popover"
-        toggle={toggle}
+        target={"PopoverFocus-" + props.index}
       >
         <PopoverHeader>Detalles</PopoverHeader>
         <PopoverBody>{props.children}</PopoverBody>
-      </Popover>
+      </UncontrolledPopover>
     </td>
   );
 }

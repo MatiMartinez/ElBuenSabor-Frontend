@@ -31,7 +31,7 @@ export default function Aprobados({ pedidosAprobados, toggleReload }) {
                   <td>{pedido.numero}</td>
                   <td>{pedido.fecha}</td>
                   <td>{pedido.usuario.email}</td>
-                  <PopoverDetalle>
+                  <PopoverDetalle index={index}>
                     {pedido.detalle.platos.map((plato, index) => (
                       <p key={index}>
                         {plato.cantidad + " " + plato.item_id.denominacion}

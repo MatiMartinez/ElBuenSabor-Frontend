@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 export default function SidebarPedidos(props) {
   return (
     <div className="col-2 mt-2 d-flex flex-column">
-      <h4 className="text-info mb-4">Pedidos caja</h4>
+      <h4 className="text-info mb-3">Pedidos caja</h4>
+      <button
+        className="btn btn-info w-75 mb-2"
+        onClick={() => props.toggleReload()}
+      >
+        <i className="fas fa-redo mr-2"></i>Actualizar
+      </button>
       <hr className="w-100" />
       <Link to="/caja/pendientes" className="caja-links">
         <i className="fas fa-question mr-2 fa-sm"></i>

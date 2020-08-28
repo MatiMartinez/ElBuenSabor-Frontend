@@ -80,6 +80,7 @@ export default function PedidosCaja() {
         cantPedidosPreparados={pedidosPreparados.length}
         cantPedidosEnDelivery={pedidosEnDelivery.length}
         cantPedidosEntregados={pedidosEntregados.length}
+        toggleReload={toggleReload}
       />
       {/** Tabla con pedidos */}
       <div className="col-10 mt-2">
