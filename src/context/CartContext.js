@@ -12,12 +12,14 @@ export const CartProvider = (props) => {
 
   function calcularSubTotal() {
     let total = Number(0);
-    platos.forEach((plato) => {
-      total += Number(plato.item.precioVenta) * Number(plato.cantidad);
-    });
-    reventas.forEach((reventa) => {
-      total += Number(reventa.item.precioVenta) * Number(reventa.cantidad);
-    });
+    platos.length !== 0 &&
+      platos.forEach((plato) => {
+        total += Number(plato.item.precioVenta) * Number(plato.cantidad);
+      });
+    reventas.length !== 0 &&
+      reventas.forEach((reventa) => {
+        total += Number(reventa.item.precioVenta) * Number(reventa.cantidad);
+      });
     return total;
   }
 

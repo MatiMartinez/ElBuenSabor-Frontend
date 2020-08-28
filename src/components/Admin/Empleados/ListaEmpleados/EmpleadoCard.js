@@ -4,7 +4,7 @@ import { Card, CardHeader, CardBody, CardTitle } from "reactstrap";
 import { setBorradoRol } from "../../../../API/ApiRoles";
 
 const EmpleadoCard = ({ empleado, toggleReload }) => {
-  const { user } = useAuth0();
+  const { userdb } = useAuth0();
 
   async function quitarRol(id) {
     await setBorradoRol(id);
@@ -13,7 +13,15 @@ const EmpleadoCard = ({ empleado, toggleReload }) => {
   return (
     <Card className="div-shadow">
       <CardHeader className="d-flex align-items-center">
-        <img src={user.picture} className="employee-img" alt="user-img" />
+        <img
+          src={
+            userdb.imagenPath === null
+              ? require("../../../../assets/user.svg")
+              : userdb.imagenPath
+          }
+          className="employee-img"
+          alt="user-img"
+        />
         <div className="ml-4">
           <div>
             <b>{empleado.email}</b>

@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import ProductoCard from "./ProductoCard";
 import { getPlatosPorRubro } from "../../../../API/ApiPlatos";
 import ModalProducto from "./ModalProducto";
+import { getReventasPorRubro } from "../../../../API/ArtReventaApi";
+import ReventasCard from "./ReventasCatalogo/ReventasCard";
 
 export default function CatalogoProductos({ selectedCategory }) {
   const [productos, setProductos] = useState([]);
+  const [reventas, setReventas] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState({});
+  const [tipo, setTipo] = useState(false); // False es reventa y true plato
 
   useEffect(() => {
     async function cargarProductos() {
-      const data = await getPlatosPorRubro(selectedCategory);
-      setProductos(data);
+      const dataProductos = await getPlatosPorRubro(selectedCategory);
+      setProductos(dataProductos);
+      const dataReventas = await getReventasPorRubro(selectedCategory);
+      setReventas(dataReventas);
     }
     if (selectedCategory !== "") {
       cargarProductos();
@@ -19,8 +25,9 @@ export default function CatalogoProductos({ selectedCategory }) {
     }
   }, [selectedCategory]);
 
-  function seleccionarProducto(data) {
+  function seleccionarProducto(data, tipo) {
     setProductoSeleccionado(data);
+    setTipo(tipo);
     toggle();
   }
 
@@ -44,11 +51,21 @@ export default function CatalogoProductos({ selectedCategory }) {
               />
             </div>
           ))}
+        {reventas.length !== 0 &&
+          reventas.map((reventa, index) => (
+            <div className="col-6 col-md-6" key={index}>
+              <ReventasCard
+                producto={reventa}
+                seleccionarProducto={seleccionarProducto}
+              />
+            </div>
+          ))}
       </div>
       <ModalProducto
         isOpen={isOpen}
         toggle={toggle}
         producto={productoSeleccionado}
+        tipo={tipo}
       />
     </div>
   );

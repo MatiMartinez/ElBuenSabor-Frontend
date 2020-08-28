@@ -10,7 +10,7 @@ export default function SelectHome() {
   function HomeCocinero() {
     return (
       <div className="col-6 col-lg-3">
-        <Link className="select-home-link" to="/cocina">
+        <Link className="select-home-link" to="/cocina/pedidos">
           <i className="fas fa-hamburger fas-border icon-circle-border"></i>
           <h6 className="text-muted mt-4">COCINERO</h6>
         </Link>

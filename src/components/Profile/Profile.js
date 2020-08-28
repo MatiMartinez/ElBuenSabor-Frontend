@@ -40,7 +40,7 @@ const Profile = () => {
       <div className="mr-5 ml-5">
         <div className="row">
           <div className="col-xl-4 col-md-4 col-sm-12 text-center">
-            <ImageProfile />
+            <ImageProfile toggleReload={toggleReload} userdb={userdb} />
             <hr />
           </div>
           <div className="col-xl-6 col-md-8 col-sm-12">

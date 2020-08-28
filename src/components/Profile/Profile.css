@@ -51,3 +51,34 @@
 .image-profile-user {
   max-width: 250px;
 }
+
+/* Modal imagen de perfil */
+.modal-imagen-perfil {
+  position: fixed;
+  border: none;
+  border-radius: 0%;
+  padding: 2%;
+  top: 0;
+  left: 0;
+  height: max-content;
+  transform: translate(10%, 100%);
+  width: 80vw;
+  background: #ffffff;
+  outline: none;
+}
+
+.modal-imagen-perfil-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #33292770;
+}
+
+@media (min-width: 768px) {
+  .modal-imagen-perfil {
+    transform: translate(10%, 190%);
+    width: 30vw;
+  }
+}
