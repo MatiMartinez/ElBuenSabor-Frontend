@@ -12,7 +12,7 @@ export default function AprobadosCocina({ pedidosAprobados, toggleReload }) {
     <div className="col-6 border-right">
       <div className="row">
         {pedidosAprobados.map((pedido, index) => (
-          <div key={index} className="col-6">
+          <div key={index} className="col-6 mb-3">
             <AprobadosCard pedido={pedido}>
               <Button
                 className="w-100 border-0 mt-3"

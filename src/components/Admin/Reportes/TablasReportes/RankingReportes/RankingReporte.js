@@ -4,8 +4,8 @@ import { TextField } from "@material-ui/core";
 
 export default function RankingReporte() {
   const [platos, setPlatos] = useState([]);
-  const [fecha_desde, setFecha_desde] = useState("2020-08-01");
-  const [fecha_hasta, setFecha_hasta] = useState("2020-08-23");
+  const [fecha_desde, setFecha_desde] = useState("");
+  const [fecha_hasta, setFecha_hasta] = useState("");
 
   async function onSubmit() {
     const data = await getRankingPlatos({ fecha_desde, fecha_hasta });
@@ -62,8 +62,8 @@ export default function RankingReporte() {
       </div>
       {platos.length !== 0 ? (
         <div>
-          <table className="table">
-            <thead>
+          <table className="table div-shadow mt-3">
+            <thead className="thead-light">
               <tr>
                 <th>Plato</th>
                 <th>Cantidad</th>

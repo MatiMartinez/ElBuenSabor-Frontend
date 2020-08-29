@@ -5,8 +5,8 @@ import OpcionesPedidosReporte from "./OpcionesPedidosReporte";
 
 export default function PedidosReporte() {
   const [pedidos, setPedidos] = useState([]);
-  const [fecha_desde, setFecha_desde] = useState("2020-08-01");
-  const [fecha_hasta, setFecha_hasta] = useState("2020-08-23");
+  const [fecha_desde, setFecha_desde] = useState("");
+  const [fecha_hasta, setFecha_hasta] = useState("");
 
   async function onSubmit() {
     const data = await getPedidosPorCliente({ fecha_desde, fecha_hasta });
@@ -63,8 +63,8 @@ export default function PedidosReporte() {
       </div>
       {pedidos.length !== 0 && (
         <div>
-          <table className="table">
-            <thead>
+          <table className="table div-shadow mt-3">
+            <thead className="thead-light">
               <tr>
                 <th>Nombre</th>
                 <th>Email</th>
@@ -77,7 +77,7 @@ export default function PedidosReporte() {
             </thead>
             <tbody>
               {pedidos.map((pedido, index) => (
-                <tr key="index">
+                <tr key={index}>
                   <td>{pedido.nombre}</td>
                   <td>{pedido.email}</td>
                   <td>{pedido.pedidosRealizados}</td>

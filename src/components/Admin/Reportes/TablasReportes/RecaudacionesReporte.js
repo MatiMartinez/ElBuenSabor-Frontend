@@ -4,8 +4,8 @@ import { getRecaudaciones } from "../../../../API/ApiReportes";
 
 export default function RecaudacionesReporte() {
   const [recaudaciones, setRecaudaciones] = useState([]);
-  const [fecha_desde, setFecha_desde] = useState("2020-08-01");
-  const [fecha_hasta, setFecha_hasta] = useState("2020-08-23");
+  const [fecha_desde, setFecha_desde] = useState("");
+  const [fecha_hasta, setFecha_hasta] = useState("");
 
   async function onSubmit() {
     const data = await getRecaudaciones({ fecha_desde, fecha_hasta });
@@ -20,7 +20,7 @@ export default function RecaudacionesReporte() {
         <div>
           <a
             className="btn btn-info mb-1"
-            href="http://localhost:3033/api/reportes/descargar/recaudaciones"
+            href={`http://localhost:3033/api/reportes/descargar/recaudaciones?fecha_desde=${fecha_desde}&fecha_hasta=${fecha_hasta}`}
           >
             <i className="fas fa-file-download mr-2"></i>
             Excel
@@ -63,20 +63,22 @@ export default function RecaudacionesReporte() {
       </div>
       {recaudaciones.length !== 0 ? (
         <div>
-          <table className="table">
-            <thead>
+          <table className="table div-shadow mt-3">
+            <thead className="thead-light">
               <tr>
-                <th>Tipo</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               {recaudaciones.map((recaudacion, index) => (
                 <tr key={index}>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{recaudacion.fecha.slice(0, 10)}</td>
+                  <td>{recaudacion.subtotal}</td>
+                  <td>{recaudacion.descuento}</td>
+                  <td>{recaudacion.total}</td>
                 </tr>
               ))}
               {/** Se me ocurrio mostrar cantidad y total de reventas, insumos y el total de todo */}

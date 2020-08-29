@@ -24,7 +24,7 @@ export default function TablePendientes({ pedidos }) {
               <td>{pedido.formaPago}</td>
               <td>{pedido.minutosDemora}</td>
               <td>{pedido.delivery === true ? "Delivery" : "Retiro local"}</td>
-              <PopoverDetalle>
+              <PopoverDetalle index={index}>
                 {pedido.detalle.platos.map((plato, index) => (
                   <p key={index}>
                     {plato.cantidad +

@@ -30,7 +30,7 @@ export default function Preparados({ pedidosPreparados, toggleReload }) {
               {pedidosPreparados.map((pedido, index) => (
                 <tr key={index}>
                   <td>{pedido.numero}</td>
-                  <td>{pedido.fecha}</td>
+                  <td>{pedido.fecha.slice(0, 10)}</td>
                   <td>{pedido.usuario.email}</td>
                   <PopoverDetalle index={index}>
                     {pedido.detalle.platos.map((plato, index) => (

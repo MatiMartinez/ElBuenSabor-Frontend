@@ -1,10 +1,10 @@
 import React from "react";
 import SidebarReportes from "./SidebarReportes";
 import PrivateRoute from "../../../routes/PrivateRoute";
-import StockReporte from "./TablasReportes/StockReporte";
+import StockReporte from "./TablasReportes/StockReportes/StockReporte";
 import RecaudacionesReporte from "./TablasReportes/RecaudacionesReporte";
-import PedidosReporte from "./TablasReportes/PedidosReportes/PedidosReporte";
 import RankingReporte from "./TablasReportes/RankingReportes/RankingReporte";
+import PedidosReporte from "./TablasReportes/PedidosReportes/PedidosReporte";
 
 export default function Reportes() {
   return (

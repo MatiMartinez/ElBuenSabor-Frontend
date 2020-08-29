@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getArticulosParaComprar } from "../../../../API/ApiReportes";
+import { getArticulosParaComprar } from "../../../../../API/ApiReportes";
 
 export default function StockReporte() {
   const [articulos, setArticulos] = useState([]);
@@ -43,7 +43,7 @@ export default function StockReporte() {
               <tr key={index}>
                 <td>{articulo.denominacion}</td>
                 <td>{articulo.tipo}</td>
-                <th>{articulo.stockActual}</th>
+                <th className="text-danger">{articulo.stockActual}</th>
                 <td>{articulo.stockMinimo}</td>
                 <td>{articulo.stockMaximo}</td>
                 <td>{articulo.compraMax}</td>
