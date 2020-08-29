@@ -177,9 +177,45 @@
 
 @media (min-width: 768px) {
   .modal-producto {
-    width: 40%;
+    width: 40vw;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
   }
+}
+
+.modal-alert {
+  position: fixed;
+  border: 1px solid #f04747;
+  border-radius: 0%;
+  padding: 1%;
+  top: 50%;
+  left: 50%;
+  height: max-content;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  background: #feecec;
+  outline: none;
+}
+
+.modal-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #33292770;
+}
+
+@media (min-width: 768px) {
+  .modal-alert {
+    width: 20vw;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.title-alert {
+  color: #f04747;
 }

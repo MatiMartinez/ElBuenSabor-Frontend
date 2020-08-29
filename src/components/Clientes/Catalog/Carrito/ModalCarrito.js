@@ -70,7 +70,7 @@ export default function ModalCarrito({ toggle, isOpen }) {
     emptyCart();
     toggle();
     //} else {
-    //  alert("Fuera de horario");
+    //  toggleAlert();
     //  e.preventDefault();
     //}
   }
@@ -96,6 +96,12 @@ export default function ModalCarrito({ toggle, isOpen }) {
     }
   }
 
+  const [isOpenAlert, setIsOpenAlert] = useState(false);
+
+  function toggleAlert() {
+    setIsOpenAlert(!isOpenAlert);
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -103,6 +109,25 @@ export default function ModalCarrito({ toggle, isOpen }) {
       className="modal-carrito"
       overlayClassName="modal-carrito-overlay"
     >
+      {/*Modal para la alerta de horario de atencion */}
+      <Modal
+        isOpen={isOpenAlert}
+        ariaHideApp={false}
+        className="modal-alert"
+        overlayClassName="modal-alert-overlay"
+      >
+        <button
+          className="btn float-right m-0 p-0"
+          onClick={() => toggleAlert()}
+        >
+          <i className="fas fa-times-circle fa-2x"></i>
+        </button>
+        <div>
+          <h5 className="title-alert">Horario de atención</h5>
+          <h6>Lun - Dom, 20 a 00</h6>
+          <h6>Sab - Dom, 11 a 15</h6>
+        </div>
+      </Modal>
       <form
         className="d-flex flex-column justify-content-between h-100"
         onSubmit={handleSubmit}
