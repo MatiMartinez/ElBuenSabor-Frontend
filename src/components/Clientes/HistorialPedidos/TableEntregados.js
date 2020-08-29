@@ -27,28 +27,34 @@ export default function TableEntregados({ pedidos }) {
               <td>{pedido.estado}</td>
               <td>{pedido.delivery === true ? "Delivery" : "Retiro local"}</td>
               <td>{pedido.total}</td>
-              <PopoverDetalle>
-                {pedido.detalle.platos.map((plato, index) => (
-                  <p key={index}>
-                    {plato.cantidad +
-                      " " +
-                      plato.item_id.denominacion +
-                      " " +
-                      "$ " +
-                      plato.item_id.precioVenta}
-                  </p>
-                ))}
-                {pedido.detalle.reventas.map((reventa, index) => (
-                  <p key={index}>
-                    {reventa.cantidad +
-                      " " +
-                      reventa.item_id.denominacion +
-                      " " +
-                      "$ " +
-                      reventa.item_id.precioVenta}
-                  </p>
-                ))}
-              </PopoverDetalle>
+              <td>
+
+                <PopoverDetalle identif={index} >
+                  {pedido.detalle.platos.map((plato, index) => (
+                    
+                    <p key={index}>
+                      {plato.cantidad +
+                        " " +
+                        plato.item_id.denominacion +
+                        " " +
+                        "$ " +
+                        plato.item_id.precioVenta}
+                    </p>
+                  ))}
+
+                  {pedido.detalle.reventas.map((reventa, index) => (
+                    <p key={index}>
+                      {reventa.cantidad +
+                        " " +
+                        reventa.item_id.denominacion +
+                        " " +
+                        "$ " +
+                        reventa.item_id.precioVenta}
+                    </p>
+                  ))}
+                </PopoverDetalle>
+              </td>
+
               <td>
                 {pedido.factura !== null ? (
                   <a
