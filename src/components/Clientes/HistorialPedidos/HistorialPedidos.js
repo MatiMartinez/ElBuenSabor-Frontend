@@ -29,12 +29,7 @@ export default function HistorialPedidos() {
           <h3 className="m-0">Mis pedidos</h3>
         </div>
         {pedidos.length !== 0 ? (
-          <div className="row">
-            {/** Tabla de pedidos pendientes */}
-            <TablePendientes pedidos={pedidos} />
-            {/** Tabla de pedidos entregados */}
             <TableEntregados pedidos={pedidos} />
-          </div>
         ) : (
           <div></div>
         )}
