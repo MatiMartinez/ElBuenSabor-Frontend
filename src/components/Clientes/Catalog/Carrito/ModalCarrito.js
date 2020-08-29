@@ -26,7 +26,8 @@ export default function ModalCarrito({ toggle, isOpen }) {
   }
 
   const [delivery, setDelivery] = useState(false);
-  const [domicilio, setDomicilio] = useState(""); // Domicilio seleccionado
+  const [domicilio, setDomicilio] = useState("");
+  const [formaPago, setFormaPago] = useState("Efectivo");
 
   function toggleEnvio(data) {
     if (data === "local") {
@@ -49,7 +50,7 @@ export default function ModalCarrito({ toggle, isOpen }) {
       detallePedido = {
         usuario: userdb._id,
         delivery: delivery,
-        formaPago: "Efectivo",
+        formaPago: formaPago,
         platos: platosId,
         reventas: reventasId,
       };
@@ -63,6 +64,7 @@ export default function ModalCarrito({ toggle, isOpen }) {
         reventas: reventasId,
       };
     }
+    console.log(detallePedido);
     await createPedido(detallePedido);
     emptyCart();
     toggle();
@@ -89,6 +91,8 @@ export default function ModalCarrito({ toggle, isOpen }) {
               toggleEnvio={toggleEnvio}
               domicilio={domicilio}
               setDomicilio={setDomicilio}
+              formaPago={formaPago}
+              setFormaPago={setFormaPago}
             />
           </div>
           <ProductsOnCart />

@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "../../../../react-auth0-spa";
+import { getFormasPago } from "../../../../API/ApiOpciones";
 
-export default function SelectEnvio({ toggleEnvio, domicilio, setDomicilio }) {
+export default function SelectEnvio({
+  toggleEnvio,
+  domicilio,
+  setDomicilio,
+  formaPago,
+  setFormaPago,
+}) {
   const { userdb } = useAuth0();
 
-  const [domicilios, setDomicilios] = useState([]); // Domicilios del usuario, cargados para el select
+  const [domicilios, setDomicilios] = useState([]);
+  const [formasPago, setFormasPago] = useState([]);
   const [envio, setEnvio] = useState("local");
 
   useEffect(() => {
-    if (envio === "delivery") {
-      setDomicilios(userdb.domicilios);
+    async function cargarFormasPago() {
+      const data = await getFormasPago();
+      setFormasPago(data);
     }
+    setDomicilios(userdb.domicilios);
+    cargarFormasPago();
     // eslint-disable-next-line
   }, [envio]);
 
@@ -49,12 +60,30 @@ export default function SelectEnvio({ toggleEnvio, domicilio, setDomicilio }) {
             onChange={(e) => setDomicilio(e.target.value)}
             required
           >
-            <option hidden disabled value="">
-              Seleccione un domicilio...
-            </option>
             {domicilios.map((domicilio) => (
               <option key={domicilio._id} value={domicilio._id}>
                 {domicilio.alias}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {envio === "local" && (
+        <div className="form-group m-2">
+          <label className="control-label control-label-sm" htmlFor="formaPago">
+            Tipo de pago
+          </label>
+          <select
+            name="formaPago"
+            id="formaPago"
+            className="form-control form-control-sm"
+            value={formaPago}
+            onChange={(e) => setFormaPago(e.target.value)}
+            required
+          >
+            {formasPago.map((formaPago, index) => (
+              <option key={index} value={formaPago}>
+                {formaPago}
               </option>
             ))}
           </select>

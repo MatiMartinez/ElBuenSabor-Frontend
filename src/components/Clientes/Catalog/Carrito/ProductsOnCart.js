@@ -29,25 +29,27 @@ export default function ProductsOnCart() {
     <div>
       {platos.length !== 0 &&
         platos.map((plato, index) => (
-          <div className="row producto-carrito" key={index}>
-            <div className="col-1">{plato.cantidad}</div>
-            <div className="col-8">
-              <p>{plato.item.denominacion}</p>
-              <p className="text-muted text-truncate">
-                {plato.item.ingredientes.map((ingrediente) => {
-                  return ingrediente.insumo.denominacion + " ";
-                })}
-              </p>
-              <button
-                className="btn btn-quitar"
-                type="button"
-                onClick={() => removePlato(index)}
-              >
-                Quitar
-              </button>
-            </div>
-            <div className="col-3 d-flex">
-              $ {plato.item.precioVenta * plato.cantidad}
+          <div className="producto-carrito" key={index}>
+            <div className="row">
+              <div className="col-1">{plato.cantidad}</div>
+              <div className="col-8">
+                <p>{plato.item.denominacion}</p>
+                <p className="text-muted text-truncate">
+                  {plato.item.ingredientes.map((ingrediente) => {
+                    return ingrediente.insumo.denominacion + " ";
+                  })}
+                </p>
+                <button
+                  className="btn btn-quitar"
+                  type="button"
+                  onClick={() => removePlato(index)}
+                >
+                  Quitar
+                </button>
+              </div>
+              <div className="col-3 d-flex">
+                $ {plato.item.precioVenta * plato.cantidad}
+              </div>
             </div>
           </div>
         ))}

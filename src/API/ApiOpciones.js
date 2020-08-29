@@ -5,8 +5,6 @@ export async function getRoles() {
     .get("/opciones/nombres-rol")
     .then((res) => {
       const resData = res.data;
-      console.log("Roles obtenidos");
-      console.log(resData);
       return resData;
     })
     .catch((err) => {
@@ -19,7 +17,18 @@ export async function getUnidadesMedida() {
     .get("/opciones/unidades-medida")
     .then((res) => {
       const resData = res.data;
-      console.log("Unidades de medida obtenidas");
+      return resData;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export async function getFormasPago() {
+  return api
+    .get("/opciones/formas-pago")
+    .then((res) => {
+      const resData = res.data;
       console.log(res);
       return resData;
     })
