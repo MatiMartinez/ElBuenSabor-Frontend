@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import Modal from "react-modal";
 
 import SelectEnvio from "./SelectEnvio";
@@ -64,10 +65,35 @@ export default function ModalCarrito({ toggle, isOpen }) {
         reventas: reventasId,
       };
     }
-    console.log(detallePedido);
+    //if (validarHora() === true) {
     await createPedido(detallePedido);
     emptyCart();
     toggle();
+    //} else {
+    //  alert("Fuera de horario");
+    //  e.preventDefault();
+    //}
+  }
+
+  // Metodo para validar el horario de atencion
+  function validarHora() {
+    var date = Date.now();
+    // Dia de la semana
+    var dia = moment(date).format("ddd");
+    var hora = moment().get("hour");
+    if (hora >= 20 && hora <= 23) {
+      return true;
+    } else {
+      if (dia === "Sat" || dia === "Sun") {
+        if (hora >= 11 && hora <= 15) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
   }
 
   return (

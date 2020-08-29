@@ -20,6 +20,7 @@ export default function SliderCategorias({ setSelectedCategory }) {
   }
 
   let settings = {
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
