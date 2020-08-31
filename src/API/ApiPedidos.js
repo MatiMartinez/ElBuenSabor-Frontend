@@ -1,13 +1,16 @@
 import api from "./api";
 
 export async function createPedido(pedido) {
-  await api
+  return await api
     .post("/pedidos/", pedido)
     .then((res) => {
       console.log(res);
       console.log("Pedido creado");
+      return res;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err.status);
+    });
 }
 
 export async function getPedidosByEstado(estado) {

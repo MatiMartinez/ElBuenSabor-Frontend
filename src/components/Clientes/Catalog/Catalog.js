@@ -18,7 +18,9 @@ const Catalog = () => {
   const { itemsOnCart } = useCart();
 
   // Busqueda, form y estado de la busqueda
-  const [busqueda, setBusqueda] = useState(null);
+  const [busqueda, setBusqueda] = useState("");
+  const [platos, setPlatos] = useState([]);
+  const [reventas, setReventas] = useState([]);
   const [productos, setProductos] = useState({ platos: [], reventas: [] });
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -29,10 +31,35 @@ const Catalog = () => {
   }
 
   async function getProductos() {
-    const dataPlatos = await getPlatos();
-    const dataReventas = await getReventas();
-    console.log(dataPlatos);
-    console.log(dataReventas);
+    if (platos.length === 0 && reventas.length === 0) {
+      const dataPlatos = await getPlatos();
+      setPlatos(dataPlatos);
+      const dataReventas = await getReventas();
+      setReventas(dataReventas);
+    }
+    const platosFilter = platos.filter((plato) => {
+      if (
+        plato.denominacion.includes(busqueda) ||
+        plato.denominacion.toLowerCase().includes(busqueda)
+      ) {
+        return plato;
+      }
+    });
+    const reventasFilter = reventas.filter((reventa) => {
+      if (
+        reventa.denominacion.includes(busqueda) ||
+        reventa.denominacion.toLowerCase().includes(busqueda)
+      ) {
+        return reventa;
+      }
+    });
+    console.log(platosFilter);
+    console.log(reventasFilter);
+    setProductos({
+      ...productos,
+      platos: platosFilter,
+      reventas: reventasFilter,
+    });
   }
 
   function onChange(e) {
@@ -60,7 +87,10 @@ const Catalog = () => {
       {/** Separador */}
       <hr className="container mb-4" />
       {/** Catalogo de productos */}
-      <CatalogoProductos selectedCategory={selectedCategory} />
+      <CatalogoProductos
+        selectedCategory={selectedCategory}
+        busqueda={productos}
+      />
       {/** Modal del carrito de compras */}
       <ModalCarrito isOpen={isOpen} toggle={toggle} />
       {/** Boton siempre flotante del carrito */}

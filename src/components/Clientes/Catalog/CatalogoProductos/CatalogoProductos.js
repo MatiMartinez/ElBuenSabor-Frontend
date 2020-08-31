@@ -5,7 +5,7 @@ import ModalProducto from "./ModalProducto";
 import { getReventasPorRubro } from "../../../../API/ArtReventaApi";
 import ReventasCard from "./ReventasCatalogo/ReventasCard";
 
-export default function CatalogoProductos({ selectedCategory }) {
+export default function CatalogoProductos({ selectedCategory, busqueda }) {
   const [productos, setProductos] = useState([]);
   const [reventas, setReventas] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState({});

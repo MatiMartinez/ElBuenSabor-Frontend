@@ -67,14 +67,19 @@ export default function ModalCarrito({ toggle, isOpen }) {
       };
     }
     if (itemsOnCart !== 0) {
-      if (validarHora() === true) {
-        await createPedido(detallePedido);
+      //if (validarHora() === true) {
+      const response = await createPedido(detallePedido);
+      console.log(response);
+      if (response !== undefined) {
         emptyCart();
         toggle();
       } else {
-        toggleAlert();
-        e.preventDefault();
+        toggleFallo();
       }
+      //} else {
+      //  toggleAlert();
+      //  e.preventDefault();
+      //}
     }
   }
 
@@ -105,6 +110,12 @@ export default function ModalCarrito({ toggle, isOpen }) {
     setIsOpenAlert(!isOpenAlert);
   }
 
+  const [isOpenFallo, setIsOpenFallo] = useState(false);
+
+  function toggleFallo() {
+    setIsOpenFallo(!isOpenFallo);
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -112,7 +123,7 @@ export default function ModalCarrito({ toggle, isOpen }) {
       className="modal-carrito"
       overlayClassName="modal-carrito-overlay"
     >
-      {/*Modal para la alerta de horario de atencion */}
+      {/* Modal para la alerta de horario de atencion */}
       <Modal
         isOpen={isOpenAlert}
         ariaHideApp={false}
@@ -129,6 +140,24 @@ export default function ModalCarrito({ toggle, isOpen }) {
           <h5 className="title-alert">Horario de atención</h5>
           <h6>Lun - Dom, 20 a 00</h6>
           <h6>Sab - Dom, 11 a 15</h6>
+        </div>
+      </Modal>
+      {/* Modal fallo al crear el pedido */}
+      <Modal
+        isOpen={isOpenFallo}
+        ariaHideApp={false}
+        className="modal-alert"
+        overlayClassName="modal-alert-overlay"
+      >
+        <button
+          className="btn float-right m-0 p-0"
+          onClick={() => toggleFallo()}
+        >
+          <i className="fas fa-times-circle fa-2x"></i>
+        </button>
+        <div>
+          <h5 className="title-alert">¡Uy! Algo salió mal...</h5>
+          <h6>Intenta nuevamente</h6>
         </div>
       </Modal>
       <form
