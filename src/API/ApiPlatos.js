@@ -29,11 +29,12 @@ export async function getPlatosPorRubro(categoriaId) {
 }
 
 export async function createPlato(plato) {
-  await api
-    .post("/platos/", plato) // Aqui em quede haciendo codigo
+  return await api
+    .post("/platos/", plato)
     .then((res) => {
       console.log(res);
       console.log("Plato creado");
+      return res;
     })
     .catch((err) => {
       console.log(err);

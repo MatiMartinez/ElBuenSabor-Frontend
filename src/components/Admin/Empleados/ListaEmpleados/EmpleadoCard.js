@@ -29,7 +29,10 @@ const EmpleadoCard = ({ empleado, toggleReload }) => {
             </b>
           </div>
           <div>
-            <b>{empleado.fechaNacimiento.slice(0, 10)}</b>
+            <b>
+              {empleado.fechaNacimiento !== null &&
+                empleado.fechaNacimiento.slice(0, 10)}
+            </b>
           </div>
           <div>
             <b>{empleado.telefono}</b>

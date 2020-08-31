@@ -9,3 +9,14 @@ export const customStyle = {
     maxHeight: "90vh",
   },
 };
+
+export const customStyleCondicionalModal = {
+  overlay: {},
+  content: {
+    borderRadius: "0px",
+    marginLeft: "30%",
+    marginRight: "30%",
+    padding: "0%",
+    height: "max-content",
+  },
+};

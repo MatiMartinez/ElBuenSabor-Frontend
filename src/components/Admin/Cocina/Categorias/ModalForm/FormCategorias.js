@@ -57,7 +57,7 @@ export default function FormCategorias(props) {
         id="checkboxRubroInsumo"
         register={register}
         defaultValue={
-          props.idEdit === undefined ? false : props.idEdit.esRubroInsumo
+          props.idEdit === undefined ? true : props.idEdit.esRubroInsumo
         }
       />
       {/** Valida si es un rubro de catalogo para mostrar el campo imagenPath */}

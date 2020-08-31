@@ -1,5 +1,6 @@
 .historial-pedidos-view {
   border-top: 1px solid #ccc;
+  height: 80vh;
 }
 
 @media (min-width: 768px) {

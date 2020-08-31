@@ -15,22 +15,22 @@ export default function Reportes() {
           <PrivateRoute
             path="/admin/reportes/stock"
             component={StockReporte}
-            rol=""
+            rol="Administrador"
           />
           <PrivateRoute
             path="/admin/reportes/recaudaciones"
             component={RecaudacionesReporte}
-            rol=""
+            rol="Administrador"
           />
           <PrivateRoute
             path="/admin/reportes/ranking"
             component={RankingReporte}
-            rol=""
+            rol="Administrador"
           />
           <PrivateRoute
             path="/admin/reportes/pedidos"
             component={PedidosReporte}
-            rol=""
+            rol="Administrador"
           />
         </div>
       </div>

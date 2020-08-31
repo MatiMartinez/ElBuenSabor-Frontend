@@ -69,7 +69,6 @@ export default function ModalCarrito({ toggle, isOpen }) {
     if (itemsOnCart !== 0) {
       //if (validarHora() === true) {
       const response = await createPedido(detallePedido);
-      console.log(response);
       if (response !== undefined) {
         emptyCart();
         toggle();

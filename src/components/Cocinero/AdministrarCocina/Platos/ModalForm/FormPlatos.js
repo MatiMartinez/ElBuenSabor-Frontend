@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createPlato, updatePlato } from "../../../../../API/ApiPlatos";
 import InputSmall from "../../../../GlobalReusable/InputSmall";
 import SelectCategoria from "../../../../GlobalReusable/SelectCategoria";
+import CondicionalModal from "../../../../GlobalReusable/CondicionalModal";
 
 export default function FormPlatos({ idEdit, toggleReload, toggle }) {
   const [plato, setPlato] = useState({
@@ -20,8 +21,23 @@ export default function FormPlatos({ idEdit, toggleReload, toggle }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (idEdit === undefined) {
-      await createPlato(plato);
-      toggleReload();
+      const response = await createPlato(plato);
+      console.log(response);
+      if (response !== undefined) {
+        setCond(true);
+        toggleCondicional();
+        toggleReload();
+        setPlato({
+          denominacion: idEdit === "",
+          tiempoCocina: idEdit === 0,
+          precioVenta: idEdit === 0,
+          imagenPath: idEdit === "",
+          rubro: idEdit === "",
+        });
+      } else {
+        setCond(false);
+        toggleCondicional();
+      }
     } else {
       await updatePlato(idEdit._id, plato);
       toggleReload();
@@ -29,8 +45,21 @@ export default function FormPlatos({ idEdit, toggleReload, toggle }) {
     }
   }
 
+  // Modal condicional para verificar si se creo el plato
+  const [isOpenCondicional, setIsOpenCondicional] = useState(false);
+  const [cond, setCond] = useState(true);
+
+  function toggleCondicional() {
+    setIsOpenCondicional(!isOpenCondicional);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
+      <CondicionalModal
+        isOpen={isOpenCondicional}
+        cond={cond}
+        toggleCondicional={toggleCondicional}
+      />
       <InputSmall
         id="denominacion"
         label="Denominación"

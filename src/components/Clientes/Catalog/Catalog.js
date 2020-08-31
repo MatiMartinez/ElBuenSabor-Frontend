@@ -21,7 +21,7 @@ const Catalog = () => {
   const [busqueda, setBusqueda] = useState("");
   const [platos, setPlatos] = useState([]);
   const [reventas, setReventas] = useState([]);
-  const [productos, setProductos] = useState({ platos: [], reventas: [] });
+  const [productos, setProductos] = useState({ platos: [], reventas: [] }); // eslint-disable-line
   const [selectedCategory, setSelectedCategory] = useState("");
 
   function onSubmitBusqueda(e) {
@@ -37,6 +37,7 @@ const Catalog = () => {
       const dataReventas = await getReventas();
       setReventas(dataReventas);
     }
+    // eslint-disable-next-line
     const platosFilter = platos.filter((plato) => {
       if (
         plato.denominacion.includes(busqueda) ||
@@ -45,6 +46,7 @@ const Catalog = () => {
         return plato;
       }
     });
+    // eslint-disable-next-line
     const reventasFilter = reventas.filter((reventa) => {
       if (
         reventa.denominacion.includes(busqueda) ||
@@ -56,7 +58,6 @@ const Catalog = () => {
     console.log(platosFilter);
     console.log(reventasFilter);
     setProductos({
-      ...productos,
       platos: platosFilter,
       reventas: reventasFilter,
     });
@@ -87,10 +88,7 @@ const Catalog = () => {
       {/** Separador */}
       <hr className="container mb-4" />
       {/** Catalogo de productos */}
-      <CatalogoProductos
-        selectedCategory={selectedCategory}
-        busqueda={productos}
-      />
+      <CatalogoProductos selectedCategory={selectedCategory} />
       {/** Modal del carrito de compras */}
       <ModalCarrito isOpen={isOpen} toggle={toggle} />
       {/** Boton siempre flotante del carrito */}

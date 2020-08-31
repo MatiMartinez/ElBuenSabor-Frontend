@@ -35,7 +35,8 @@ export default function FormIngredientes({ idEdit, toggle, toggleReload, id }) {
       setCategoria("");
       setIngrediente({ insumo_id: "", cantidad: 1 });
     } else {
-      updateIngrediente(id, ingrediente);
+      updateIngrediente(idEdit._id, ingrediente);
+      toggleReload();
       toggle();
     }
   }

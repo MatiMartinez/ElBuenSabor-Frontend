@@ -30,7 +30,9 @@ export default function HistorialPedidos() {
         {pedidos.length !== 0 ? (
           <TablePedidos pedidos={pedidos} />
         ) : (
-          <div></div>
+          <div className="container text-center text-muted mt-5 mb-5">
+            <h3>No hay pedidos realizados</h3>
+          </div>
         )}
       </div>
     </div>
