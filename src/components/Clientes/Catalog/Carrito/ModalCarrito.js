@@ -15,6 +15,7 @@ export default function ModalCarrito({ toggle, isOpen }) {
     setPlatos,
     reventas,
     setReventas,
+    itemsOnCart,
     setItemsOnCart,
   } = useCart();
 
@@ -65,14 +66,16 @@ export default function ModalCarrito({ toggle, isOpen }) {
         reventas: reventasId,
       };
     }
-    //if (validarHora() === true) {
-    await createPedido(detallePedido);
-    emptyCart();
-    toggle();
-    //} else {
-    //  toggleAlert();
-    //  e.preventDefault();
-    //}
+    if (itemsOnCart !== 0) {
+      if (validarHora() === true) {
+        await createPedido(detallePedido);
+        emptyCart();
+        toggle();
+      } else {
+        toggleAlert();
+        e.preventDefault();
+      }
+    }
   }
 
   // Metodo para validar el horario de atencion

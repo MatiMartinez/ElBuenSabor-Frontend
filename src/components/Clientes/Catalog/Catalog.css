@@ -186,7 +186,7 @@
 
 .modal-alert {
   position: fixed;
-  border: 1px solid #f04747;
+  border: 5px solid #ad2118;
   border-radius: 0%;
   padding: 1%;
   top: 50%;
@@ -194,7 +194,7 @@
   height: max-content;
   transform: translate(-50%, -50%);
   width: 50vw;
-  background: #feecec;
+  background: #f7cac8;
   outline: none;
 }
 
@@ -217,5 +217,5 @@
 }
 
 .title-alert {
-  color: #f04747;
+  color: #ad2118;
 }

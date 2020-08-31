@@ -8,6 +8,7 @@ export default function TablePedidos({ pedidos }) {
       <thead>
         <tr>
           <th>Número</th>
+          <th>Fecha</th>
           <th>Pago</th>
           <th>Demora</th>
           <th>Estado</th>
@@ -21,6 +22,7 @@ export default function TablePedidos({ pedidos }) {
         {pedidos.map((pedido, index) => (
           <tr key={index}>
             <td>{pedido.numero}</td>
+            <td>{pedido.fecha.slice(0, 10)}</td>
             <td>{pedido.formaPago}</td>
             <td>{pedido.minutosDemora} min</td>
             <td>{pedido.estado}</td>
