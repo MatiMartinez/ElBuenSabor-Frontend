@@ -1,11 +1,8 @@
 import React from "react";
-import { useAuth0 } from "../../../../react-auth0-spa";
 import { Card, CardHeader, CardBody, CardTitle } from "reactstrap";
 import { setBorradoRol } from "../../../../API/ApiRoles";
 
 const EmpleadoCard = ({ empleado, toggleReload }) => {
-  const { userdb } = useAuth0();
-
   async function quitarRol(id) {
     await setBorradoRol(id);
     toggleReload();
@@ -15,9 +12,9 @@ const EmpleadoCard = ({ empleado, toggleReload }) => {
       <CardHeader className="d-flex align-items-center">
         <img
           src={
-            userdb.imagenPath === null
+            empleado.imagenPath === null || empleado.imagenPath === ""
               ? require("../../../../assets/user.svg")
-              : userdb.imagenPath
+              : empleado.imagenPath
           }
           className="employee-img"
           alt="user-img"
@@ -32,7 +29,7 @@ const EmpleadoCard = ({ empleado, toggleReload }) => {
             </b>
           </div>
           <div>
-            <b>{empleado.fechaNacimiento}</b>
+            <b>{empleado.fechaNacimiento.slice(0, 10)}</b>
           </div>
           <div>
             <b>{empleado.telefono}</b>

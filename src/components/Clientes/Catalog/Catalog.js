@@ -11,23 +11,34 @@ import Hero from "./HeroCatalog/HeroCatalog";
 import CatalogoProductos from "./CatalogoProductos/CatalogoProductos";
 import ModalCarrito from "./Carrito/ModalCarrito";
 import { useCart } from "../../../context/CartContext";
+import { getPlatos } from "../../../API/ApiPlatos";
+import { getReventas } from "../../../API/ArtReventaApi";
 
 const Catalog = () => {
   const { itemsOnCart } = useCart();
 
   // Busqueda, form y estado de la busqueda
   const [busqueda, setBusqueda] = useState(null);
+  const [productos, setProductos] = useState({ platos: [], reventas: [] });
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const onSubmitBusqueda = (e) => {
+  function onSubmitBusqueda(e) {
     e.preventDefault();
     console.log(busqueda);
-  };
+    getProductos();
+  }
 
-  const onChange = (e) => {
+  async function getProductos() {
+    const dataPlatos = await getPlatos();
+    const dataReventas = await getReventas();
+    console.log(dataPlatos);
+    console.log(dataReventas);
+  }
+
+  function onChange(e) {
     e.preventDefault();
     setBusqueda(e.target.value);
-  };
+  }
 
   // Carrito de compras
   const [isOpen, setIsOpen] = useState(false);
